@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מחשבון התאמה זוגית - נומרולוגיה</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Heebo', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .card-shadow { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+        .result-animation { animation: fadeInUp 0.6s ease-out; }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen py-8">
+    <div class="container mx-auto px-4 max-w-4xl">
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-white mb-2">💕 מחשבון התאמה זוגית</h1>
+            <p class="text-purple-100 text-lg">נומרולוגיה מקיפה לבדיקת התאמה רומנטית</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 mb-8">
+            <!-- בן/בת זוג ראשון -->
+            <div class="bg-white rounded-2xl p-6 card-shadow">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4 text-center">👤 בן/בת זוג ראשון</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">שם פרטי</label>
+                        <input type="text" id="firstName1" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent" placeholder="הכנס שם פרטי">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">שם משפחה</label>
+                        <input type="text" id="lastName1" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent" placeholder="הכנס שם משפחה">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">תאריך לידה</label>
+                        <input type="date" id="birthDate1" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                    </div>
+                </div>
+            </div>
+
+            <!-- בן/בת זוג שני -->
+            <div class="bg-white rounded-2xl p-6 card-shadow">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4 text-center">👤 בן/בת זוג שני</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">שם פרטי</label>
+                        <input type="text" id="firstName2" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent" placeholder="הכנס שם פרטי">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">שם משפחה</label>
+                        <input type="text" id="lastName2" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent" placeholder="הכנס שם משפחה">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">תאריך לידה</label>
+                        <input type="date" id="birthDate2" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mb-8">
+            <button onclick="calculateCompatibility()" class="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-semibold py-4 px-8 rounded-full text-lg shadow-lg transform hover:scale-105 transition-all duration-200">
+                🔮 חשב התאמה זוגית
+            </button>
+        </div>
+
+        <!-- תוצאות -->
+        <div id="results" class="hidden">
+            <div class="bg-white rounded-2xl p-8 card-shadow result-animation">
+                <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">📊 תוצאות ההתאמה</h2>
+                
+                <!-- תוצאות מחוברות -->
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">🔢 תוצאות מחוברות</h3>
+                    <div id="combinedResults" class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6"></div>
+                </div>
+
+                <!-- פירוט חישובים -->
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div id="person1Details" class="bg-purple-50 rounded-xl p-4">
+                        <h3 class="text-lg font-semibold text-purple-800 mb-3">👤 בן/בת זוג ראשון</h3>
+                        <div id="person1Results" class="space-y-2 text-sm"></div>
+                    </div>
+                    <div id="person2Details" class="bg-pink-50 rounded-xl p-4">
+                        <h3 class="text-lg font-semibold text-pink-800 mb-3">👤 בן/בת זוג שני</h3>
+                        <div id="person2Results" class="space-y-2 text-sm"></div>
+                    </div>
+                </div>
+
+                <!-- פירוט התאמות -->
+                <div class="mt-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">🔍 פירוט התאמות</h3>
+                    <div id="compatibilityDetails" class="grid md:grid-cols-2 gap-4"></div>
+                </div>
+
+                <!-- הסבר והמלצות -->
+                <div class="mt-6 bg-gradient-to-r from-purple-100 to-pink-100 rounded-xl p-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">💡 על מה כדאי לעבוד</h3>
+                    <div id="recommendations" class="text-gray-700"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // מיפוי אותיות עבריות לערכים נומרולוגיים
+        const hebrewValues = {
+            'א': 1, 'ב': 2, 'ג': 3, 'ד': 4, 'ה': 5, 'ו': 6, 'ז': 7, 'ח': 8, 'ט': 9,
+            'י': 10, 'כ': 20, 'ל': 30, 'מ': 40, 'נ': 50, 'ס': 60, 'ע': 70, 'פ': 80, 'צ': 90,
+            'ק': 100, 'ר': 200, 'ש': 300, 'ת': 400, 'ך': 20, 'ם': 40, 'ן': 50, 'ף': 80, 'ץ': 90
+        };
+
+        // אותיות אהו"י
+        const vowels = ['א', 'ה', 'ו', 'י', 'ע'];
+        
+        // עיצורים
+        const consonants = ['ב', 'ג', 'ד', 'ז', 'ח', 'ט', 'כ', 'ל', 'מ', 'נ', 'ס', 'פ', 'צ', 'ק', 'ר', 'ש', 'ת', 'ך', 'ם', 'ן', 'ף', 'ץ'];
+
+        function reduceToSingleDigit(num) {
+            // בדיקה לחובות קארמתיים לפני צמצום
+            const karmicDebts = [13, 14, 16, 19];
+            if (karmicDebts.includes(num)) {
+                const reduced = num.toString().split('').reduce((sum, digit) => sum + parseInt(digit), 0);
+                return ${num}/${reduced};
+            }
+            
+            while (num > 9 && num !== 11 && num !== 22 && num !== 33) {
+                num = num.toString().split('').reduce((sum, digit) => sum + parseInt(digit), 0);
+            }
+            return num;
+        }
+
+        function calculateNameValue(name) {
+            return name.split('').reduce((sum, char) => {
+                return sum + (hebrewValues[char] || 0);
+            }, 0);
+        }
+
+        function calculateVowels(name) {
+            return name.split('').reduce((sum, char) => {
+                return vowels.includes(char) ? sum + (hebrewValues[char] || 0) : sum;
+            }, 0);
+        }
+
+        function calculateConsonants(name) {
+            return name.split('').reduce((sum, char) => {
+                return consonants.includes(char) ? sum + (hebrewValues[char] || 0) : sum;
+            }, 0);
+        }
+
+        function calculateLifePath(birthDate) {
+            const date = new Date(birthDate);
+            const day = date.getDate();
+            const month = date.getMonth() + 1;
+            const year = date.getFullYear();
+            
+            const sum = day + month + year;
+            return reduceToSingleDigit(sum);
+        }
+
+        function calculateBirthDay(birthDate) {
+            const date = new Date(birthDate);
+            return reduceToSingleDigit(date.getDate());
+        }
+
+        function calculatePersonData(firstName, lastName, birthDate) {
+            const fullName = firstName + lastName;
+            
+            return {
+                firstName: reduceToSingleDigit(calculateNameValue(firstName)),
+                fullName: reduceToSingleDigit(calculateNameValue(fullName)),
+                vowels: reduceToSingleDigit(calculateVowels(fullName)),
+                consonants: reduceToSingleDigit(calculateConsonants(fullName)),
+                lifePath: calculateLifePath(birthDate),
+                birthDay: calculateBirthDay(birthDate)
+            };
+        }
+
+        function calculateCombinedResults(person1, person2) {
+            const combined = {};
+            const details = {};
+
+            Object.keys(person1).forEach(key => {
+                // המרת מחרוזות חזרה למספרים לחישוב
+                const val1 = typeof person1[key] === 'string' ? parseInt(person1[key].split('/')[1] || person1[key]) : person1[key];
+                const val2 = typeof person2[key] === 'string' ? parseInt(person2[key].split('/')[1] || person2[key]) : person2[key];
+                
+                const sum = val1 + val2;
+                combined[key] = reduceToSingleDigit(sum);
+                
+                details[key] = {
+                    person1: person1[key],
+                    person2: person2[key],
+                    combined: combined[key]
+                };
+            });
+
+            return {
+                combined: combined,
+                details: details
+            };
+        }
+
+        function getWorkRecommendations(combined) {
+            const recommendations = [];
+            
+            const meanings = {
+                1: { 
+                    area: "מנהיגות ועצמאות", 
+                    description: "מספר 1 מייצג התחלות חדשות, מנהיגות טבעית ועצמאות. אנשים עם מספר זה הם חלוצים, יוזמים ובעלי רצון חזק להוביל.",
+                    strengths: "יוזמה, עצמאות, מנהיגות, החלטיות, יצירתיות",
+                    challenges: "אגואיזם, עקשנות, חוסר סבלנות, קושי בשיתוף פעולה",
+                    advice: "עבדו על איזון בין עצמאות לשיתוף פעולה. למדו להוביל יחד ולא זה נגד זה. תנו מקום לשני הצדדים להיות מובילים בתחומים שונים.",
+                    type: "רגיל" 
+                },
+                2: { 
+                    area: "שיתוף פעולה ורגישות", 
+                    description: "מספר 2 מייצג שיתוף פעולה, רגישות ויכולת לעבוד בצוות. זהו מספר של דיפלומטיה, איזון והרמוניה.",
+                    strengths: "שיתוף פעולה, רגישות, דיפלומטיה, אמפתיה, יכולת הקשבה",
+                    challenges: "חוסר ביטחון עצמי, תלותיות יתר, קושי בקבלת החלטות",
+                    advice: "חזקו את הקשר הרגשי והתקשורת הפתוחה. עבדו על בניית אמון הדדי ויצירת סביבה בטוחה לביטוי רגשות.",
+                    type: "רגיל" 
+                },
+                3: { 
+                    area: "יצירתיות וביטוי", 
+                    description: "מספר 3 מייצג יצירתיות, ביטוי עצמי ושמחת חיים. זהו מספר של אמנות, תקשורת וחברתיות.",
+                    strengths: "יצירתיות, חברתיות, אופטימיות, כישרון ביטוי, הומור",
+                    challenges: "פיזור, חוסר מיקוד, נטייה לדרמה, קושי בהתמדה",
+                    advice: "מצאו דרכים משותפות לביטוי יצירתי ושמחה. עודדו זה את זה ליצור ולהתבטא. שמרו על קלילות ושמחה בקשר.",
+                    type: "רגיל" 
+                },
+                4: { 
+                    area: "יציבות ומעשיות", 
+                    description: "מספר 4 מייצג יציבות, מעשיות ועבודה קשה. זהו מספר של בנייה איטית אך יציבה, סדר ומשמעת.",
+                    strengths: "יציבות, אמינות, מעשיות, התמדה, ארגון",
+                    challenges: "נוקשות, קושי בשינויים, חוסר גמישות, נטייה לשגרה",
+                    advice: "בנו יחד בסיס יציב ומטרות ברורות. עבדו על תכנון ארוך טווח ויצירת מסגרות בטוחות לקשר.",
+                    type: "רגיל" 
+                },
+                5: { 
+                    area: "חופש והרפתקאות", 
+                    description: "מספר 5 מייצג חופש, הרפתקאות ושינויים. זהו מספר של סקרנות, נסיעות וחוויות חדשות.",
+                    strengths: "גמישות, הסתגלות, הרפתקנות, סקרנות, חופש",
+                    challenges: "חוסר יציבות, קושי במחויבות, חוסר סבלנות, נטייה לבריחה",
+                    advice: "שמרו על איזון בין חופש אישי לקשר זוגי. מצאו דרכים לחוות הרפתקאות יחד ולשמור על עניין הדדי.",
+                    type: "רגיל" 
+                },
+                6: { 
+                    area: "אחריות ואהבה", 
+                    description: "מספר 6 מייצג אחריות, אהבה ודאגה למשפחה. זהו מספר של נתינה, טיפוח ויצירת בית חם.",
+                    strengths: "אחריות, אהבה, דאגה, נתינה, יצירת הרמוניה",
+                    challenges: "נטייה לשליטה, הקרבה יתר, קושי בקבלת עזרה",
+                    advice: "טפחו את הקשר המשפחתי והאחריות ההדדית. למדו לתת ולקבל באיזון ולא להקריב יתר על המידה.",
+                    type: "רגיל" 
+                },
+                7: { 
+                    area: "רוחניות וחכמה", 
+                    description: "מספר 7 מייצג רוחניות, חכמה וחיפוש אחר אמת. זהו מספר של הרהור, מדיטציה ועומק פנימי.",
+                    strengths: "חכמה, אינטואיציה, רוחניות, עומק, יכולת ניתוח",
+                    challenges: "נטייה לבדידות, קושי בביטוי רגשות, ביקורתיות יתר",
+                    advice: "העמיקו יחד בנושאים רוחניים ופילוסופיים. תנו מקום לשקט ולהרהור, אך שמרו על קשר רגשי.",
+                    type: "רגיל" 
+                },
+                8: { 
+                    area: "הצלחה חומרית", 
+                    description: "מספר 8 מייצג הצלחה חומרית, כוח ויכולת ארגון. זהו מספר של עסקים, כסף ושליטה.",
+                    strengths: "יכולת ארגון, מנהיגות עסקית, שאפתנות, כוח רצון",
+                    challenges: "חומרנות יתר, נטייה לשליטה, קושי באיזון עבודה-בית",
+                    advice: "עבדו יחד על יעדים כלכליים ומקצועיים. שמרו על איזון בין הצלחה חומרית לערכים רוחניים.",
+                    type: "רגיל" 
+                },
+                9: { 
+                    area: "נתינה ושירות", 
+                    description: "מספר 9 מייצג נתינה, שירות לאחרים והשלמת מחזור. זהו מספר של חמלה, אלטרואיזם ותרומה לעולם.",
+                    strengths: "חמלה, נתינה, אלטרואיזם, חכמה, הבנה רחבה",
+                    challenges: "נטייה להקרבה יתר, קושי בקבלת עזרה, אכזבות מאנשים",
+                    advice: "מצאו דרכים לתרום יחד לקהילה ולאחרים. למדו לתת מתוך שמחה ולא מתוך חובה.",
+                    type: "רגיל" 
+                },
+                10: { 
+                    area: "התחלה חדשה ללא שיעור", 
+                    description: "מספר 10 מייצג התחלה חדשה ללא מגבלות. זהו מספר של פוטנציאל אינסופי ויכולת להתחיל מחדש.",
+                    strengths: "פוטנציאל אינסופי, יכולת התחדשות, חדשנות",
+                    challenges: "חוסר יציבות, קושי בהתמדה, נטייה להתחלות רבות",
+                    advice: "זוגיות זו מביאה התחלה חדשה ללא מגבלות. עבדו על פתיחות מלאה לשינויים ולצמיחה משותפת.",
+                    type: "ללא שיעור" 
+                },
+                11: { 
+                    area: "אינטואיציה והשראה - מספר מאסטר", 
+                    description: "מספר מאסטר 11 נושא אנרגיה רוחנית גבוהה של אינטואיציה, השראה וחזון. זהו מספר של מורים רוחניים ומובילי דרך.",
+                    strengths: "אינטואיציה גבוהה, השראה, חזון רוחני, רגישות עמוקה",
+                    challenges: "רגישות יתר, לחץ רוחני, קושי בהארקה",
+                    advice: "🌟 מספר מאסטר! פתחו את הקשר הרוחני והאינטואיטיבי ביניכם. זוגיות זו נושאת פוטנציאל רוחני גבוה ואחריות להאיר לאחרים.",
+                    type: "מאסטר" 
+                },
+                12: { 
+                    area: "הקרבה ושירות ללא שיעור", 
+                    description: "מספר 12 מייצג הקרבה עצמית ושירות ללא גבולות. זהו מספר של נתינה מוחלטת ולמידה דרך סבל.",
+                    strengths: "נתינה מוחלטת, הקרבה עצמית, שירות לאחרים",
+                    challenges: "הקרבה יתר, קושי בהגנה עצמית, נטייה לסבל",
+                    advice: "זוגיות זו דורשת הקרבה והבנה עמוקה. עבדו על נתינה הדדית ללא ציפיות, אך שמרו על גבולות בריאים.",
+                    type: "ללא שיעור" 
+                },
+                22: { 
+                    area: "בנייה גדולה - מספר מאסטר", 
+                    description: "מספר מאסטר 22 נושא כוח של בנייה גדולה ומימוש חזונות. זהו מספר של אדריכלי העולם ובוני הציביליזציה.",
+                    strengths: "יכולת בנייה גדולה, חזון מעשי, כוח מימוש",
+                    challenges: "לחץ להצליח, קושי בפרטים קטנים, ציפיות גבוהות",
+                    advice: "🌟 מספר מאסטר! חלמו יחד חלומות גדולים ובנו אותם בצעדים קטנים. יש לכם כוח לשנות את העולם יחד ולהשאיר מורשת.",
+                    type: "מאסטר" 
+                },
+                33: { 
+                    area: "הוראה ואהבה - מספר מאסטר", 
+                    description: "מספר מאסטר 33 נושא אנרגיה של אהבה אוניברסלית והוראה רוחנית. זהו מספר של מורים גדולים ומרפאים.",
+                    strengths: "אהבה אוניברסלית, יכולת הוראה, ריפוי רוחני",
+                    challenges: "נטל רגשי כבד, קושי בגבולות, הקרבה יתר",
+                    advice: "🌟 מספר מאסטר! למדו זה מזה ולמדו אחרים יחד. זוגיות זו נושאת אחריות רוחנית גבוהה ויכולת לרפא ולהאיר.",
+                    type: "מאסטר" 
+                },
+                "13/4": { 
+                    area: "חוב קארמתי - עבודה קשה", 
+                    description: "חוב קארמתי 13/4 נוצר מחוסר משמעת ועבודה קשה בחיים קודמים. השיעור הוא ללמוד עבודה מתמדת ובנייה איטית.",
+                    strengths: "יכולת עבודה קשה, התמדה, בנייה יציבה",
+                    challenges: "קושי בהתמדה, נטייה לעצלות, חוסר סבלנות",
+                    advice: "⚡ חוב קארמתי! זוגיות זו דורשת עבודה קשה ומתמדת. עבדו על סבלנות, משמעת ובנייה איטית אך יציבה. הצלחה תבוא דרך עמל.",
+                    type: "קארמתי" 
+                },
+                "14/5": { 
+                    area: "חוב קארמתי - חופש אחראי", 
+                    description: "חוב קארמתי 14/5 נוצר משימוש לא נכון בחופש בחיים קודמים. השיעור הוא ללמוד חופש אחראי ואיזון.",
+                    strengths: "גמישות, יכולת הסתגלות, חופש מחושב",
+                    challenges: "נטייה לקיצוניות, קושי במחויבות, חוסר איזון",
+                    advice: "⚡ חוב קארמתי! למדו להשתמש בחופש באחריות. עבדו על איזון בין הרפתקאות לחובות זוגיות. חופש אמיתי בא עם אחריות.",
+                    type: "קארמתי" 
+                },
+                "16/7": { 
+                    area: "חוב קארמתי - ענווה ורוחניות", 
+                    description: "חוב קארמתי 16/7 נוצר מגאווה רוחנית וחוסר ענווה בחיים קודמים. השיעור הוא ללמוד ענווה אמיתית.",
+                    strengths: "חכמה עמוקה, רוחניות אמיתית, ענווה",
+                    challenges: "נפילות קשות, קושי באמון, בדידות",
+                    advice: "⚡ חוב קארמתי! עבדו על ענווה והעמקה רוחנית. זוגיות זו מלמדת על נפילות ועליות. כל נפילה היא הזדמנות לצמיחה.",
+                    type: "קארמתי" 
+                },
+                "19/1": { 
+                    area: "חוב קארמתי - מנהיגות צנועה", 
+                    description: "חוב קארמתי 19/1 נוצר משימוש לא נכון בכוח ומנהיגות בחיים קודמים. השיעור הוא ללמוד מנהיגות צנועה.",
+                    strengths: "מנהיגות אמיתית, עצמאות בריאה, שירות לאחרים",
+                    challenges: "קושי בקבלת עזרה, נטייה לבדידות, גאווה",
+                    advice: "⚡ חוב קארמתי! למדו להוביל בענווה ולהיות עצמאיים מבלי לפגוע באחרים. מנהיגות אמיתית היא שירות, לא שליטה.",
+                    type: "קארמתי" 
+                }
+            };
+
+            Object.keys(combined).forEach(key => {
+                const value = combined[key];
+                const meaning = meanings[value];
+                if (meaning) {
+                    const categoryNames = {
+                        firstName: "שם פרטי",
+                        fullName: "שם מלא", 
+                        vowels: "אהו״י",
+                        consonants: "עיצורים",
+                        lifePath: "שביל גורל",
+                        birthDay: "יום לידה"
+                    };
+                    
+                    let typeIndicator = "";
+                    let styleClass = "";
+                    
+                    if (meaning.type === "מאסטר") {
+                        typeIndicator = " ✨ מספר מאסטר ✨";
+                        styleClass = "style='background: linear-gradient(135deg, #ffd700, #ffed4e); padding: 8px; border-radius: 8px; border: 2px solid #ffd700;'";
+                    } else if (meaning.type === "ללא שיעור") {
+                        typeIndicator = " 🌀 מספר ללא שיעור 🌀";
+                        styleClass = "style='background: linear-gradient(135deg, #e0e7ff, #c7d2fe); padding: 8px; border-radius: 8px; border: 2px solid #8b5cf6;'";
+                    } else if (meaning.type === "קארמתי") {
+                        typeIndicator = " ⚡ חוב קארמתי ⚡";
+                        styleClass = "style='background: linear-gradient(135deg, #fee2e2, #fecaca); padding: 8px; border-radius: 8px; border: 2px solid #ef4444;'";
+                    }
+                    
+                    recommendations.push(`
+                        <div ${styleClass}>
+                            <h4 style="font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #1f2937;">
+                                ${categoryNames[key]} (${value})${typeIndicator}
+                            </h4>
+                            <div style="margin-bottom: 12px; font-size: 14px; color: #4b5563; line-height: 1.5;">
+                                <strong>תיאור:</strong> ${meaning.description}
+                            </div>
+                            <div style="margin-bottom: 8px; font-size: 14px; color: #059669;">
+                                <strong>💪 כוחות:</strong> ${meaning.strengths}
+                            </div>
+                            <div style="margin-bottom: 8px; font-size: 14px; color: #dc2626;">
+                                <strong>⚠ אתגרים:</strong> ${meaning.challenges}
+                            </div>
+                            <div style="font-size: 14px; color: #7c3aed; font-weight: 500; line-height: 1.5;">
+                                <strong>💡 המלצה לזוגיות:</strong> ${meaning.advice}
+                            </div>
+                        </div>
+                    `);
+                }
+            });
+
+            return recommendations;
+        }
+
+        function displayResults(person1, person2, results) {
+            const resultsDiv = document.getElementById('results');
+
+            // תוצאות מחוברות
+            const categoryNames = {
+                firstName: "שם פרטי",
+                fullName: "שם מלא", 
+                vowels: "אהו״י",
+                consonants: "עיצורים",
+                lifePath: "שביל גורל",
+                birthDay: "יום לידה"
+            };
+
+            document.getElementById('combinedResults').innerHTML = Object.keys(results.combined).map(key => {
+                const detail = results.details[key];
+                return `
+                    <div class="bg-gradient-to-br from-purple-100 to-pink-100 rounded-lg p-4 text-center">
+                        <div class="font-medium text-gray-800 mb-2">${categoryNames[key]}</div>
+                        <div class="text-sm text-gray-600 mb-2">${detail.person1} + ${detail.person2}</div>
+                        <div class="text-2xl font-bold text-purple-700">${detail.combined}</div>
+                    </div>
+                `;
+            }).join('');
+
+            // פירוט אישי
+            document.getElementById('person1Results').innerHTML = Object.keys(person1).map(key => 
+                <div class="flex justify-between"><span>${categoryNames[key]}:</span><span class="font-semibold">${person1[key]}</span></div>
+            ).join('');
+
+            document.getElementById('person2Results').innerHTML = Object.keys(person2).map(key => 
+                <div class="flex justify-between"><span>${categoryNames[key]}:</span><span class="font-semibold">${person2[key]}</span></div>
+            ).join('');
+
+            // פירוט חישובים
+            document.getElementById('compatibilityDetails').innerHTML = Object.keys(results.details).map(key => {
+                const detail = results.details[key];
+                return `
+                    <div class="bg-gray-50 rounded-lg p-3">
+                        <div class="font-medium text-gray-800">${categoryNames[key]}</div>
+                        <div class="text-sm text-gray-600">${detail.person1} + ${detail.person2} = ${detail.combined}</div>
+                    </div>
+                `;
+            }).join('');
+
+            // המלצות לעבודה
+            const recommendations = getWorkRecommendations(results.combined);
+            document.getElementById('recommendations').innerHTML = recommendations.join('<br><br>') + 
+                '<br><br><div style="background: #f3f4f6; padding: 12px; border-radius: 8px; margin-top: 16px;"><strong>📚 הסבר על סוגי המספרים:</strong><br>' +
+                '✨ <strong>מספרי מאסטר (11, 22, 33):</strong> מספרים בעלי עוצמה רוחנית גבוהה הנושאים אחריות ופוטנציאל מיוחד<br>' +
+                '🌀 <strong>מספרים ללא שיעור (10, 12):</strong> מספרים המייצגים אתגרים ללא מגבלות ודורשים גישה פתוחה ומיוחדת<br>' +
+                '⚡ <strong>חובות קארמתיים (13/4, 14/5, 16/7, 19/1):</strong> מספרים המייצגים שיעורים קארמתיים שצריך לתקן מחיים קודמים. דורשים עבודה מיוחדת ומודעות</div>';
+
+            resultsDiv.classList.remove('hidden');
+            resultsDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function calculateCompatibility() {
+            try {
+                const firstName1 = document.getElementById('firstName1').value.trim();
+                const lastName1 = document.getElementById('lastName1').value.trim();
+                const birthDate1 = document.getElementById('birthDate1').value;
+                
+                const firstName2 = document.getElementById('firstName2').value.trim();
+                const lastName2 = document.getElementById('lastName2').value.trim();
+                const birthDate2 = document.getElementById('birthDate2').value;
+
+                if (!firstName1 || !lastName1 || !birthDate1 || !firstName2 || !lastName2 || !birthDate2) {
+                    alert('אנא מלא את כל השדות');
+                    return;
+                }
+
+                const person1 = calculatePersonData(firstName1, lastName1, birthDate1);
+                const person2 = calculatePersonData(firstName2, lastName2, birthDate2);
+                const results = calculateCombinedResults(person1, person2);
+
+                displayResults(person1, person2, results);
+            } catch (error) {
+                console.log('Error:', error);
+                alert('אירעה שגיאה. אנא נסה שוב.');
+            }
+        }
+
+        // הוספת event listener כשהדף נטען
+        document.addEventListener('DOMContentLoaded', function() {
+            const button = document.querySelector('button');
+            if (button) {
+                button.addEventListener('click', calculateCompatibility);
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'977d959f711464ec',t:'MTc1NjY1NDM4Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
