@@ -189,27 +189,31 @@
     </div>
     <div class="header-actions">
       <button id="themeToggle" title="החלף מצב תצוגה">🌗 מצב תצוגה</button>
-      <button id="settingsToggle">⚙️ הגדרות</button>
+      <button id="settingsToggle">⚙️ הגדרות נוספות</button>
     </div>
   </header>
 
-  <div class="card" id="settingsPanel">
-    <h2>הגדרות</h2>
+  <div class="card" id="participantsCard">
+    <h2>מי משתתף?</h2>
     <div class="settings-row">
       <div class="field">
         <label for="person1Name">שם ראשון</label>
-        <input type="text" id="person1Name" placeholder="לדוגמה: מיכל">
+        <input type="text" id="person1Name" placeholder="לדוגמה: מעיין">
       </div>
       <div class="field">
         <label for="person2Name">שם שני</label>
-        <input type="text" id="person2Name" placeholder="לדוגמה: בן הזוג">
+        <input type="text" id="person2Name" placeholder="לדוגמה: עדי">
       </div>
       <div class="field">
         <label for="splitPercent">חלוקת ההוצאות (אחוז לצד הראשון)</label>
         <input type="number" id="splitPercent" min="0" max="100" value="50">
       </div>
-      <button class="primary" id="saveSettingsBtn">שמירה</button>
     </div>
+    <div class="subtitle" id="participantsSaved">השמות נשמרים אוטומטית תוך כדי הקלדה.</div>
+  </div>
+
+  <div class="card" id="settingsPanel">
+    <h2>הגדרות נוספות</h2>
     <div class="settings-row">
       <button id="exportJsonBtn">ייצוא גיבוי (JSON)</button>
       <button id="exportCsvBtn">ייצוא לאקסל (CSV)</button>
@@ -399,15 +403,26 @@
   }
   fillSettingsForm();
 
-  document.getElementById("saveSettingsBtn").addEventListener("click", function () {
+  var participantsSaved = document.getElementById("participantsSaved");
+  var saveParticipantsTimer = null;
+  function saveParticipants() {
     var p1 = person1Input.value.trim() || "צד ראשון";
     var p2 = person2Input.value.trim() || "צד שני";
-    var split = Math.min(100, Math.max(0, Number(splitInput.value) || 50));
+    var split = Math.min(100, Math.max(0, Number(splitInput.value)));
+    if (isNaN(split)) split = 50;
     state.settings.person1 = p1;
     state.settings.person2 = p2;
     state.settings.splitPercent1 = split;
     saveState();
     renderAll();
+    participantsSaved.textContent = "נשמר ✓";
+    clearTimeout(saveParticipantsTimer);
+    saveParticipantsTimer = setTimeout(function () {
+      participantsSaved.textContent = "השמות נשמרים אוטומטית תוך כדי הקלדה.";
+    }, 1500);
+  }
+  [person1Input, person2Input, splitInput].forEach(function (el) {
+    el.addEventListener("input", saveParticipants);
   });
 
   document.getElementById("resetBtn").addEventListener("click", function () {
@@ -432,7 +447,7 @@
     state.transactions.slice().sort(function (a, b) { return a.date < b.date ? -1 : 1; }).forEach(function (t) {
       var catList = t.type === "expense" ? EXPENSE_CATEGORIES : INCOME_CATEGORIES;
       var cat = catByKey(t.category, catList);
-      var who = t.paidBy === "person1" ? state.settings.person1 : state.settings.person2;
+      var who = t.paidBy === "person1" ? state.settings.person1 : t.paidBy === "person2" ? state.settings.person2 : "משותף";
       rows.push([t.date, t.type === "expense" ? "הוצאה" : "הכנסה", cat ? cat.label : t.category, who, t.note || "", t.amount]);
     });
     var csv = rows.map(function (r) {
@@ -482,6 +497,7 @@
   dateInput.value = new Date().toISOString().slice(0, 10);
 
   function populatePaidBy() {
+    var previous = paidByInput.value;
     paidByInput.innerHTML = "";
     ["person1", "person2"].forEach(function (key) {
       var opt = document.createElement("option");
@@ -489,6 +505,11 @@
       opt.textContent = state.settings[key];
       paidByInput.appendChild(opt);
     });
+    var jointOpt = document.createElement("option");
+    jointOpt.value = "joint";
+    jointOpt.textContent = "משותף (לפי החלוקה שנקבעה)";
+    paidByInput.appendChild(jointOpt);
+    if (previous) paidByInput.value = previous;
   }
 
   function populateCategorySelect() {
@@ -567,15 +588,22 @@
 
   // ---------- stats ----------
   function renderStats() {
+    var splitPercent1 = state.settings.splitPercent1;
     var totalIncome = 0, totalExpense = 0;
     var paid1 = 0, paid2 = 0, received1 = 0, received2 = 0;
     state.transactions.forEach(function (t) {
+      var share1Amount = t.amount * (splitPercent1 / 100);
+      var share2Amount = t.amount - share1Amount;
       if (t.type === "expense") {
         totalExpense += t.amount;
-        if (t.paidBy === "person1") paid1 += t.amount; else paid2 += t.amount;
+        if (t.paidBy === "person1") paid1 += t.amount;
+        else if (t.paidBy === "person2") paid2 += t.amount;
+        else { paid1 += share1Amount; paid2 += share2Amount; }
       } else {
         totalIncome += t.amount;
-        if (t.paidBy === "person1") received1 += t.amount; else received2 += t.amount;
+        if (t.paidBy === "person1") received1 += t.amount;
+        else if (t.paidBy === "person2") received2 += t.amount;
+        else { received1 += share1Amount; received2 += share2Amount; }
       }
     });
     document.getElementById("statIncome").textContent = money(totalIncome);
@@ -588,7 +616,6 @@
     document.getElementById("statNetSub").textContent = net >= 0 ? "עודף" : "גירעון";
 
     var netCost = totalExpense - totalIncome;
-    var splitPercent1 = state.settings.splitPercent1;
     var share1 = netCost * (splitPercent1 / 100);
     var share2 = netCost * ((100 - splitPercent1) / 100);
     var netPaid1 = paid1 - received1;
@@ -718,7 +745,7 @@
     rows.forEach(function (t) {
       var catList = t.type === "expense" ? EXPENSE_CATEGORIES : INCOME_CATEGORIES;
       var cat = catByKey(t.category, catList);
-      var who = t.paidBy === "person1" ? state.settings.person1 : state.settings.person2;
+      var who = t.paidBy === "person1" ? state.settings.person1 : t.paidBy === "person2" ? state.settings.person2 : "משותף";
       var tr = document.createElement("tr");
       tr.innerHTML =
         "<td>" + t.date + "</td>" +
