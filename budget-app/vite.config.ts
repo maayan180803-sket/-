@@ -3,7 +3,12 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import { VitePWA } from 'vite-plugin-pwa'
 
+// GH_PAGES=1 npm run build → served from https://<user>.github.io/<repo>/, needs a subpath base.
+// Normal builds (Vercel/Netlify/custom domain) stay at base '/'.
+const base = process.env.GH_PAGES ? '/-/' : '/'
+
 export default defineConfig({
+  base,
   plugins: [
     react(),
     tailwindcss(),
@@ -16,7 +21,6 @@ export default defineConfig({
         description: 'ניהול תקציב משותף לבני זוג',
         lang: 'he',
         dir: 'rtl',
-        start_url: '/',
         display: 'standalone',
         background_color: '#0f172a',
         theme_color: '#4f46e5',
