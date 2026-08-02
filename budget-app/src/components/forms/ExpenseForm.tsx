@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import type { Expense, HouseholdMember } from '../../types';
 import { EXPENSE_CATEGORIES, PAYMENT_METHODS } from '../../lib/constants';
 import { TextField, SelectField, TextareaField } from '../ui/Field';
 import { Button } from '../ui/Button';
+import { ReceiptButton } from '../ReceiptViewer';
+import { deleteReceipt, uploadReceipt } from '../../lib/receipts';
 
 export interface ExpenseFormValues {
   name: string;
@@ -15,18 +17,21 @@ export interface ExpenseFormValues {
   belongs_to_member_id: string | null;
   payment_method: string;
   is_recurring: boolean;
+  receipt_path: string | null;
   notes: string;
 }
 
 const SHARED_VALUE = 'shared';
 
 export function ExpenseForm({
+  householdId,
   members,
   initial,
   onSubmit,
   onCancel,
   busy,
 }: {
+  householdId: string;
   members: HouseholdMember[];
   initial?: Expense | null;
   onSubmit: (values: ExpenseFormValues) => void;
@@ -46,6 +51,35 @@ export function ExpenseForm({
   const [paymentMethod, setPaymentMethod] = useState(initial?.payment_method ?? PAYMENT_METHODS[0]);
   const [isRecurring, setIsRecurring] = useState(initial?.is_recurring ?? false);
   const [notes, setNotes] = useState(initial?.notes ?? '');
+  const [receiptPath, setReceiptPath] = useState<string | null>(initial?.receipt_path ?? null);
+  const [receiptUploading, setReceiptUploading] = useState(false);
+  const [receiptError, setReceiptError] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    e.target.value = '';
+    if (!file) return;
+
+    setReceiptError(null);
+    setReceiptUploading(true);
+    const { path, error } = await uploadReceipt(householdId, file);
+    setReceiptUploading(false);
+
+    if (error || !path) {
+      setReceiptError(error ?? 'העלאת הקבלה נכשלה');
+      return;
+    }
+
+    if (receiptPath) await deleteReceipt(receiptPath);
+    setReceiptPath(path);
+  };
+
+  const handleRemoveReceipt = async () => {
+    if (!receiptPath) return;
+    await deleteReceipt(receiptPath);
+    setReceiptPath(null);
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -60,6 +94,7 @@ export function ExpenseForm({
       belongs_to_member_id: belongsTo === SHARED_VALUE ? null : belongsTo,
       payment_method: paymentMethod,
       is_recurring: isRecurring,
+      receipt_path: receiptPath,
       notes,
     });
   };
@@ -127,10 +162,44 @@ export function ExpenseForm({
         הוצאה קבועה (חוזרת כל חודש)
       </label>
 
+      <div>
+        <span className="mb-1 block text-sm font-medium text-slate-700">קבלה (תמונה)</span>
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept="image/*"
+          className="hidden"
+          onChange={handleFileChange}
+        />
+        <div className="flex flex-wrap items-center gap-2">
+          <Button
+            type="button"
+            variant="secondary"
+            onClick={() => fileInputRef.current?.click()}
+            disabled={receiptUploading}
+          >
+            {receiptUploading ? 'מעלה...' : receiptPath ? 'החלפת תמונה' : '📷 צירוף קבלה'}
+          </Button>
+          {receiptPath && (
+            <>
+              <ReceiptButton path={receiptPath} />
+              <button
+                type="button"
+                onClick={handleRemoveReceipt}
+                className="text-xs text-rose-500 hover:underline"
+              >
+                הסרה
+              </button>
+            </>
+          )}
+        </div>
+        {receiptError && <p className="mt-1 text-xs text-rose-600">{receiptError}</p>}
+      </div>
+
       <TextareaField label="הערות" value={notes} onChange={(e) => setNotes(e.target.value)} />
 
       <div className="flex gap-2 pt-2">
-        <Button type="submit" disabled={busy} className="flex-1">
+        <Button type="submit" disabled={busy || receiptUploading} className="flex-1">
           שמירה
         </Button>
         <Button type="button" variant="secondary" onClick={onCancel} className="flex-1">

@@ -25,7 +25,7 @@ interface Row {
 }
 
 export function TransactionsPage() {
-  const { members } = useHousehold();
+  const { household, members } = useHousehold();
   const incomesHook = useIncomes();
   const expensesHook = useExpenses();
   const [search, setSearch] = useState('');
@@ -194,7 +194,10 @@ export function TransactionsPage() {
               {filtered.map((row) => (
                 <tr key={`${row.type}-${row.id}`} className="border-b border-slate-100 last:border-0 hover:bg-slate-50">
                   <td className="px-4 py-3 text-slate-500">{formatDate(row.date)}</td>
-                  <td className="px-4 py-3 font-medium text-slate-800">{row.title}</td>
+                  <td className="px-4 py-3 font-medium text-slate-800">
+                    {row.title}
+                    {row.type === 'expense' && (row.raw as Expense).receipt_path && ' 📎'}
+                  </td>
                   <td className="px-4 py-3 text-slate-500">{row.category}</td>
                   <td className="px-4 py-3 text-slate-500">{row.personLabel}</td>
                   <td className={`px-4 py-3 font-bold ${row.type === 'income' ? 'text-emerald-600' : 'text-rose-600'}`}>
@@ -233,6 +236,7 @@ export function TransactionsPage() {
       {editingRow && editingRow.type === 'expense' && (
         <Modal title="עריכת הוצאה" onClose={() => setEditingRow(null)}>
           <ExpenseForm
+            householdId={household!.id}
             members={members}
             initial={editingRow.raw as Expense}
             busy={busy}

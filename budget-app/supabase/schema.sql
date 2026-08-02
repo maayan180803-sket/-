@@ -90,6 +90,7 @@ create table if not exists expenses (
   is_recurring boolean not null default false,
   recurring_expense_id uuid,
   split_override jsonb,
+  receipt_path text,
   notes text,
   created_by uuid references auth.users(id),
   updated_by uuid references auth.users(id),
@@ -428,3 +429,27 @@ alter publication supabase_realtime add table savings_goals;
 alter publication supabase_realtime add table monthly_plans;
 alter publication supabase_realtime add table household_members;
 alter publication supabase_realtime add table households;
+
+-- ---------------------------------------------------------------------
+-- אחסון קבלות (תמונות) - Storage bucket + RLS
+-- ---------------------------------------------------------------------
+
+insert into storage.buckets (id, name, public)
+values ('receipts', 'receipts', false)
+on conflict (id) do nothing;
+
+drop policy if exists receipts_select on storage.objects;
+create policy receipts_select on storage.objects for select
+  using (bucket_id = 'receipts' and is_household_member((storage.foldername(name))[1]::uuid));
+
+drop policy if exists receipts_insert on storage.objects;
+create policy receipts_insert on storage.objects for insert
+  with check (bucket_id = 'receipts' and is_household_member((storage.foldername(name))[1]::uuid));
+
+drop policy if exists receipts_update on storage.objects;
+create policy receipts_update on storage.objects for update
+  using (bucket_id = 'receipts' and is_household_member((storage.foldername(name))[1]::uuid));
+
+drop policy if exists receipts_delete on storage.objects;
+create policy receipts_delete on storage.objects for delete
+  using (bucket_id = 'receipts' and is_household_member((storage.foldername(name))[1]::uuid));

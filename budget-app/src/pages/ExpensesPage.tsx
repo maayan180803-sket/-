@@ -8,12 +8,13 @@ import { Card } from '../components/ui/Card';
 import { Modal } from '../components/ui/Modal';
 import { EmptyState } from '../components/ui/EmptyState';
 import { ExpenseForm, type ExpenseFormValues } from '../components/forms/ExpenseForm';
+import { ReceiptButton } from '../components/ReceiptViewer';
 import { currentMonthKey, filterByMonth, sumBy } from '../lib/calculations';
 import { formatCurrency, formatDate } from '../lib/format';
 import type { Expense } from '../types';
 
 export function ExpensesPage() {
-  const { members } = useHousehold();
+  const { household, members } = useHousehold();
   const { data: expenses, insert, update, remove } = useExpenses();
   const [month, setMonth] = useState(currentMonthKey());
   const [modalOpen, setModalOpen] = useState(false);
@@ -76,6 +77,11 @@ export function ExpensesPage() {
                   {expense.belongs_to_type === 'shared' ? 'משותפת' : memberName(expense.belongs_to_member_id)}
                   {expense.is_recurring && ' · קבועה'}
                 </p>
+                {expense.receipt_path && (
+                  <div className="mt-1">
+                    <ReceiptButton path={expense.receipt_path} />
+                  </div>
+                )}
               </div>
               <div className="flex items-center gap-3 shrink-0">
                 <span className="font-bold text-rose-600">{formatCurrency(expense.amount)}</span>
@@ -94,6 +100,7 @@ export function ExpensesPage() {
       {modalOpen && (
         <Modal title={editing ? 'עריכת הוצאה' : 'הוצאה חדשה'} onClose={() => setModalOpen(false)}>
           <ExpenseForm
+            householdId={household!.id}
             members={members}
             initial={editing}
             busy={busy}

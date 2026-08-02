@@ -67,6 +67,7 @@ export interface Expense extends AuditFields {
   is_recurring: boolean;
   recurring_expense_id: string | null;
   split_override: Record<string, number> | null;
+  receipt_path: string | null;
   notes: string | null;
 }
 
