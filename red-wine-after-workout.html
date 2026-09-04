@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>יין אדום אחרי אימון</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Assistant:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1a1a1a;
+    --paper:#ffffff;
+    --rule:#dcdcdc;
+    --accent:#1a5fb4;
+    --muted:#6b6b6b;
+    --tag-bg:#eef3fa;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:#f2f2f0;
+    font-family:'Assistant',sans-serif;
+    color:var(--ink);
+    display:flex;
+    justify-content:center;
+  }
+  .page{
+    background:var(--paper);
+    max-width:520px;
+    width:100%;
+    min-height:100vh;
+    border-inline:1px solid var(--rule);
+  }
+
+  /* Masthead */
+  .masthead{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:18px 16px 14px;
+    border-bottom:1px solid var(--rule);
+  }
+  .masthead .logo{
+    font-family:'Frank Ruhl Libre',serif;
+    font-weight:900;
+    font-size:26px;
+    letter-spacing:1px;
+  }
+
+  /* Tag strip */
+  .tagstrip{
+    display:flex;
+    align-items:center;
+    gap:22px;
+    padding:14px 16px 15px;
+    overflow-x:auto;
+    font-size:15px;
+    color:var(--muted);
+    border-bottom:1px solid var(--rule);
+    white-space:nowrap;
+  }
+  .tagstrip .dot{color:var(--accent); font-size:10px;}
+  .tagstrip .active{
+    color:var(--accent);
+    font-weight:700;
+    position:relative;
+    padding-bottom:13px;
+  }
+  .tagstrip .active::after{
+    content:"";
+    position:absolute;
+    right:0; left:0; bottom:0;
+    height:2px;
+    background:var(--accent);
+  }
+
+  .kicker{
+    padding:20px 20px 0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:15px;
+  }
+
+  h1{
+    font-family:'Frank Ruhl Libre',serif;
+    font-weight:700;
+    font-size:30px;
+    line-height:1.28;
+    margin:10px 0 16px;
+    padding:0 20px;
+  }
+
+  .lede{
+    font-size:19px;
+    line-height:1.55;
+    color:#333;
+    padding:0 20px 18px;
+    font-weight:400;
+  }
+
+  .engagebar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:16px 20px;
+    border-top:1px solid var(--rule);
+    border-bottom:1px solid var(--rule);
+    color:#333;
+    font-size:15px;
+  }
+  .engagebar .save{display:flex; align-items:center; gap:6px; color:#333;}
+  .engagebar .icons{display:flex; align-items:center; gap:22px;}
+  .engagebar .icons span{display:flex; align-items:center; gap:6px;}
+  .engagebar svg{width:21px; height:21px; display:block;}
+
+  .byline{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:20px 20px 4px;
+  }
+  .byline .info{flex:1;}
+  .avatar{
+    width:48px; height:48px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#c9d6e8,#8fa8c9);
+    flex-shrink:0;
+  }
+  .follow{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    border:1px solid #bbb;
+    border-radius:20px;
+    padding:7px 14px;
+    font-size:14px;
+    color:var(--ink);
+    font-weight:500;
+  }
+  .follow svg{width:14px; height:14px;}
+  .byline-row{display:flex; align-items:center; justify-content:space-between; gap:12px;}
+  .byline .name{font-weight:700; font-size:17px;}
+  .byline .date{color:var(--muted); font-size:14px; margin-top:3px;}
+
+  article{
+    padding:22px 20px 60px;
+    font-size:18px;
+    line-height:1.85;
+  }
+  article p{margin:0 0 20px;}
+  article h2{
+    font-family:'Frank Ruhl Libre',serif;
+    font-size:22px;
+    font-weight:700;
+    margin:36px 0 14px;
+  }
+  article .numline{margin:0; line-height:1.6;}
+
+  footer{
+    padding:24px 20px 40px;
+    text-align:center;
+    color:var(--muted);
+    font-size:13px;
+    border-top:1px solid var(--rule);
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="masthead"><span class="logo">דופק</span></div>
+
+  <div class="tagstrip">
+    <span>הרגלים</span>
+    <span>מחקר</span>
+    <span class="dot">•</span>
+    <span>תזונה 2026</span>
+    <span class="active">כושר ובריאות</span>
+  </div>
+
+  <div class="kicker">כושר ובריאות</div>
+
+  <h1>יין אדום אחרי אימון – מה באמת עומד מאחורי זה?</h1>
+
+  <p class="lede">כשאנחנו מסיימים אימון, ההמלצות שאנחנו מכירים הן בדרך כלל די קבועות: לשתות מים, לאכול ארוחה טובה, לקבל מספיק חלבון ופחמימות ולתת לגוף לנוח. אבל בשנים האחרונות אפשר להיתקל מדי פעם בטענה מפתיעה הרבה יותר — שליין אדום עשוי להיות מקום דווקא אחרי אימון.</p>
+
+  <div class="engagebar">
+    <span class="save">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="1.6"><path d="M6 3.5h12a1 1 0 0 1 1 1V21l-7-4.2L5 21V4.5a1 1 0 0 1 1-1Z"/></svg>
+      שמירה
+    </span>
+    <div class="icons">
+      <span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="1.6"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg>
+        12
+      </span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="1.6"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7M16 6l-4-4-4 4M12 2v14"/></svg>
+      <svg viewBox="0 0 24 24" fill="#333"><path d="M12 2C6.5 2 2 6.1 2 11.2c0 2.6 1.2 4.9 3.1 6.6-.1 1.2-.5 2.6-1.3 3.9 1.7-.2 3.4-.9 4.7-1.9 1.1.4 2.3.6 3.5.6 5.5 0 10-4.1 10-9.2S17.5 2 12 2Z"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="1.6"><path d="M20 12v7a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-7M12 15V3M8 7l4-4 4 4"/></svg>
+    </div>
+  </div>
+
+  <div class="byline">
+    <div class="avatar"></div>
+    <div class="info">
+      <div class="byline-row">
+        <div>
+          <div class="name">מערכת</div>
+          <div class="date">04 בספטמבר 2026 • 20:37</div>
+        </div>
+        <div class="follow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.6"><path d="M12 2a6 6 0 0 0-6 6v4l-2 4h16l-2-4V8a6 6 0 0 0-6-6ZM9.5 20a2.5 2.5 0 0 0 5 0"/></svg>
+          לעקוב
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <article>
+    <p>יין? אחרי אימון?</p>
+
+    <p>במבט ראשון, אלה נשמעים כמו שני עולמות שלא אמורים להיפגש. אבל כשמסתכלים על המרכיבים שמקורם בענבים, אפשר להבין כיצד בכלל נוצר החיבור הזה — וגם למה הוא יכול להישמע משכנע כל כך.</p>
+
+    <h2>מה בעצם יש ביין אדום?</h2>
+
+    <p>יין אדום מיוצר מענבים, ובענבים קיימת קבוצה גדולה של תרכובות צמחיות הנקראות פוליפנולים.</p>
+
+    <p>פוליפנולים נמצאים גם בפירות, ירקות, קקאו, תה ומזונות צמחיים נוספים, והם נחקרים בהקשרים שונים בעולם התזונה.</p>
+
+    <p>אחד השמות המוכרים ביותר בהקשר של יין אדום הוא רזברטרול. מדובר בתרכובת שנמצאת בין היתר בקליפת הענב ונחקרה במשך שנים בשל פעילותה הביולוגית.</p>
+
+    <p>אבל זה לא נגמר ברזברטרול.</p>
+
+    <p>ביין אדום ניתן למצוא גם תרכובות ממשפחת הפלבנואידים, טאנינים ואנתוציאנינים — פיגמנטים טבעיים שמעניקים לענבים אדומים ולפירות כהים חלק מהצבע האופייני שלהם.</p>
+
+    <p>כלומר, כאשר מדברים על יין אדום, לא מדברים רק על האלכוהול שבתוכו. יש בו גם תרכובות שמקורן בענבים ובתהליך הייצור.</p>
+
+    <p>ופה מתחיל החיבור המעניין לעולם הכושר.</p>
+
+    <h2>מה קורה לגוף בזמן אימון?</h2>
+
+    <p>במהלך אימון אנחנו מפעילים על הגוף עומס מכוון. השרירים עובדים, הגוף משתמש באנרגיה, קצב הלב עולה והמערכות השונות נדרשות להתמודד עם מאמץ גבוה יותר מהרגיל.</p>
+
+    <p>אבל העבודה של הגוף אינה מסתיימת ברגע שהאימון נגמר.</p>
+
+    <p>מכאן מתחיל שלב ההתאוששות — הזמן שבו חשוב לספק לגוף תנאים מתאימים באמצעות נוזלים, תזונה, מנוחה ושינה.</p>
+
+    <p>זו גם הסיבה שבעולם הכושר יש עניין רב במה שאנחנו אוכלים ושותים לאחר פעילות גופנית.</p>
+
+    <p>תרכובות צמחיות שונות נחקרו בהקשרים של פעילות גופנית, תגובת הגוף למאמץ ותהליכים חמצוניים. מכיוון שיין אדום מכיל פוליפנולים שמקורם בענבים, קל להבין כיצד נוצר הרעיון לחבר בין השניים.</p>
+
+    <h2>אז למה דווקא יין אדום?</h2>
+
+    <p>ליין אדום יש כבר שנים מקום מסוים בשיח סביב התזונה הים־תיכונית.</p>
+
+    <p>כשאנחנו חושבים על תזונה ים־תיכונית, אנחנו בדרך כלל חושבים על ירקות, קטניות, שמן זית, דגים, אגוזים, פירות וארוחות מסודרות. בעקבות ההקשר הזה, יין אדום קיבל אצל חלק מהאנשים תדמית שונה מזו של משקאות אלכוהוליים אחרים.</p>
+
+    <p>כשאומרים "אלכוהול", אנחנו חושבים קודם כול על האלכוהול עצמו. כשאומרים "יין אדום", לעומת זאת, עולים לעיתים גם מושגים כמו ענבים, פוליפנולים, רזברטרול וטאנינים.</p>
+
+    <p>ההבדל הזה משפיע מאוד על הדרך שבה המשקה נתפס.</p>
+
+    <p>דמיינו סיטואציה פשוטה: סיימתם אימון בערב, חזרתם הביתה, שתיתם מים, התקלחתם והכנתם ארוחה מסודרת שמכילה חלבון, פחמימות וירקות. אתם מתיישבים לאכול ובצד נמצאת כוס יין אדום.</p>
+
+    <p>בסיטואציה כזו קל לראות כיצד היין עשוי להיתפס לא כתחליף למים או לאוכל, אלא כחלק מהארוחה ומהרגיעה שמגיעה בסוף היום.</p>
+
+    <p>יש כאן גם היבט תרבותי. אחרי אימון אינטנסיבי מגיע שלב שבו אנחנו רוצים להוריד קצב, לאכול, לנוח ובהמשך גם לישון. יין מתקשר אצל אנשים רבים בדיוק לרגעים של ארוחה, ישיבה והאטה.</p>
+
+    <p>כשמחברים את הדברים יחד, נוצר סיפור שנשמע הגיוני: האימון יוצר עומס, אחריו מגיעה התאוששות, ענבים מכילים פוליפנולים, יין אדום מכיל חלק מהתרכובות האלה, ותזונה ומנוחה הן חלק מתהליך ההתאוששות.</p>
+
+    <h2>ומה לגבי נשים בגיל המעבר?</h2>
+
+    <p>בתקופת גיל המעבר, פעילות גופנית ובפרט אימוני התנגדות וכוח יכולה להיות חלק חשוב משמירה על השרירים והעצמות.</p>
+
+    <p>לכן ניתן לשלב אימוני כוח באופן קבוע לאורך השבוע, בהתאם ליכולת ולמצב האישי. תוכניות מסוימות, למשל, עשויות לכלול שלושה אימוני כוח בשבוע.</p>
+
+    <p>וכאן מופיעה גרסה נוספת של הטענה בנוגע ליין ולאימון.</p>
+
+    <p>לפי הטענה, קיימת כביכול חשיבות מיוחדת לשלוש השעות הראשונות שלאחר הפעילות. בגרסאות מסוימות שלה אפילו מופיעים מספרים ספציפיים: עד 350 מ"ל לאישה ועד 450 מ"ל לגבר.</p>
+
+    <p>ההסבר שמלווה את הטענה הוא שלאחר פעילות גופנית, שבמהלכה הגוף איבד נוזלים ומינרלים, שתיית היין בתקופה הזאת כביכול מאפשרת החזרה מהירה של מינרלים לגוף, לצד קבלת התרכובות הצמחיות שמקורן בענבים.</p>
+
+    <p>וכאן בדיוק הטענה הופכת למשכנעת במיוחד.</p>
+
+    <p>יש אימון. יש "חלון התאוששות". יש מינרלים. יש פוליפנולים ורזברטרול. ויש אפילו כמויות שונות לנשים ולגברים.</p>
+
+    <p class="numline">350 מ"ל.<br>450 מ"ל.<br>שלוש שעות.<br>פוליפנולים.<br>רזברטרול.<br>התאוששות.</p>
+
+    <p>כאשר מידע מוצג בצורה כל כך ספציפית, הוא יכול להישמע מדעי ומדויק מאוד.</p>
+
+    <p>וככל שטענה נשמעת מדויקת יותר, קל יותר להניח שיש מאחוריה בסיס מחקרי מוכח</p>
+  </article>
+
+
+</div>
+</body>
+</html>
