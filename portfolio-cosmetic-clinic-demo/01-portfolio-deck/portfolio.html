@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>תיק עבודות — ניהול סושיאל לקליניקת קוסמטיקה | מעיין אליהו</title>
+<link rel="stylesheet" href="../assets/css/design-system.css">
+<style>
+  body{ background:#DDD4CC; }
+  .deck-page{ margin:0 auto; }
+
+  /* ---------- עמוד 1 : שער ---------- */
+  #p1{ background: linear-gradient(160deg, #F6EDE6 0%, #F1E1D6 55%, #E7CFC3 100%); display:flex; align-items:center; justify-content:center; }
+  .cover-blob-a{ width:520px; height:520px; background:var(--c-rose); top:-160px; left:-140px; opacity:.35; }
+  .cover-blob-b{ width:420px; height:420px; background:var(--c-sage); bottom:-140px; right:-120px; opacity:.30; }
+  .cover-wrap{ position:relative; z-index:2; text-align:center; padding:0 100px; }
+  .cover-frame{ border:1.5px solid rgba(110,58,52,.35); border-radius:40px; padding:80px 70px; background:rgba(255,255,255,.38); backdrop-filter: blur(2px); }
+  .cover-eyebrow{ font-size:14px; letter-spacing:3px; font-weight:700; color:var(--c-rose-deep); text-transform:uppercase; margin-bottom:22px; }
+  .cover-name{ font-family:var(--font-display); font-size:64px; color:var(--c-wine); margin-bottom:10px; }
+  .cover-role{ font-size:18px; color:var(--c-ink); font-weight:500; margin-bottom:40px; }
+  .cover-divider{ width:90px; height:2px; background:var(--c-gold); margin:0 auto 40px; }
+  .cover-title{ font-family:var(--font-display); font-size:32px; color:var(--c-wine); line-height:1.5; margin-bottom:14px; }
+  .cover-sub{ font-size:16px; color:var(--c-ink-soft); margin-bottom:34px; }
+  .cover-badges{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+
+  /* ---------- עמוד 2: הצגת הפרויקט ---------- */
+  .p2-grid{ display:grid; grid-template-columns: 1.1fr .9fr; gap:40px; margin-top:10px; }
+  .p2-col .card{ padding:26px 28px; margin-bottom:20px; }
+  .p2-col h3{ font-size:19px; margin-bottom:10px; }
+  .p2-col p, .p2-col li{ font-size:14px; line-height:1.75; color:var(--c-ink); }
+  .p2-col ul{ margin:0; padding-inline-start:18px; }
+  .chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+  .platform-row{ display:flex; gap:16px; margin-top:14px; }
+  .platform-card{ flex:1; text-align:center; padding:22px 10px; border-radius:16px; background:#fff; border:1px solid var(--c-line); }
+  .platform-card .pf-ic{ font-size:24px; margin-bottom:8px; }
+  .platform-card b{ display:block; font-size:14px; color:var(--c-wine); margin-bottom:4px; }
+  .platform-card span{ font-size:11.5px; color:var(--c-ink-soft); }
+
+  /* ---------- עמוד 3: קהל יעד ---------- */
+  .p3-top{ display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-top:18px; margin-bottom:26px; }
+  .stat-card{ background:#fff; border:1px solid var(--c-line); border-radius:16px; padding:20px 16px; text-align:center; }
+  .stat-card .stat-ic{ width:44px; height:44px; border-radius:50%; background:var(--c-cream-2); display:flex; align-items:center; justify-content:center; margin:0 auto 10px; }
+  .stat-card b{ display:block; font-size:14px; color:var(--c-wine); margin-bottom:4px; }
+  .stat-card span{ font-size:12px; color:var(--c-ink-soft); line-height:1.5; }
+  .p3-cols{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  .qa-item{ display:flex; gap:12px; margin-bottom:16px; align-items:flex-start; }
+  .qa-dot{ width:8px; height:8px; border-radius:50%; background:var(--c-gold); margin-top:8px; flex-shrink:0; }
+  .qa-item p{ margin:0; font-size:13.5px; line-height:1.65; color:var(--c-ink); }
+  .qa-item b{ color:var(--c-wine); }
+
+  /* ---------- עמוד 4: אסטרטגיית תוכן ---------- */
+  .pillars-grid{ display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:20px; }
+  .pillar-card{ background:#fff; border:1px solid var(--c-line); border-radius:18px; padding:20px 22px; }
+  .pillar-head{ display:flex; align-items:center; gap:12px; margin-bottom:10px; }
+  .pillar-num{ font-family:var(--font-display); font-size:20px; color:var(--c-gold); font-weight:700; }
+  .pillar-card h4{ font-size:15.5px; color:var(--c-wine); }
+  .pillar-card .p-goal{ font-size:12.5px; color:var(--c-ink-soft); margin-bottom:8px; line-height:1.5; }
+  .p-formats{ display:flex; gap:6px; flex-wrap:wrap; margin-bottom:8px; }
+  .p-mini-tag{ font-size:10.5px; background:var(--c-cream-2); color:var(--c-rose-deep); padding:3px 9px; border-radius:8px; font-weight:600; }
+  .p-examples{ font-size:12px; color:var(--c-ink); line-height:1.6; margin:0; padding-inline-start:16px; }
+
+  /* ---------- עמוד 5: שפה חזותית ---------- */
+  .swatch-row{ display:flex; gap:14px; margin-top:16px; }
+  .swatch{ flex:1; height:88px; border-radius:14px; display:flex; align-items:flex-end; padding:8px 10px; font-size:10.5px; color:#fff; font-weight:600; box-shadow: inset 0 -30px 20px -20px rgba(0,0,0,.15); }
+  .swatch.light{ color:#6E3A34; }
+  .font-sample{ background:#fff; border:1px solid var(--c-line); border-radius:16px; padding:18px 22px; margin-top:14px; }
+  .font-sample .fs-label{ font-size:11px; color:var(--c-ink-soft); margin-bottom:6px; }
+  .style-3col{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:16px; }
+  .style-box{ background:#fff; border:1px solid var(--c-line); border-radius:16px; padding:18px; }
+  .style-box h5{ font-size:13.5px; color:var(--c-wine); margin:0 0 8px; font-family:var(--font-body); font-weight:700; }
+  .style-box p{ font-size:12px; line-height:1.65; color:var(--c-ink); margin:0; }
+  .voice-row{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:16px; }
+  .voice-box{ background:var(--c-cream-2); border-radius:16px; padding:18px 20px; }
+  .voice-box h5{ font-size:13px; color:var(--c-rose-deep); margin:0 0 10px; }
+  .voice-box .ex-line{ font-size:12.5px; color:var(--c-ink); margin-bottom:7px; line-height:1.5; }
+  .voice-box .ex-line::before{ content:"״"; color:var(--c-gold); font-weight:700; }
+  .voice-box .ex-line::after{ content:"״"; color:var(--c-gold); font-weight:700; }
+
+  /* ---------- עמוד 6: אינסטגרם ---------- */
+  .ig-preview-wrap{ display:grid; grid-template-columns: 380px 1fr; gap:34px; margin-top:16px; }
+  .ig-phone{ background:#fff; border:1px solid var(--c-line); border-radius:26px; padding:14px; box-shadow:var(--shadow-soft); }
+  .ig-phone-head{ display:flex; align-items:center; gap:10px; padding:6px 6px 14px; border-bottom:1px solid var(--c-line); margin-bottom:8px; }
+  .ig-avatar{ width:46px; height:46px; border-radius:50%; background:linear-gradient(135deg,var(--c-rose),var(--c-gold)); flex-shrink:0; }
+  .ig-phone-head b{ display:block; font-size:12.5px; color:var(--c-wine); }
+  .ig-phone-head span{ font-size:10.5px; color:var(--c-ink-soft); }
+  .ig-grid9{ display:grid; grid-template-columns:repeat(3,1fr); gap:3px; }
+  .ig-tile{ aspect-ratio:1/1; border-radius:3px; position:relative; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+  .ig-tile .tile-ic{ color:#fff; font-size:18px; opacity:.9; }
+  .ig-tile .tile-badge{ position:absolute; top:5px; left:5px; color:#fff; font-size:11px; }
+  .ig-legend{ }
+  .ig-legend-row{ display:flex; gap:12px; align-items:flex-start; padding:9px 0; border-bottom:1px dashed var(--c-line); }
+  .ig-legend-row:last-child{ border-bottom:none; }
+  .ig-legend-num{ width:24px; height:24px; border-radius:50%; background:var(--c-cream-2); color:var(--c-rose-deep); font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .ig-legend-row b{ font-size:12.5px; color:var(--c-wine); }
+  .ig-legend-row span{ font-size:11.5px; color:var(--c-ink-soft); display:block; }
+  .ig-legend-format{ font-size:10px; background:#fff; border:1px solid var(--c-line); padding:2px 8px; border-radius:7px; color:var(--c-rose-deep); font-weight:700; flex-shrink:0; }
+
+  /* ---------- עמוד 7 קרוסלה / עמוד 8 סטוריז / עמוד 9 רילס : תצוגות ממוזערות ---------- */
+  .thumbs-row{ display:flex; gap:16px; margin-top:20px; }
+  .thumb-45{ width:180px; height:225px; border-radius:14px; flex-shrink:0; box-shadow:var(--shadow-card); overflow:hidden; position:relative; }
+  .thumb-916{ width:150px; height:266px; border-radius:16px; flex-shrink:0; box-shadow:var(--shadow-card); overflow:hidden; position:relative; border:3px solid #fff; }
+  .copy-block{ background:#fff; border:1px solid var(--c-line); border-radius:16px; padding:22px 26px; margin-top:22px; }
+  .copy-block h4{ font-size:14px; color:var(--c-rose-deep); margin-bottom:10px; }
+  .copy-block p{ font-size:13.5px; line-height:1.85; color:var(--c-ink); white-space:pre-line; margin:0; }
+  .file-note{ display:flex; align-items:center; gap:10px; margin-top:16px; font-size:12px; color:var(--c-ink-soft); background:var(--c-cream-2); padding:10px 16px; border-radius:10px; }
+
+  .shotlist-table td, .shotlist-table th{ font-size:12px; }
+
+  /* ---------- עמוד 10 קופי ---------- */
+  .copy-grid{ display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:16px; }
+  .copy-card{ background:#fff; border:1px solid var(--c-line); border-radius:16px; padding:20px 22px; }
+  .copy-card h4{ font-size:13.5px; color:var(--c-rose-deep); margin-bottom:8px; display:flex; align-items:center; gap:8px; }
+  .copy-card p{ font-size:12.5px; line-height:1.75; color:var(--c-ink); white-space:pre-line; margin:0 0 8px; }
+  .copy-card .cc-cta{ font-size:11.5px; color:var(--c-sage-deep); font-weight:700; }
+
+  /* ---------- עמוד 11 לוח תוכן ---------- */
+  .cal-week-label{ font-size:13px; color:var(--c-rose-deep); font-weight:700; margin:20px 0 10px; }
+
+  /* ---------- עמוד 12 מדדים ---------- */
+  .metrics-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:20px; }
+  .metric-card{ background:#fff; border:1px solid var(--c-line); border-radius:16px; padding:20px 16px; text-align:center; }
+  .metric-card .m-ic{ width:46px; height:46px; border-radius:50%; background:var(--c-cream-2); display:flex; align-items:center; justify-content:center; margin:0 auto 10px; color:var(--c-rose-deep); }
+  .metric-card b{ font-size:13.5px; color:var(--c-wine); display:block; margin-bottom:4px; }
+  .metric-card span{ font-size:11px; color:var(--c-ink-soft); line-height:1.5; }
+
+  /* ---------- עמוד 13 תהליך עבודה ---------- */
+  .flow-grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px 22px; margin-top:20px; }
+  .flow-step{ display:flex; gap:14px; align-items:flex-start; }
+  .flow-num{ width:38px; height:38px; border-radius:50%; background:var(--c-rose-deep); color:#fff; font-family:var(--font-display); font-weight:700; font-size:15px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .flow-step h5{ font-size:13.5px; color:var(--c-wine); margin:0 0 4px; }
+  .flow-step p{ font-size:12px; color:var(--c-ink-soft); margin:0; line-height:1.55; }
+
+  /* ---------- עמוד 14 סיום ---------- */
+  #p14{ background: linear-gradient(200deg, #F6EDE6 0%, #EFDFD3 60%, #E4CBBE 100%); display:flex; align-items:center; justify-content:center; }
+  .end-name{ font-family:var(--font-display); font-size:52px; color:var(--c-wine); margin-bottom:8px; }
+  .end-role{ font-size:16px; color:var(--c-ink); margin-bottom:30px; }
+  .end-contacts{ display:flex; flex-direction:column; gap:14px; align-items:center; margin-top:30px; }
+  .end-contact-row{ display:flex; align-items:center; gap:10px; font-size:14px; color:var(--c-ink); background:#fff; padding:12px 24px; border-radius:999px; border:1px solid var(--c-line); min-width:340px; justify-content:center; }
+  .end-contact-row b{ color:var(--c-rose-deep); }
+</style>
+</head>
+<body>
+
+<!-- ============ עמוד 1 : שער ============ -->
+<section class="deck-page" id="p1">
+  <div class="blob cover-blob-a"></div>
+  <div class="blob cover-blob-b"></div>
+  <div class="cover-wrap">
+    <div class="cover-frame">
+      <div class="cover-eyebrow">תיק עבודות דיגיטלי</div>
+      <div class="cover-name">מעיין אליהו</div>
+      <div class="cover-role">ניהול סושיאל &nbsp;·&nbsp; יצירת תוכן &nbsp;·&nbsp; עריכת סרטונים</div>
+      <div class="cover-divider"></div>
+      <div class="cover-title">ניהול סושיאל לקליניקת<br>קוסמטיקה וטיפוח עור</div>
+      <div class="cover-sub">קליניקת נטע לביא &nbsp;—&nbsp; באר שבע</div>
+      <div class="cover-badges">
+        <span class="concept-badge">✦ פרויקט קונספט להצגת יכולות</span>
+        <span class="tag">עיצוב מינימליסטי ומקצועי</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ עמוד 2 : הצגת הפרויקט ============ -->
+<section class="deck-page" id="p2">
+  <div class="deck-pad">
+    <div class="page-kicker-row"><span class="page-index">02 / 14</span><span class="brandmark">מעיין אליהו · תיק עבודות</span></div>
+    <div class="eyebrow">הצגת הפרויקט</div>
+    <h2 style="font-size:34px; margin-top:12px;">ניהול סושיאל מלא לקליניקת בוטיק בבאר שבע</h2>
+    <p class="concept-note" style="margin-top:16px; max-width:900px;">
+      זוהי הצעת עבודה מלאה לניהול סושיאל עבור קליניקה פיקטיבית, שנועדה להדגים כיצד הייתי בונה נוכחות דיגיטלית מקצועית מהיסוד — מאסטרטגיה ועד תוצרים מוכנים לפרסום. הפרויקט אינו מתעד לקוחה אמיתית, ואינו כולל נתונים, תוצאות או המלצות אמיתיות.
+    </p>
+
+    <div class="p2-grid">
+      <div class="p2-col">
+        <div class="card">
+          <h3>אודות הקליניקה (פיקטיבית)</h3>
+          <p>קליניקת <b>נטע לביא</b> היא קליניקת בוטיק לקוסמטיקה וטיפוח עור, הפועלת בלב <b>באר שבע</b> ומשרתת את אזור הנגב. הקליניקה מציעה סביבה נעימה ומקצועית, ליווי אישי לכל מטופלת, ודגש על טיפוח עור מותאם אישית תחת ידיה של בעלת הקליניקה.</p>
+          <div class="chips">
+            <span class="tag">📍 באר שבע והנגב</span>
+            <span class="tag">בוטיק אישי</span>
+            <span class="tag">קליניקה עצמאית</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>השירותים המרכזיים</h3>
+          <ul>
+            <li>טיפולי פנים מקצועיים וניקוי עור מעמיק</li>
+            <li>טיפוח והזנת עור, טיפולי לחות מותאמים</li>
+            <li>ייעוץ קוסמטי אישי ובניית שגרת טיפוח</li>
+            <li>טיפולים לחידוש והארת מראה העור</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="p2-col">
+        <div class="card">
+          <h3>המטרות של פעילות הסושיאל</h3>
+          <ul>
+            <li>חיזוק האמון בקליניקה ובבעלת העסק</li>
+            <li>הסבר נגיש ואחראי על השירותים</li>
+            <li>בניית נוכחות מקומית באזור באר שבע</li>
+            <li>הגדלת חשיפה ומעורבות עם הקהל</li>
+            <li>עידוד פניות לייעוץ או לתיאום טיפול</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>האתגרים שהפעילות פותרת</h3>
+          <ul>
+            <li>עמוד לא פעיל / חוסר נוכחות דיגיטלית עקבית</li>
+            <li>קושי להסביר שירותים בשפה נגישה ולא "יבשה"</li>
+            <li>היעדר זיהוי מקומי מול קהל מבאר שבע</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="platform-row">
+      <div class="platform-card"><div class="pf-ic">◎</div><b>Instagram</b><span>פלטפורמת העוגן — פיד, קרוסלות, סטוריז, רילס</span></div>
+      <div class="platform-card"><div class="pf-ic">▷</div><b>TikTok</b><span>חשיפה מקומית וטון קליל יותר, וידאו קצר</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ עמוד 3 : קהל היעד ============ -->
+<section class="deck-page" id="p3">
+  <div class="deck-pad">
+    <div class="page-kicker-row"><span class="page-index">03 / 14</span><span class="brandmark">מעיין אליהו · תיק עבודות</span></div>
+    <div class="eyebrow">קהל היעד</div>
+    <h2 style="font-size:34px; margin-top:12px;">מי היא הלקוחה שאנחנו מדברות אליה</h2>
+
+    <div class="p3-top">
+      <div class="stat-card"><div class="stat-ic">📍</div><b>אזור מגורים</b><span>באר שבע ויישובי הסביבה</span></div>
+      <div class="stat-card"><div class="stat-ic">🎂</div><b>טווח גילאים</b><span>נשים בגילאי 25–55 בקירוב</span></div>
+      <div class="stat-card"><div class="stat-ic">💬</div><b>תחומי עניין</b><span>טיפוח עור, בריאות העור, טרנדים קוסמטיים אחראיים</span></div>
+      <div class="stat-card"><div class="stat-ic">👩‍💼</div><b>אורח חיים</b><span>עובדות ואימהות עסוקות, מחפשות פתרון קרוב לבית</span></div>
+    </div>
+
+    <div class="p3-cols">
+      <div class="card" style="padding:24px 26px;">
+        <h3 style="font-size:17px; margin-bottom:14px;">שאלות וחששות לפני פנייה</h3>
+        <div class="qa-item"><span class="qa-dot"></span><p><b>"האם זה מתאים לסוג העור שלי?"</b> — חשש מהתאמה אישית לא מספקת.</p></div>
+        <div class="qa-item"><span class="qa-dot"></span><p><b>"מה בעצם קורה בטיפול?"</b> — חוסר בהירות לגבי תהליך הטיפול והייעוץ.</p></div>
+        <div class="qa-item"><span class="qa-dot"></span><p><b>"האם אפשר לסמוך על הקליניקה?"</b> — הצורך לראות מקצועיות ורצינות לפני שקובעים תור.</p></div>
+        <div class="qa-item"><span class="qa-dot"></span><p><b>"כמה זמן ועלות מדובר?"</b> — רצון לשקיפות לפני יצירת קשר.</p></div>
+      </div>
+      <div class="card" style="padding:24px 26px;">
+        <h3 style="font-size:17px; margin-bottom:14px;">תוכן שבונה היכרות ואמון</h3>
+        <div class="qa-item"><span class="qa-dot"></span><p>תוכן שמציג את <b>בעלת הקליניקה</b> ואת סביבת העבודה בצורה אנושית ונגישה.</p></div>
+        <div class="qa-item"><span class="qa-dot"></span><p>הסברים <b>מקצועיים וכלליים</b> על טיפולים, ללא הבטחות או אבחון אישי.</p></div>
+        <div class="qa-item"><span class="qa-dot"></span><p>תשובות ל<b>שאלות נפוצות</b> בפורמט קליל וברור (סטורי, קרוסלה, רילס).</p></div>
+        <div class="qa-item"><span class="qa-dot"></span><p>תוכן <b>מקומי</b> שיוצר תחושת שכנות וזמינות באזור באר שבע.</p></div>
+      </div>
+    </div>
+
+    <p class="concept-note" style="margin-top:22px;">חשוב: התוכן אינו יוצר תחושת "חובה" או פחד מלאכותי סביב הצורך בטיפול — הגישה מבוססת על מידע, שקיפות ובחירה מודעת של הלקוחה.</p>
+  </div>
+</section>
+
+<!-- ============ עמוד 4 : אסטרטגיית תוכן ============ -->
+<section class="deck-page" id="p4">
+  <div class="deck-pad">
+    <div class="page-kicker-row"><span class="page-index">04 / 14</span><span class="brandmark">מעיין אליהו · תיק עבודות</span></div>
+    <div class="eyebrow">אסטרטגיית תוכן</div>
+    <h2 style="font-size:34px; margin-top:12px;">7 עמודי תוכן קבועים</h2>
+
+    <div class="pillars-grid">
+      <div class="pillar-card">
+        <div class="pillar-head"><span class="pillar-num">01</span><h4>היכרות עם הקליניקה ובעלת העסק</h4></div>
+        <div class="p-goal">מטרה: יצירת פנים אנושיות למותג וחיזוק אמון אישי.</div>
+        <div class="p-formats"><span class="p-mini-tag">Reel</span><span class="p-mini-tag">תמונה</span></div>
+        <ul class="p-examples"><li>"מי אני ולמה פתחתי את הקליניקה"</li><li>יום עבודה רגיל בעיני בעלת העסק</li></ul>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-head"><span class="pillar-num">02</span><h4>השירותים שלנו — הסבר נגיש</h4></div>
+        <div class="p-goal">מטרה: הנגשת השירותים בשפה פשוטה, ללא ז'רגון.</div>
+        <div class="p-formats"><span class="p-mini-tag">קרוסלה</span><span class="p-mini-tag">Reel</span></div>
+        <ul class="p-examples"><li>"מה זה בעצם טיפול ניקוי עמיק?"</li><li>ההבדל בין טיפול לחות לטיפול הזנה</li></ul>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-head"><span class="pillar-num">03</span><h4>ידע מקצועי לטיפוח יומיומי</h4></div>
+        <div class="p-goal">מטרה: מיצוב כמקור מידע אמין ומקצועי.</div>
+        <div class="p-formats"><span class="p-mini-tag">קרוסלה</span><span class="p-mini-tag">פוסט</span></div>
+        <ul class="p-examples"><li>3 עקרונות לשגרת טיפוח יומית</li><li>למה הגנה מהשמש חשובה כל השנה</li></ul>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-head"><span class="pillar-num">04</span><h4>שאלות נפוצות לפני טיפול</h4></div>
+        <div class="p-goal">מטרה: הפגת חששות והורדת חסמי פנייה.</div>
+        <div class="p-formats"><span class="p-mini-tag">סטורי</span><span class="p-mini-tag">Reel</span></div>
+        <ul class="p-examples"><li>"האם הייעוץ מחייב טיפול בהמשך?"</li><li>"איך יודעים איזה טיפול מתאים לי?"</li></ul>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-head"><span class="pillar-num">05</span><h4>מאחורי הקלעים בקליניקה</h4></div>
+        <div class="p-goal">מטרה: הצגת אווירה, סביבה נעימה ותהליך עבודה.</div>
+        <div class="p-formats"><span class="p-mini-tag">Reel</span><span class="p-mini-tag">סטורי</span></div>
+        <ul class="p-examples"><li>סבב קצר בחלל הקליניקה</li><li>הכנת חדר הטיפולים לפני יום עבודה</li></ul>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-head"><span class="pillar-num">06</span><h4>תוכן מקומי — באר שבע והסביבה</h4></div>
+        <div class="p-goal">מטרה: יצירת זיקה וזיהוי מקומי בקרב הקהל.</div>
+        <div class="p-formats"><span class="p-mini-tag">פוסט</span><span class="p-mini-tag">סטורי</span></div>
+        <ul class="p-examples"><li>"עוד עסק נשי מבאר שבע שכדאי להכיר"</li><li>נגישות והגעה מהשכונות הסמוכות</li></ul>
+      </div>
+      <div class="pillar-card" style="grid-column:1 / -1;">
+        <div class="pillar-head"><span class="pillar-num">07</span><h4>הזמנה לפגישת ייעוץ (CTA)</h4></div>
+        <div class="p-goal">מטרה: המרת מעקב ומעורבות לפנייה בפועל.</div>
+        <div class="p-formats"><span class="p-mini-tag">פוסט</span><span class="p-mini-tag">סטורי</span><span class="p-mini-tag">Reel</span></div>
+        <ul class="p-examples"><li>"יש לך שאלה? זה בדיוק מה שהייעוץ בשבילו"</li><li>תזכורת עדינה לתיאום פגישה + פרטי יצירת קשר</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ עמוד 5 : שפה חזותית ============ -->
+<section class="deck-page" id="p5">
+  <div class="deck-pad">
+    <div class="page-kicker-row"><span class="page-index">05 / 14</span><span class="brandmark">מעיין אליהו · תיק עבודות</span></div>
+    <div class="eyebrow">השפה החזותית</div>
+    <h2 style="font-size:34px; margin-top:12px;">זהות ויזואלית רגועה, נקייה ומקצועית</h2>
+
+    <div class="swatch-row">
+      <div class="swatch" style="background:#9C5B52;">רוז עמוק · כותרות וכפתורים</div>
+      <div class="swatch light" style="background:#C99B8E;">פודרה · אקסנט ראשי</div>
+      <div class="swatch light" style="background:#A7B596;">מרווה · אקסנט משני</div>
+      <div class="swatch light" style="background:#C7A468;">שמפניה · קווי הפרדה</div>
+      <div class="swatch light" style="background:#FAF5F0; border:1px solid #E7DAD0;">קרם · רקע בסיס</div>
+    </div>
+
+    <div class="style-3col" style="margin-top:22px;">
+      <div class="style-box">
+        <h5 style="font-family:var(--font-display); font-size:22px;">Aa</h5>
+        <p><b>Frank Ruhl Libre</b> — כותרות. פונט סריפי עברי אלגנטי שמעניק תחושה עורכתית ורגועה.</p>
+      </div>
+      <div class="style-box">
+        <h5 style="font-family:var(--font-body); font-size:22px; font-weight:700;">Aa</h5>
+        <p><b>Heebo</b> — טקסט גוף וממשק. פונט עברי נקי, קריא בכל גודל ובכל מסך.</p>
+      </div>
+      <div class="style-box">
+        <h5>סגנון עיצוב</h5>
+        <p>שטחים ריקים נדיבים, קווים דקים, פינות מעוגלות רכות, ואיורים מינימליסטיים במקום גרפיקה עמוסה.</p>
+      </div>
+    </div>
+
+    <div class="style-3col" style="margin-top:16px;">
+      <div class="style-box">
+        <h5>סגנון צילום</h5>
+        <p>אור טבעי ורך, גוונים חמים, תמונות "לייף-סטייל" של הסביבה והתהליך — לא תמונות קליניות קרות.</p>
+      </div>
+      <div class="style-box">
+        <h5>סגנון עריכת וידאו</h5>
+        <p>קצב נינוח עד בינוני, מעברי חיתוך רכים (cut / fade קצר), טקסט על מסך בפונט המותג, ללא אפקטים צעקניים.</p>
+      </div>
+      <div class="style-box">
+        <h5>טון דיבור</h5>
+        <p>חם, בגובה העיניים, מקצועי אך לא "רפואי" מדי — כמו חברה שמבינה בתחום ומדברת בכנות.</p>
+      </div>
+    </div>
+
+    <div class="voice-row">
+      <div class="voice-box">
+        <h5>דוגמאות לכותרות</h5>
+        <div class="ex-line">רגע לפני שקובעים תור — הנה מה שכדאי לדעת</div>
+        <div class="ex-line">העור שלך מדבר. בואי נלמד להקשיב לו</div>
+        <div class="ex-line">קליניקה קטנה, תשומת לב גדולה</div>
+      </div>
+      <div class="voice-box">
+        <h5>דוגמאות לקריאות לפעולה</h5>
+        <div class="ex-line">קבעי פגישת ייעוץ קצרה — בלי התחייבות</div>
+        <div class="ex-line">שלחי לנו הודעה ונחזור אלייך באותו היום</div>
+        <div class="ex-line">שמרי את הפוסט הזה למתי שתצטרכי אותו</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ עמוד 6 : עמוד האינסטגרם ============ -->
+<section class="deck-page" id="p6">
+  <div class="deck-pad">
+    <div class="page-kicker-row"><span class="page-index">06 / 14</span><span class="brandmark">מעיין אליהו · תיק עבודות</span></div>
+    <div class="eyebrow">תכנון עמוד האינסטגרם</div>
+    <h2 style="font-size:34px; margin-top:12px;">הדמיית פיד — 9 פרסומים מגוונים</h2>
+
+    <div class="ig-preview-wrap">
+      <div class="ig-phone">
+        <div class="ig-phone-head">
+          <div class="ig-avatar"></div>
+          <div><b>נטע לביא | קליניקה לטיפוח עור</b><span>@neta.lavi.clinic · באר שבע</span></div>
+        </div>
+        <div class="ig-grid9">
+          <div class="ig-tile" style="background:linear-gradient(160deg,#9C5B52,#C99B8E);"><span class="tile-ic">▶</span><span class="tile-badge">▶</span></div>
+          <div class="ig-tile" style="background:repeating-linear-gradient(135deg,#F1E4D9,#F1E4D9 10px,#E7CFC3 10px,#E7CFC3 20px);"><span class="tile-ic" style="color:#9C5B52;">🖼</span></div>
+          <div class="ig-tile" style="background:linear-gradient(160deg,#A7B596,#C7A468);"><span class="tile-ic">▤</span><span class="tile-badge">▤</span></div>
+          <div class="ig-tile" style="background:#F6EDE6; border:1px solid #E7DAD0;"><span class="tile-ic" style="color:#6E3A34; font-size:12px; padding:0 10px; text-align:center;">מה זה קוסמטיקה רפואית?</span></div>
+          <div class="ig-tile" style="background:repeating-linear-gradient(135deg,#F1E4D9,#F1E4D9 10px,#E7CFC3 10px,#E7CFC3 20px);"><span class="tile-ic" style="color:#9C5B52;">🖼</span></div>
+          <div class="ig-tile" style="background:linear-gradient(160deg,#C99B8E,#9C5B52);"><span class="tile-ic">▶</span><span class="tile-badge">▶</span></div>
+          <div class="ig-tile" style="background:#FCF3EE; border:1px solid #E7DAD0;"><span class="tile-ic" style="color:#6E3A34; font-size:12px; padding:0 10px; text-align:center;">האם הטיפול כואב?</span></div>
+          <div class="ig-tile" style="background:linear-gradient(160deg,#C7A468,#A7B596);"><span class="tile-ic">▤</span><span class="tile-badge">▤</span></div>
+          <div class="ig-tile" style="background:var(--c-wine);"><span class="tile-ic" style="font-size:13px; padding:0 10px; text-align:center;">קביעת ייעוץ ↖</span></div>
+        </div>
+      </div>
+
+      <div class="ig-legend">
+        <div class="ig-legend-row"><span class="ig-legend-num">1</span><div style="flex:1;"><b>בואי להכיר את הקליניקה</b><span>סיור קצר בחלל ובאווירה</span></div><span class="ig-legend-format">Reel</span></div>
+        <div class="ig-legend-row"><span class="ig-legend-num">2</span><div style="flex:1;"><b>חלל הקליניקה</b><span>תמונת אווירה — פינת קבלה</span></div><span class="ig-legend-format">תמונה</span></div>
+        <div class="ig-legend-row"><span class="ig-legend-num">3</span><div style="flex:1;"><b>5 שאלות לפני פגישת ייעוץ</b><span>קרוסלה מודרכת (ר' עמוד 07)</span></div><span class="ig-legend-format">קרוסלה</span></div>
+        <div class="ig-legend-row"><span class="ig-legend-num">4</span><div style="flex:1;"><b>מה זה קוסמטיקה רפואית?</b><span>הסבר מקצועי כללי</span></div><span class="ig-legend-format">פוסט</span></div>
+        <div class="ig-legend-row"><span class="ig-legend-num">5</span><div style="flex:1;"><b>מאחורי הקלעים</b><span>הכנת חדר טיפולים לפני יום עבודה</span></div><span class="ig-legend-format">תמונה</span></div>
+        <div class="ig-legend-row"><span class="ig-legend-num">6</span><div style="flex:1;"><b>יום בקליניקה</b><span>מאחורי הקלעים בעריכה קלילה</span></div><span class="ig-legend-format">Reel</span></div>
+        <div class="ig-legend-row"><span class="ig-legend-num">7</span><div style="flex:1;"><b>האם הטיפול כואב?</b><span>מענה קצר וכן לשאלה נפוצה</span></div><span class="ig-legend-format">פוסט FAQ</span></div>
+        <div class="ig-legend-row"><span class="ig-legend-num">8</span><div style="flex:1;"><b>טעויות נפוצות בטיפוח יומי</b><span>קרוסלה מקצועית קצרה</span></div><span class="ig-legend-format">קרוסלה</span></div>
+        <div class="ig-legend-row"><span class="ig-legend-num">9</span><div style="flex:1;"><b>קביעת פגישת ייעוץ</b><span>הזמנה עדינה ליצירת קשר</span></div><span class="ig-legend-format">פוסט CTA</span></div>
+      </div>
+    </div>
+    <div class="file-note">📁 הדמיית העמוד המלאה בקובץ נפרד ובאיכות גבוהה: <b>02-instagram-grid/grid-mockup.html</b></div>
+  </div>
+</section>
+
+<!-- ============ עמוד 7 : קרוסלה ============ -->
+<section class="deck-page" id="p7">
+  <div class="deck-pad">
+    <div class="page-kicker-row"><span class="page-index">07 / 14</span><span class="brandmark">מעיין אליהו · תיק עבודות</span></div>
+    <div class="eyebrow">קרוסלה לאינסטגרם</div>
+    <h2 style="font-size:32px; margin-top:12px;">5 דברים שכדאי לדעת לפני פגישת ייעוץ</h2>
+    <p style="font-size:14px; color:var(--c-ink-soft); margin-top:8px;">קרוסלה בת 7 שקופיות (יחס 4:5) — שקופית פתיחה עם Hook, גוף תוכן נגיש, ושקופית סיום עם קריאה לפעולה.</p>
+
+    <div class="thumbs-row" id="carousel-thumbs-target"></div>
+
+    <div class="copy-block">
+      <h4>קופי מלא לפרסום הקרוסלה</h4>
+      <p>לפני שקובעים פגישת ייעוץ, יש כמה דברים שממש כדאי לדעת 🤍
+החלטנו לרכז עבורכן את השאלות שהכי נשאלות אצלנו בקליניקה — כדי שתגיעו רגועות ומוכנות.
+
+החליקו ותראו 👉
+
+יש לכן שאלה שלא ענינו עליה? זה בדיוק מה שהייעוץ בשבילו — אנחנו כאן.</p>
+    </div>
+    <div class="file-note">📁 כל שקופית שמורה כקובץ נפרד באיכות מלאה בתיקייה: <b>03-carousel/</b></div>
+  </div>
+</section>
+
+<!-- ============ עמוד 8 : סטוריז ============ -->
+<section class="deck-page" id="p8">
+  <div class="deck-pad">
+    <div class="page-kicker-row"><span class="page-index">08 / 14</span><span class="brandmark">מעיין אליהו · תיק עבודות</span></div>
+    <div class="eyebrow">סדרת סטוריז</div>
+    <h2 style="font-size:32px; margin-top:12px;">סדרת 5 סטוריז לרצף אחד</h2>
+    <p style="font-size:14px; color:var(--c-ink-soft); margin-top:8px;">רצף מלא: סקרנות ← היכרות ← סקר ← מידע שימושי ← קריאה לפעולה.</p>
+
+    <div class="thumbs-row" id="stories-thumbs-target"></div>
+
+    <table class="pf-table" style="margin-top:24px;">
+      <tr><th>#</th><th>תפקיד הסטורי</th><th>אלמנט מרכזי</th></tr>
+      <tr><td>1</td><td>יצירת סקרנות</td><td>טיזר טקסטואלי + אימוג'י, בלי לחשוף הכול</td></tr>
+      <tr><td>2</td><td>הצגת הקליניקה</td><td>משפט חם על הקליניקה + מיקום</td></tr>
+      <tr><td>3</td><td>שאלה / סקר</td><td>מדבקת סקר אינטראקטיבית (2 אפשרויות)</td></tr>
+      <tr><td>4</td><td>מידע שימושי</td><td>טיפ מקצועי כללי אחד, קצר וברור</td></tr>
+      <tr><td>5</td><td>קריאה לפעולה</td><td>מדבקת קישור / "שלחו הודעה" לתיאום ייעוץ</td></tr>
+    </table>
+    <div class="file-note">📁 כל סטורי שמור כקובץ נפרד (יחס 9:16) בתיקייה: <b>04-stories/</b></div>
+  </div>
+</section>
+
+<!-- ============ עמוד 9 : סרטון Reel ============ -->
+<section class="deck-page" id="p9">
+  <div class="deck-pad">
+    <div class="page-kicker-row"><span class="page-index">09 / 14</span><span class="brandmark">מעיין אליהו · תיק עבודות</span></div>
+    <div class="eyebrow">סרטון Reel</div>
+    <h2 style="font-size:32px; margin-top:12px;">״ככה נראה תהליך הייעוץ בקליניקה״ · 15 שניות</h2>
+
+    <div class="p2-grid" style="grid-template-columns:1fr 1fr; margin-top:14px;">
+      <div class="card" style="padding:22px 24px;">
+        <h3 style="font-size:16px;">Hook (0–2 שניות)</h3>
+        <p style="font-size:13px; line-height:1.7;">כתובית פתיחה על גבי תמונת כניסה לקליניקה: <b>"מה קורה בפגישת ייעוץ ראשונה? בואי נראה 👇"</b></p>
+      </div>
+      <div class="card" style="padding:22px 24px;">
+        <h3 style="font-size:16px;">מסך סיום + CTA</h3>
+        <p style="font-size:13px; line-height:1.7;">לוגו + משפט סגירה: <b>"רוצה לקבוע ייעוץ משלך? אנחנו כאן"</b> + פרטי יצירת קשר.</p>
+      </div>
+    </div>
+
+    <table class="pf-table shotlist-table" style="margin-top:16px;">
+      <tr><th>שוט</th><th>משך</th><th>תוכן ויזואלי</th><th>טקסט על מסך</th></tr>
+      <tr><td>1</td><td>0–2 שנ׳</td><td>כניסה לקליניקה, דלת נפתחת</td><td>מה קורה בפגישת ייעוץ ראשונה?</td></tr>
+      <tr><td>2</td><td>2–6 שנ׳</td><td>קבלת פנים בדלפק, חיוך, ישיבה משותפת</td><td>מתחילים בהיכרות ובשיחה קצרה</td></tr>
+      <tr><td>3</td><td>6–11 שנ׳</td><td>הצצה לחדר הטיפולים המסודר</td><td>ואז — מתאימות יחד את הטיפול הנכון</td></tr>
+      <tr><td>4</td><td>11–15 שנ׳</td><td>לוגו על רקע קרם + טקסט סיום</td><td>רוצה לקבוע ייעוץ משלך?</td></tr>
+    </table>
+    <div class="file-note">📁 סטוריבורד מלא, הנחיות צילום ועריכה, ומוזיקה מוצעת בקובץ נפרד: <b>05-reel-storyboard/</b></div>
+  </div>
+</section>
+
+<!-- ============ עמוד 10 : דוגמאות קופי ============ -->
+<section class="deck-page" id="p10">
+  <div class="deck-pad">
+    <div class="page-kicker-row"><span class="page-index">10 / 14</span><span class="brandmark">מעיין אליהו · תיק עבודות</span></div>
+    <div class="eyebrow">דוגמאות לקופי</div>
+    <h2 style="font-size:34px; margin-top:12px;">כתיבה טבעית, אחראית ומזמינה</h2>
+
+    <div class="copy-grid">
+      <div class="copy-card">
+        <h4>🤍 פוסט היכרות עם הקליניקה</h4>
+        <p>קליניקת נטע לביא נפתחה מתוך אמונה אחת פשוטה — שכל אישה מגיעה לפגישה כמו שהיא, ויוצאת עם עוד קצת ידע וביטחון לגבי העור שלה.
+נמצאות בלב באר שבע, ושמחות להכיר גם אתכן.</p>
+        <span class="cc-cta">CTA: ספרו לנו בתגובות מאיפה אתן מכירות אותנו 🌷</span>
+      </div>
+      <div class="copy-card">
+        <h4>📋 פוסט מקצועי</h4>
+        <p>שלוש שאלות שכדאי לשאול את עצמכן לפני שבוחרות טיפול חדש:
+מהי מטרת הטיפול עבורי? האם התאמתי אותו לסוג העור שלי? והאם יש לי את כל המידע שאני צריכה כדי להחליט בנחת.</p>
+        <span class="cc-cta">CTA: שמרו את הפוסט למתי שתתלבטו 📌</span>
+      </div>
+      <div class="copy-card">
+        <h4>🖼 קופי לקרוסלה</h4>
+        <p>לפני שקובעים פגישת ייעוץ, יש כמה דברים שממש כדאי לדעת 🤍
+ריכזנו את השאלות שהכי נשאלות אצלנו — כדי שתגיעו רגועות ומוכנות. החליקו ותראו 👉</p>
+        <span class="cc-cta">CTA: יש לך שאלה נוספת? אנחנו כאן.</span>
+      </div>
+      <div class="copy-card">
+        <h4>🎬 קופי לסרטון Reel</h4>
+        <p>מה בעצם קורה בפגישת ייעוץ ראשונה? 👀
+הצצה קצרה לתהליך אצלנו בקליניקה — מהכניסה ועד להתאמת הטיפול המדויק בשבילך.</p>
+        <span class="cc-cta">CTA: לתיאום ייעוץ — לינק בביו 🤍</span>
+      </div>
+      <div class="copy-card" style="grid-column:1 / -1;">
+        <h4>📅 פוסט שמזמין לפגישת ייעוץ</h4>
+        <p>לפעמים כל מה שצריך זה שיחה קצרה כדי להבין מאיפה להתחיל.
+פגישת הייעוץ אצלנו היא בדיוק בשביל זה — בלי לחץ, בלי התחייבות, רק שיחה כנה על העור שלך ועל האפשרויות המתאימות לך.</p>
+        <span class="cc-cta">CTA: קבעי פגישת ייעוץ עוד השבוע — פרטי יצירת קשר בביו ובעמוד הסיום.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ עמוד 11 : לוח תוכן לדוגמה ============ -->
+<section class="deck-page" id="p11">
+  <div class="deck-pad">
+    <div class="page-kicker-row"><span class="page-index">11 / 14</span><span class="brandmark">מעיין אליהו · תיק עבודות</span></div>
+    <div class="eyebrow">לוח תוכן לדוגמה</div>
+    <h2 style="font-size:34px; margin-top:12px;">תוכנית תוכן לשבועיים</h2>
+
+    <div class="cal-week-label">שבוע 1</div>
+    <table class="pf-table">
+      <tr><th>יום</th><th>נושא</th><th>פורמט</th><th>מטרה</th><th>רעיון מרכזי</th><th>קריאה לפעולה</th></tr>
+      <tr><td>ראשון</td><td>היכרות עם בעלת הקליניקה</td><td>Reel</td><td>אמון אישי</td><td>"מי אני ולמה פתחתי את הקליניקה"</td><td>עקבו כדי להכיר עוד</td></tr>
+      <tr><td>שלישי</td><td>הסבר על שירות מרכזי</td><td>קרוסלה</td><td>הנגשת מידע</td><td>מה זה ניקוי עור מקצועי</td><td>שמרו לפעם הבאה</td></tr>
+      <tr><td>רביעי</td><td>מאחורי הקלעים</td><td>סטורי</td><td>אווירה וקרבה</td><td>הכנת חדר הטיפולים</td><td>שלחו לב אם אהבתן</td></tr>
+      <tr><td>חמישי</td><td>שאלה נפוצה</td><td>פוסט FAQ</td><td>הפגת חשש</td><td>"האם הטיפול כואב?"</td><td>שאלו אותנו בתגובות</td></tr>
+      <tr><td>שישי</td><td>תוכן מקומי</td><td>פוסט</td><td>זיקה מקומית</td><td>שיתוף פעולה עסקי מבאר שבע</td><td>תייגו עסק שאתן אוהבות</td></tr>
+    </table>
+
+    <div class="cal-week-label">שבוע 2</div>
+    <table class="pf-table">
+      <tr><th>יום</th><th>נושא</th><th>פורמט</th><th>מטרה</th><th>רעיון מרכזי</th><th>קריאה לפעולה</th></tr>
+      <tr><td>ראשון</td><td>ידע מקצועי</td><td>קרוסלה</td><td>מיצוב כמומחית</td><td>3 טעויות נפוצות בטיפוח יומי</td><td>שמרו את הפוסט</td></tr>
+      <tr><td>שני</td><td>תהליך העבודה בקליניקה</td><td>Reel</td><td>שקיפות</td><td>"ככה נראה תהליך הייעוץ"</td><td>קבעו ייעוץ — לינק בביו</td></tr>
+      <tr><td>רביעי</td><td>שאלה / סקר בסטורי</td><td>סטורי</td><td>מעורבות</td><td>"מה הכי מעניין אתכן לדעת?"</td><td>הצביעו בסקר</td></tr>
+      <tr><td>חמישי</td><td>הזמנה לייעוץ</td><td>פוסט CTA</td><td>המרה לפנייה</td><td>"שיחה קצרה, בלי התחייבות"</td><td>שלחו הודעה לתיאום</td></tr>
+      <tr><td>שישי</td><td>סיכום שבועי קליל</td><td>סטורי</td><td>קרבה וסיכום</td><td>הצצה לרגעים מהשבוע בקליניקה</td><td>ספרו לנו מה עוד תרצו לראות</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ============ עמוד 12 : מדדי הצלחה ============ -->
+<section class="deck-page" id="p12">
+  <div class="deck-pad">
+    <div class="page-kicker-row"><span class="page-index">12 / 14</span><span class="brandmark">מעיין אליהו · תיק עבודות</span></div>
+    <div class="eyebrow">מדדי הצלחה</div>
+    <h2 style="font-size:34px; margin-top:12px;">איך הייתי בודקת הצלחה בפועל</h2>
+    <p class="concept-note" style="margin-top:14px; max-width:920px;">מכיוון שמדובר בפרויקט קונספט, לא מוצגים כאן נתונים או תוצאות בדויות. להלן המדדים שהייתי עוקבת אחריהם החל מתחילת פעילות אמיתית, כדי לבחון ולשפר את התוכן לאורך זמן.</p>
+
+    <div class="metrics-grid">
+      <div class="metric-card"><div class="m-ic">👁</div><b>חשיפה</b><span>Reach — כמות החשיפות הכוללת לתוכן</span></div>
+      <div class="metric-card"><div class="m-ic">▶</div><b>צפיות בסרטונים</b><span>מספר הצפיות ב-Reels ובסטוריז</span></div>
+      <div class="metric-card"><div class="m-ic">⏱</div><b>זמן צפייה</b><span>Watch time — משך הצפייה הממוצע</span></div>
+      <div class="metric-card"><div class="m-ic">🔖</div><b>שמירות</b><span>Saves — סימן לתוכן בעל ערך שימושי</span></div>
+      <div class="metric-card"><div class="m-ic">↗</div><b>שיתופים</b><span>Shares — מדד לתוכן שמדבר לקהל</span></div>
+      <div class="metric-card"><div class="m-ic">💬</div><b>תגובות</b><span>Comments — רמת מעורבות ודיאלוג</span></div>
+      <div class="metric-card"><div class="m-ic">👤</div><b>כניסות לפרופיל</b><span>Profile visits — עניין שמעבר לפוסט הבודד</span></div>
+      <div class="metric-card"><div class="m-ic">☏</div><b>לחיצות על פרטי קשר</b><span>קליקים על טלפון / הודעה / קישור</span></div>
+      <div class="metric-card"><div class="m-ic">📅</div><b>פניות לקביעת פגישה</b><span>המדד המרכזי — יעד סופי של הפעילות</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ עמוד 13 : תהליך העבודה שלי ============ -->
+<section class="deck-page" id="p13">
+  <div class="deck-pad">
+    <div class="page-kicker-row"><span class="page-index">13 / 14</span><span class="brandmark">מעיין אליהו · תיק עבודות</span></div>
+    <div class="eyebrow">תהליך העבודה שלי</div>
+    <h2 style="font-size:34px; margin-top:12px;">מהיכרות עם העסק ועד תוכן בשטח</h2>
+
+    <div class="flow-grid">
+      <div class="flow-step"><div class="flow-num">1</div><div><h5>היכרות עם העסק</h5><p>הבנת הערכים, הסגנון והצרכים הייחודיים של הקליניקה.</p></div></div>
+      <div class="flow-step"><div class="flow-num">2</div><div><h5>הבנת קהל היעד</h5><p>מיפוי מי הלקוחה, מה מטריד אותה ומה יבנה אצלה אמון.</p></div></div>
+      <div class="flow-step"><div class="flow-num">3</div><div><h5>גיבוש שפה חזותית</h5><p>בחירת צבעים, פונטים וסגנון עיצוב אחיד למותג.</p></div></div>
+      <div class="flow-step"><div class="flow-num">4</div><div><h5>בניית אסטרטגיית תוכן</h5><p>הגדרת עמודי תוכן קבועים ותדירות פרסום.</p></div></div>
+      <div class="flow-step"><div class="flow-num">5</div><div><h5>פיתוח רעיונות</h5><p>גיבוש רעיונות קונקרטיים לכל פורמט — פוסט, קרוסלה, סטורי, רילס.</p></div></div>
+      <div class="flow-step"><div class="flow-num">6</div><div><h5>כתיבת קופי</h5><p>ניסוח טקסטים בטון המותג, ברורים ולא מוגזמים.</p></div></div>
+      <div class="flow-step"><div class="flow-num">7</div><div><h5>יצירת עיצובים</h5><p>עיצוב שקופיות, תבניות ופוסטים בהתאמה לשפה החזותית.</p></div></div>
+      <div class="flow-step"><div class="flow-num">8</div><div><h5>צילום ועריכת סרטונים</h5><p>בניית סטוריבורד, צילום מונחה ועריכה בקצב ובסגנון המותג.</p></div></div>
+      <div class="flow-step"><div class="flow-num">9</div><div><h5>התאמת התוכן לפלטפורמות</h5><p>עיבוד גרסאות מותאמות ל-Instagram ול-TikTok.</p></div></div>
+      <div class="flow-step"><div class="flow-num">10</div><div><h5>בדיקת ביצועים ושיפור</h5><p>מעקב אחר המדדים והפקת לקחים לתוכן הבא.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ עמוד 14 : סיום ============ -->
+<section class="deck-page" id="p14">
+  <div class="blob cover-blob-a"></div>
+  <div class="blob cover-blob-b"></div>
+  <div class="cover-wrap" style="position:relative; z-index:2;">
+    <div class="cover-frame" style="padding:70px 80px;">
+      <div class="cover-eyebrow">תודה שצפית</div>
+      <div class="end-name">מעיין אליהו</div>
+      <div class="end-role">מנהלת סושיאל · יוצרת תוכן · עורכת סרטונים</div>
+      <div class="cover-divider"></div>
+      <p style="font-size:15px; color:var(--c-ink); max-width:640px; margin:0 auto 10px; line-height:1.8;">זמינה למשרות, פרויקטים ושיתופי פעולה בתחום ניהול הסושיאל, יצירת התוכן ועריכת הווידאו.</p>
+      <div class="end-contacts">
+        <div class="end-contact-row">🔗&nbsp; <b>LinkedIn:</b>&nbsp; linkedin.com/in/your-profile</div>
+        <div class="end-contact-row">✉️&nbsp; <b>אימייל:</b>&nbsp; your-email@example.com</div>
+        <div class="end-contact-row">📷&nbsp; <b>אינסטגרם:</b>&nbsp; @your.handle</div>
+      </div>
+      <div style="margin-top:34px;"><span class="concept-badge">✦ פרויקט קונספט להצגת יכולות</span></div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

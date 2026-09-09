@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>הדמיית עמוד אינסטגרם — קליניקת נטע לביא</title>
+<link rel="stylesheet" href="../assets/css/design-system.css">
+<style>
+  body{ background:#DDD4CC; display:flex; align-items:flex-start; justify-content:center; padding:40px 0; }
+  .ig-wrap{ width:1080px; background:#fff; box-shadow:var(--shadow-soft); }
+
+  .ig-header{ padding:56px 60px 30px; border-bottom:1px solid var(--c-line); }
+  .ig-header-top{ display:flex; align-items:center; gap:34px; margin-bottom:28px; }
+  .ig-avatar-lg{ width:132px; height:132px; border-radius:50%; background:linear-gradient(135deg,var(--c-rose),var(--c-gold) 60%, var(--c-sage)); flex-shrink:0; display:flex; align-items:center; justify-content:center; }
+  .ig-avatar-lg span{ font-family:var(--font-display); font-size:44px; color:#fff; }
+  .ig-handle{ font-size:20px; font-weight:600; color:var(--c-ink); margin-bottom:14px; }
+  .ig-stats{ display:flex; gap:38px; }
+  .ig-stats div{ text-align:center; }
+  .ig-stats b{ display:block; font-size:17px; color:var(--c-wine); }
+  .ig-stats span{ font-size:12.5px; color:var(--c-ink-soft); }
+  .ig-bio b{ display:block; font-family:var(--font-display); font-size:19px; color:var(--c-wine); margin-bottom:4px; }
+  .ig-bio p{ margin:0 0 3px; font-size:13.5px; color:var(--c-ink); line-height:1.6; }
+  .ig-bio .tag-line{ font-size:13px; color:var(--c-rose-deep); }
+
+  .ig-nav{ display:flex; justify-content:center; gap:70px; padding:14px 0; border-bottom:1px solid var(--c-line); }
+  .ig-nav div{ font-size:11.5px; font-weight:700; letter-spacing:.5px; color:var(--c-ink-soft); padding-bottom:12px; }
+  .ig-nav div.active{ color:var(--c-wine); border-bottom:2px solid var(--c-wine); }
+
+  .ig-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:3px; background:#fff; }
+  .tile{ aspect-ratio:1/1; position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; overflow:hidden; text-align:center; padding:18px; }
+  .tile .badge{ position:absolute; top:14px; left:14px; color:#fff; font-size:20px; filter:drop-shadow(0 1px 2px rgba(0,0,0,.35)); }
+  .tile .cap{ position:absolute; bottom:16px; right:16px; left:16px; color:#fff; font-size:13px; font-weight:600; text-align:right; text-shadow:0 1px 4px rgba(0,0,0,.35); }
+  .tile.light .cap{ color:var(--c-wine); text-shadow:none; }
+  .tile-icon{ font-size:38px; color:#fff; opacity:.92; }
+  .tile.light .tile-icon{ color:var(--c-rose-deep); }
+  .tile-title{ font-family:var(--font-display); font-size:19px; line-height:1.4; color:var(--c-wine); }
+  .tile-sub{ font-size:11.5px; color:var(--c-ink-soft); margin-top:8px; }
+  .texture{ background: repeating-linear-gradient(135deg, #F1E4D9, #F1E4D9 14px, #E7CFC3 14px, #E7CFC3 28px); }
+</style>
+</head>
+<body>
+<div class="ig-wrap">
+
+  <div class="ig-header">
+    <div class="ig-header-top">
+      <div class="ig-avatar-lg"><span>נל</span></div>
+      <div style="flex:1;">
+        <div class="ig-handle">@neta.lavi.clinic</div>
+        <div class="ig-stats">
+          <div><b>9</b><span>פרסומים</span></div>
+          <div><b>2,140</b><span>עוקבים</span></div>
+          <div><b>312</b><span>עוקבים אחרי</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="ig-bio">
+      <b>נטע לביא | קליניקה לטיפוח עור</b>
+      <p class="tag-line">💆‍♀️ קוסמטיקה וטיפוח עור בבאר שבע</p>
+      <p>📍 באר שבע והסביבה &nbsp; · &nbsp; ✨ קליניקת בוטיק אישית</p>
+      <p>👇 לקביעת פגישת ייעוץ</p>
+    </div>
+  </div>
+
+  <div class="ig-nav">
+    <div class="active">◱ פוסטים</div>
+    <div>▷ Reels</div>
+    <div>◈ תוייגתי</div>
+  </div>
+
+  <div class="ig-grid">
+    <div class="tile" style="background:linear-gradient(160deg,#9C5B52,#C99B8E);">
+      <span class="badge">▶</span>
+      <span class="tile-icon">▶</span>
+      <span class="cap">בואי להכיר את הקליניקה</span>
+    </div>
+    <div class="tile texture light">
+      <span class="tile-icon">🖼</span>
+      <span class="cap">חלל הקליניקה</span>
+    </div>
+    <div class="tile" style="background:linear-gradient(160deg,#A7B596,#C7A468);">
+      <span class="badge">▤</span>
+      <span class="tile-icon">▤</span>
+      <span class="cap">5 שאלות לפני ייעוץ</span>
+    </div>
+
+    <div class="tile" style="background:var(--c-cream-2);">
+      <span class="tile-title">מה זה<br>קוסמטיקה<br>רפואית?</span>
+      <span class="tile-sub">פוסט מקצועי</span>
+    </div>
+    <div class="tile texture light">
+      <span class="tile-icon">👩‍⚕️</span>
+      <span class="cap">בעלת הקליניקה</span>
+    </div>
+    <div class="tile" style="background:linear-gradient(160deg,#C99B8E,#9C5B52);">
+      <span class="badge">▶</span>
+      <span class="tile-icon">▶</span>
+      <span class="cap">מאחורי הקלעים</span>
+    </div>
+
+    <div class="tile" style="background:#FCF3EE;">
+      <span class="tile-title" style="font-size:30px;">?</span>
+      <span class="tile-sub" style="margin-top:4px;">האם הטיפול כואב?</span>
+    </div>
+    <div class="tile" style="background:linear-gradient(160deg,#C7A468,#A7B596);">
+      <span class="badge">▤</span>
+      <span class="tile-icon">▤</span>
+      <span class="cap">טעויות נפוצות בטיפוח</span>
+    </div>
+    <div class="tile" style="background:var(--c-wine);">
+      <span class="tile-title" style="color:#fff; font-size:22px;">קביעת<br>פגישת ייעוץ</span>
+      <span class="tile-sub" style="color:#EAD9CF;">↖ לינק בביו</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>

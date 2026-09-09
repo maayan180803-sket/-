@@ -1,0 +1,29 @@
+body{ background:#DDD4CC; margin:0; display:flex; align-items:center; justify-content:center; padding:30px 0; }
+.story{
+  width:1080px; height:1920px;
+  position:relative;
+  overflow:hidden;
+  font-family:var(--font-body);
+  display:flex; flex-direction:column;
+}
+.story-bars{ position:absolute; top:34px; left:34px; right:34px; display:flex; gap:6px; z-index:5; }
+.story-bars span{ flex:1; height:5px; border-radius:3px; background:rgba(255,255,255,.35); }
+.story-bars span.on{ background:#fff; }
+.story-head{ position:absolute; top:60px; right:34px; left:34px; display:flex; align-items:center; gap:14px; z-index:5; }
+.story-avatar{ width:52px; height:52px; border-radius:50%; background:linear-gradient(135deg,var(--c-rose),var(--c-gold)); border:2px solid #fff; flex-shrink:0; }
+.story-head b{ color:#fff; font-size:16px; text-shadow:0 1px 4px rgba(0,0,0,.25); }
+.story-head span{ color:rgba(255,255,255,.85); font-size:12.5px; display:block; }
+
+.story-body{ flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:0 90px; position:relative; z-index:2; }
+.story-kicker{ font-size:15px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:22px; }
+.story-title{ font-family:var(--font-display); font-size:52px; line-height:1.35; margin-bottom:24px; }
+.story-text{ font-size:21px; line-height:1.8; }
+
+.story-footer{ position:absolute; bottom:70px; right:60px; left:60px; z-index:5; text-align:center; }
+.sticker{ display:inline-flex; align-items:center; gap:10px; background:#fff; color:var(--c-wine); font-weight:700; font-size:16px; padding:14px 30px; border-radius:999px; box-shadow:0 10px 24px rgba(0,0,0,.15); }
+.poll-box{ background:#fff; border-radius:20px; padding:24px; margin-top:10px; width:100%; max-width:560px; }
+.poll-box .poll-q{ font-size:16px; font-weight:700; color:var(--c-wine); margin-bottom:16px; }
+.poll-opt{ display:flex; justify-content:space-between; align-items:center; background:var(--c-cream-2); border-radius:999px; padding:14px 22px; margin-bottom:10px; font-size:15px; font-weight:600; color:var(--c-rose-deep); }
+.poll-opt:last-child{ margin-bottom:0; }
+
+.blob-s{ position:absolute; border-radius:50%; z-index:1; }
