@@ -35,8 +35,12 @@ async function main() {
     const sel = `#p${i}`;
     const el = await page.$(sel);
     if (!el) { console.warn('missing page', sel); continue; }
+    // scrollIntoView + viewport screenshot (not elementHandle.screenshot) —
+    // element screenshots don't reliably composite nested iframe content.
+    await el.evaluate((node) => node.scrollIntoView());
+    await page.waitForTimeout(120);
     const num = String(i).padStart(2, '0');
-    await el.screenshot({ path: path.join(deckDir, `page-${num}.png`) });
+    await page.screenshot({ path: path.join(deckDir, `page-${num}.png`) });
     console.log('✓ PNG deck page', num);
   }
 
@@ -95,7 +99,9 @@ async function main() {
   await page.waitForTimeout(300);
   for (let i = 1; i <= 2; i++) {
     const el = await page.$(`#r${i}`);
-    await el.screenshot({ path: path.join(reelDir, `storyboard-0${i}.png`) });
+    await el.evaluate((node) => node.scrollIntoView());
+    await page.waitForTimeout(120);
+    await page.screenshot({ path: path.join(reelDir, `storyboard-0${i}.png`) });
     console.log('✓ PNG reel page', i);
   }
   await page.pdf({

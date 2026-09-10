@@ -76,7 +76,7 @@
   .voice-box .ex-line::after{ content:"״"; color:var(--c-gold); font-weight:700; }
 
   /* ---------- עמוד 6: אינסטגרם ---------- */
-  .ig-preview-wrap{ display:grid; grid-template-columns: 380px 1fr; gap:34px; margin-top:16px; }
+  .ig-preview-wrap{ display:grid; grid-template-columns: 420px 1fr; gap:34px; margin-top:16px; }
   .ig-phone{ background:#fff; border:1px solid var(--c-line); border-radius:26px; padding:14px; box-shadow:var(--shadow-soft); }
   .ig-phone-head{ display:flex; align-items:center; gap:10px; padding:6px 6px 14px; border-bottom:1px solid var(--c-line); margin-bottom:8px; }
   .ig-avatar{ width:46px; height:46px; border-radius:50%; background:linear-gradient(135deg,var(--c-rose),var(--c-gold)); flex-shrink:0; }
@@ -94,14 +94,33 @@
   .ig-legend-row span{ font-size:11.5px; color:var(--c-ink-soft); display:block; }
   .ig-legend-format{ font-size:10px; background:#fff; border:1px solid var(--c-line); padding:2px 8px; border-radius:7px; color:var(--c-rose-deep); font-weight:700; flex-shrink:0; }
 
-  /* ---------- עמוד 7 קרוסלה / עמוד 8 סטוריז / עמוד 9 רילס : תצוגות ממוזערות ---------- */
-  .thumbs-row{ display:flex; gap:16px; margin-top:20px; }
-  .thumb-45{ width:180px; height:225px; border-radius:14px; flex-shrink:0; box-shadow:var(--shadow-card); overflow:hidden; position:relative; }
-  .thumb-916{ width:150px; height:266px; border-radius:16px; flex-shrink:0; box-shadow:var(--shadow-card); overflow:hidden; position:relative; border:3px solid #fff; }
+  /* ---------- עמוד 6 : הטמעה חיה של מוקאפ האינסטגרם ---------- */
+  .ig-embed-frame{ width:420px; height:579px; overflow:hidden; border-radius:20px; box-shadow:var(--shadow-soft); flex-shrink:0; position:relative; }
+  .ig-embed-frame iframe{ position:absolute; top:0; right:0; width:1080px; height:1488px; border:0; transform:scale(0.38888); transform-origin:top right; pointer-events:none; }
+
+  /* ---------- עמוד 7 קרוסלה : הטמעה חיה של 7 השקופיות ---------- */
+  .carousel-embed-grid{ display:grid; grid-template-columns:repeat(4,230px); gap:14px; margin-top:20px; }
+  .embed-thumb{ width:230px; height:288px; overflow:hidden; border-radius:12px; box-shadow:var(--shadow-card); position:relative; }
+  .embed-thumb iframe{ position:absolute; top:0; right:0; width:1080px; height:1350px; border:0; transform:scale(0.21296); transform-origin:top right; pointer-events:none; }
+
+  /* ---------- עמוד 8 סטוריז : הטמעה חיה של 5 הסטוריז ---------- */
+  .stories-embed-row{ display:flex; gap:16px; margin-top:20px; }
+  .embed-story{ width:150px; height:267px; overflow:hidden; border-radius:16px; box-shadow:var(--shadow-card); position:relative; border:3px solid #fff; flex-shrink:0; }
+  .embed-story iframe{ position:absolute; top:0; right:0; width:1080px; height:1920px; border:0; transform:scale(0.13889); transform-origin:top right; pointer-events:none; }
+
   .copy-block{ background:#fff; border:1px solid var(--c-line); border-radius:16px; padding:22px 26px; margin-top:22px; }
   .copy-block h4{ font-size:14px; color:var(--c-rose-deep); margin-bottom:10px; }
   .copy-block p{ font-size:13.5px; line-height:1.85; color:var(--c-ink); white-space:pre-line; margin:0; }
-  .file-note{ display:flex; align-items:center; gap:10px; margin-top:16px; font-size:12px; color:var(--c-ink-soft); background:var(--c-cream-2); padding:10px 16px; border-radius:10px; }
+
+  /* ---------- עמוד 9 רילס : ויזואל סטוריבורד ---------- */
+  .frame-row{ display:flex; gap:14px; margin-top:16px; }
+  .frame{ flex:1; background:#fff; border:1.5px dashed var(--c-gold); border-radius:14px; padding:14px 10px; text-align:center; display:flex; flex-direction:column; align-items:center; gap:6px; }
+  .frame .fr-num{ font-family:var(--font-display); font-size:19px; color:var(--c-gold); }
+  .frame .fr-icon{ font-size:22px; }
+  .frame .fr-txt{ font-size:10.5px; color:var(--c-ink-soft); line-height:1.45; }
+  .frame .fr-dur{ font-size:10px; color:var(--c-rose-deep); font-weight:700; }
+  .video-link-note{ display:flex; align-items:center; gap:10px; margin-top:14px; font-size:12.5px; color:var(--c-ink-soft); background:var(--c-cream-2); padding:10px 16px; border-radius:10px; border-inline-start:3px solid var(--c-gold); }
+  .video-link-note a{ color:var(--c-rose-deep); font-weight:700; }
 
   .shotlist-table td, .shotlist-table th{ font-size:12px; }
 
@@ -163,7 +182,7 @@
 <!-- ============ עמוד 2 : הצגת הפרויקט ============ -->
 <section class="deck-page" id="p2">
   <div class="deck-pad">
-    <div class="page-kicker-row"><span class="page-index">02 / 14</span><span class="brandmark">מעיין אליהו · תיק עבודות</span></div>
+    <div class="page-kicker-row"><span class="page-index" dir="ltr">02 / 14</span><span class="brandmark">מעיין אליהו · תיק עבודות</span></div>
     <div class="eyebrow">הצגת הפרויקט</div>
     <h2 style="font-size:34px; margin-top:12px;">ניהול סושיאל מלא לקליניקת בוטיק בבאר שבע</h2>
     <p class="concept-note" style="margin-top:16px; max-width:900px;">
@@ -224,13 +243,13 @@
 <!-- ============ עמוד 3 : קהל היעד ============ -->
 <section class="deck-page" id="p3">
   <div class="deck-pad">
-    <div class="page-kicker-row"><span class="page-index">03 / 14</span><span class="brandmark">מעיין אליהו · תיק עבודות</span></div>
+    <div class="page-kicker-row"><span class="page-index" dir="ltr">03 / 14</span><span class="brandmark">מעיין אליהו · תיק עבודות</span></div>
     <div class="eyebrow">קהל היעד</div>
     <h2 style="font-size:34px; margin-top:12px;">מי היא הלקוחה שאנחנו מדברות אליה</h2>
 
     <div class="p3-top">
       <div class="stat-card"><div class="stat-ic">📍</div><b>אזור מגורים</b><span>באר שבע ויישובי הסביבה</span></div>
-      <div class="stat-card"><div class="stat-ic">🎂</div><b>טווח גילאים</b><span>נשים בגילאי 25–55 בקירוב</span></div>
+      <div class="stat-card"><div class="stat-ic">🎂</div><b>טווח גילאים</b><span>נשים בגילאי <bdi dir="ltr">25–55</bdi> בקירוב</span></div>
       <div class="stat-card"><div class="stat-ic">💬</div><b>תחומי עניין</b><span>טיפוח עור, בריאות העור, טרנדים קוסמטיים אחראיים</span></div>
       <div class="stat-card"><div class="stat-ic">👩‍💼</div><b>אורח חיים</b><span>עובדות ואימהות עסוקות, מחפשות פתרון קרוב לבית</span></div>
     </div>
@@ -259,7 +278,7 @@
 <!-- ============ עמוד 4 : אסטרטגיית תוכן ============ -->
 <section class="deck-page" id="p4">
   <div class="deck-pad">
-    <div class="page-kicker-row"><span class="page-index">04 / 14</span><span class="brandmark">מעיין אליהו · תיק עבודות</span></div>
+    <div class="page-kicker-row"><span class="page-index" dir="ltr">04 / 14</span><span class="brandmark">מעיין אליהו · תיק עבודות</span></div>
     <div class="eyebrow">אסטרטגיית תוכן</div>
     <h2 style="font-size:34px; margin-top:12px;">7 עמודי תוכן קבועים</h2>
 
@@ -274,7 +293,7 @@
         <div class="pillar-head"><span class="pillar-num">02</span><h4>השירותים שלנו — הסבר נגיש</h4></div>
         <div class="p-goal">מטרה: הנגשת השירותים בשפה פשוטה, ללא ז'רגון.</div>
         <div class="p-formats"><span class="p-mini-tag">קרוסלה</span><span class="p-mini-tag">Reel</span></div>
-        <ul class="p-examples"><li>"מה זה בעצם טיפול ניקוי עמיק?"</li><li>ההבדל בין טיפול לחות לטיפול הזנה</li></ul>
+        <ul class="p-examples"><li>"מה זה בעצם טיפול ניקוי עמוק?"</li><li>ההבדל בין טיפול לחות לטיפול הזנה</li></ul>
       </div>
       <div class="pillar-card">
         <div class="pillar-head"><span class="pillar-num">03</span><h4>ידע מקצועי לטיפוח יומיומי</h4></div>
@@ -313,7 +332,7 @@
 <!-- ============ עמוד 5 : שפה חזותית ============ -->
 <section class="deck-page" id="p5">
   <div class="deck-pad">
-    <div class="page-kicker-row"><span class="page-index">05 / 14</span><span class="brandmark">מעיין אליהו · תיק עבודות</span></div>
+    <div class="page-kicker-row"><span class="page-index" dir="ltr">05 / 14</span><span class="brandmark">מעיין אליהו · תיק עבודות</span></div>
     <div class="eyebrow">השפה החזותית</div>
     <h2 style="font-size:34px; margin-top:12px;">זהות ויזואלית רגועה, נקייה ומקצועית</h2>
 
@@ -375,27 +394,13 @@
 <!-- ============ עמוד 6 : עמוד האינסטגרם ============ -->
 <section class="deck-page" id="p6">
   <div class="deck-pad">
-    <div class="page-kicker-row"><span class="page-index">06 / 14</span><span class="brandmark">מעיין אליהו · תיק עבודות</span></div>
+    <div class="page-kicker-row"><span class="page-index" dir="ltr">06 / 14</span><span class="brandmark">מעיין אליהו · תיק עבודות</span></div>
     <div class="eyebrow">תכנון עמוד האינסטגרם</div>
     <h2 style="font-size:34px; margin-top:12px;">הדמיית פיד — 9 פרסומים מגוונים</h2>
 
     <div class="ig-preview-wrap">
-      <div class="ig-phone">
-        <div class="ig-phone-head">
-          <div class="ig-avatar"></div>
-          <div><b>נטע לביא | קליניקה לטיפוח עור</b><span>@neta.lavi.clinic · באר שבע</span></div>
-        </div>
-        <div class="ig-grid9">
-          <div class="ig-tile" style="background:linear-gradient(160deg,#9C5B52,#C99B8E);"><span class="tile-ic">▶</span><span class="tile-badge">▶</span></div>
-          <div class="ig-tile" style="background:repeating-linear-gradient(135deg,#F1E4D9,#F1E4D9 10px,#E7CFC3 10px,#E7CFC3 20px);"><span class="tile-ic" style="color:#9C5B52;">🖼</span></div>
-          <div class="ig-tile" style="background:linear-gradient(160deg,#A7B596,#C7A468);"><span class="tile-ic">▤</span><span class="tile-badge">▤</span></div>
-          <div class="ig-tile" style="background:#F6EDE6; border:1px solid #E7DAD0;"><span class="tile-ic" style="color:#6E3A34; font-size:12px; padding:0 10px; text-align:center;">מה זה קוסמטיקה רפואית?</span></div>
-          <div class="ig-tile" style="background:repeating-linear-gradient(135deg,#F1E4D9,#F1E4D9 10px,#E7CFC3 10px,#E7CFC3 20px);"><span class="tile-ic" style="color:#9C5B52;">🖼</span></div>
-          <div class="ig-tile" style="background:linear-gradient(160deg,#C99B8E,#9C5B52);"><span class="tile-ic">▶</span><span class="tile-badge">▶</span></div>
-          <div class="ig-tile" style="background:#FCF3EE; border:1px solid #E7DAD0;"><span class="tile-ic" style="color:#6E3A34; font-size:12px; padding:0 10px; text-align:center;">האם הטיפול כואב?</span></div>
-          <div class="ig-tile" style="background:linear-gradient(160deg,#C7A468,#A7B596);"><span class="tile-ic">▤</span><span class="tile-badge">▤</span></div>
-          <div class="ig-tile" style="background:var(--c-wine);"><span class="tile-ic" style="font-size:13px; padding:0 10px; text-align:center;">קביעת ייעוץ ↖</span></div>
-        </div>
+      <div class="ig-embed-frame">
+        <iframe src="../02-instagram-grid/grid-mockup.html" scrolling="no" title="הדמיית עמוד אינסטגרם"></iframe>
       </div>
 
       <div class="ig-legend">
@@ -410,19 +415,26 @@
         <div class="ig-legend-row"><span class="ig-legend-num">9</span><div style="flex:1;"><b>קביעת פגישת ייעוץ</b><span>הזמנה עדינה ליצירת קשר</span></div><span class="ig-legend-format">פוסט CTA</span></div>
       </div>
     </div>
-    <div class="file-note">📁 הדמיית העמוד המלאה בקובץ נפרד ובאיכות גבוהה: <b>02-instagram-grid/grid-mockup.html</b></div>
   </div>
 </section>
 
 <!-- ============ עמוד 7 : קרוסלה ============ -->
 <section class="deck-page" id="p7">
   <div class="deck-pad">
-    <div class="page-kicker-row"><span class="page-index">07 / 14</span><span class="brandmark">מעיין אליהו · תיק עבודות</span></div>
+    <div class="page-kicker-row"><span class="page-index" dir="ltr">07 / 14</span><span class="brandmark">מעיין אליהו · תיק עבודות</span></div>
     <div class="eyebrow">קרוסלה לאינסטגרם</div>
     <h2 style="font-size:32px; margin-top:12px;">5 דברים שכדאי לדעת לפני פגישת ייעוץ</h2>
     <p style="font-size:14px; color:var(--c-ink-soft); margin-top:8px;">קרוסלה בת 7 שקופיות (יחס 4:5) — שקופית פתיחה עם Hook, גוף תוכן נגיש, ושקופית סיום עם קריאה לפעולה.</p>
 
-    <div class="thumbs-row" id="carousel-thumbs-target"></div>
+    <div class="carousel-embed-grid">
+      <div class="embed-thumb"><iframe src="../03-carousel/slide-1.html" scrolling="no" title="שקופית 1"></iframe></div>
+      <div class="embed-thumb"><iframe src="../03-carousel/slide-2.html" scrolling="no" title="שקופית 2"></iframe></div>
+      <div class="embed-thumb"><iframe src="../03-carousel/slide-3.html" scrolling="no" title="שקופית 3"></iframe></div>
+      <div class="embed-thumb"><iframe src="../03-carousel/slide-4.html" scrolling="no" title="שקופית 4"></iframe></div>
+      <div class="embed-thumb"><iframe src="../03-carousel/slide-5.html" scrolling="no" title="שקופית 5"></iframe></div>
+      <div class="embed-thumb"><iframe src="../03-carousel/slide-6.html" scrolling="no" title="שקופית 6"></iframe></div>
+      <div class="embed-thumb"><iframe src="../03-carousel/slide-7.html" scrolling="no" title="שקופית 7"></iframe></div>
+    </div>
 
     <div class="copy-block">
       <h4>קופי מלא לפרסום הקרוסלה</h4>
@@ -433,19 +445,24 @@
 
 יש לכן שאלה שלא ענינו עליה? זה בדיוק מה שהייעוץ בשבילו — אנחנו כאן.</p>
     </div>
-    <div class="file-note">📁 כל שקופית שמורה כקובץ נפרד באיכות מלאה בתיקייה: <b>03-carousel/</b></div>
   </div>
 </section>
 
 <!-- ============ עמוד 8 : סטוריז ============ -->
 <section class="deck-page" id="p8">
   <div class="deck-pad">
-    <div class="page-kicker-row"><span class="page-index">08 / 14</span><span class="brandmark">מעיין אליהו · תיק עבודות</span></div>
+    <div class="page-kicker-row"><span class="page-index" dir="ltr">08 / 14</span><span class="brandmark">מעיין אליהו · תיק עבודות</span></div>
     <div class="eyebrow">סדרת סטוריז</div>
     <h2 style="font-size:32px; margin-top:12px;">סדרת 5 סטוריז לרצף אחד</h2>
     <p style="font-size:14px; color:var(--c-ink-soft); margin-top:8px;">רצף מלא: סקרנות ← היכרות ← סקר ← מידע שימושי ← קריאה לפעולה.</p>
 
-    <div class="thumbs-row" id="stories-thumbs-target"></div>
+    <div class="stories-embed-row">
+      <div class="embed-story"><iframe src="../04-stories/story-1.html" scrolling="no" title="סטורי 1"></iframe></div>
+      <div class="embed-story"><iframe src="../04-stories/story-2.html" scrolling="no" title="סטורי 2"></iframe></div>
+      <div class="embed-story"><iframe src="../04-stories/story-3.html" scrolling="no" title="סטורי 3"></iframe></div>
+      <div class="embed-story"><iframe src="../04-stories/story-4.html" scrolling="no" title="סטורי 4"></iframe></div>
+      <div class="embed-story"><iframe src="../04-stories/story-5.html" scrolling="no" title="סטורי 5"></iframe></div>
+    </div>
 
     <table class="pf-table" style="margin-top:24px;">
       <tr><th>#</th><th>תפקיד הסטורי</th><th>אלמנט מרכזי</th></tr>
@@ -455,20 +472,19 @@
       <tr><td>4</td><td>מידע שימושי</td><td>טיפ מקצועי כללי אחד, קצר וברור</td></tr>
       <tr><td>5</td><td>קריאה לפעולה</td><td>מדבקת קישור / "שלחו הודעה" לתיאום ייעוץ</td></tr>
     </table>
-    <div class="file-note">📁 כל סטורי שמור כקובץ נפרד (יחס 9:16) בתיקייה: <b>04-stories/</b></div>
   </div>
 </section>
 
 <!-- ============ עמוד 9 : סרטון Reel ============ -->
 <section class="deck-page" id="p9">
   <div class="deck-pad">
-    <div class="page-kicker-row"><span class="page-index">09 / 14</span><span class="brandmark">מעיין אליהו · תיק עבודות</span></div>
+    <div class="page-kicker-row"><span class="page-index" dir="ltr">09 / 14</span><span class="brandmark">מעיין אליהו · תיק עבודות</span></div>
     <div class="eyebrow">סרטון Reel</div>
     <h2 style="font-size:32px; margin-top:12px;">״ככה נראה תהליך הייעוץ בקליניקה״ · 15 שניות</h2>
 
     <div class="p2-grid" style="grid-template-columns:1fr 1fr; margin-top:14px;">
       <div class="card" style="padding:22px 24px;">
-        <h3 style="font-size:16px;">Hook (0–2 שניות)</h3>
+        <h3 style="font-size:16px;">Hook (<bdi dir="ltr">0–2</bdi> שניות)</h3>
         <p style="font-size:13px; line-height:1.7;">כתובית פתיחה על גבי תמונת כניסה לקליניקה: <b>"מה קורה בפגישת ייעוץ ראשונה? בואי נראה 👇"</b></p>
       </div>
       <div class="card" style="padding:22px 24px;">
@@ -477,21 +493,28 @@
       </div>
     </div>
 
+    <div class="frame-row">
+      <div class="frame"><span class="fr-num">1</span><span class="fr-icon">🚪</span><span class="fr-txt">כניסה לקליניקה, דלת נפתחת, קבלת פנים</span><span class="fr-dur"><bdi dir="ltr">0:00–0:02</bdi></span></div>
+      <div class="frame"><span class="fr-num">2</span><span class="fr-icon">🗣</span><span class="fr-txt">ישיבה משותפת, שיחה קצרה וחיוך</span><span class="fr-dur"><bdi dir="ltr">0:02–0:06</bdi></span></div>
+      <div class="frame"><span class="fr-num">3</span><span class="fr-icon">🛋</span><span class="fr-txt">הצצה לחדר הטיפולים המסודר</span><span class="fr-dur"><bdi dir="ltr">0:06–0:11</bdi></span></div>
+      <div class="frame"><span class="fr-num">4</span><span class="fr-icon">✦</span><span class="fr-txt">לוגו + טקסט סיום על רקע קרם</span><span class="fr-dur"><bdi dir="ltr">0:11–0:15</bdi></span></div>
+    </div>
+
     <table class="pf-table shotlist-table" style="margin-top:16px;">
       <tr><th>שוט</th><th>משך</th><th>תוכן ויזואלי</th><th>טקסט על מסך</th></tr>
-      <tr><td>1</td><td>0–2 שנ׳</td><td>כניסה לקליניקה, דלת נפתחת</td><td>מה קורה בפגישת ייעוץ ראשונה?</td></tr>
-      <tr><td>2</td><td>2–6 שנ׳</td><td>קבלת פנים בדלפק, חיוך, ישיבה משותפת</td><td>מתחילים בהיכרות ובשיחה קצרה</td></tr>
-      <tr><td>3</td><td>6–11 שנ׳</td><td>הצצה לחדר הטיפולים המסודר</td><td>ואז — מתאימות יחד את הטיפול הנכון</td></tr>
-      <tr><td>4</td><td>11–15 שנ׳</td><td>לוגו על רקע קרם + טקסט סיום</td><td>רוצה לקבוע ייעוץ משלך?</td></tr>
+      <tr><td>1</td><td><bdi dir="ltr">0–2</bdi> שנ׳</td><td>כניסה לקליניקה, דלת נפתחת</td><td>מה קורה בפגישת ייעוץ ראשונה?</td></tr>
+      <tr><td>2</td><td><bdi dir="ltr">2–6</bdi> שנ׳</td><td>קבלת פנים בדלפק, חיוך, ישיבה משותפת</td><td>מתחילים בהיכרות ובשיחה קצרה</td></tr>
+      <tr><td>3</td><td><bdi dir="ltr">6–11</bdi> שנ׳</td><td>הצצה לחדר הטיפולים המסודר</td><td>ואז — מתאימות יחד את הטיפול הנכון</td></tr>
+      <tr><td>4</td><td><bdi dir="ltr">11–15</bdi> שנ׳</td><td>לוגו על רקע קרם + טקסט סיום</td><td>רוצה לקבוע ייעוץ משלך?</td></tr>
     </table>
-    <div class="file-note">📁 סטוריבורד מלא, הנחיות צילום ועריכה, ומוזיקה מוצעת בקובץ נפרד: <b>05-reel-storyboard/</b></div>
+    <div class="video-link-note">🎬 צפייה בסרטון המוגמר: <a href="#">להוסיף כאן קישור לרילס שפורסם (Instagram / TikTok)</a></div>
   </div>
 </section>
 
 <!-- ============ עמוד 10 : דוגמאות קופי ============ -->
 <section class="deck-page" id="p10">
   <div class="deck-pad">
-    <div class="page-kicker-row"><span class="page-index">10 / 14</span><span class="brandmark">מעיין אליהו · תיק עבודות</span></div>
+    <div class="page-kicker-row"><span class="page-index" dir="ltr">10 / 14</span><span class="brandmark">מעיין אליהו · תיק עבודות</span></div>
     <div class="eyebrow">דוגמאות לקופי</div>
     <h2 style="font-size:34px; margin-top:12px;">כתיבה טבעית, אחראית ומזמינה</h2>
 
@@ -533,7 +556,7 @@
 <!-- ============ עמוד 11 : לוח תוכן לדוגמה ============ -->
 <section class="deck-page" id="p11">
   <div class="deck-pad">
-    <div class="page-kicker-row"><span class="page-index">11 / 14</span><span class="brandmark">מעיין אליהו · תיק עבודות</span></div>
+    <div class="page-kicker-row"><span class="page-index" dir="ltr">11 / 14</span><span class="brandmark">מעיין אליהו · תיק עבודות</span></div>
     <div class="eyebrow">לוח תוכן לדוגמה</div>
     <h2 style="font-size:34px; margin-top:12px;">תוכנית תוכן לשבועיים</h2>
 
@@ -562,7 +585,7 @@
 <!-- ============ עמוד 12 : מדדי הצלחה ============ -->
 <section class="deck-page" id="p12">
   <div class="deck-pad">
-    <div class="page-kicker-row"><span class="page-index">12 / 14</span><span class="brandmark">מעיין אליהו · תיק עבודות</span></div>
+    <div class="page-kicker-row"><span class="page-index" dir="ltr">12 / 14</span><span class="brandmark">מעיין אליהו · תיק עבודות</span></div>
     <div class="eyebrow">מדדי הצלחה</div>
     <h2 style="font-size:34px; margin-top:12px;">איך הייתי בודקת הצלחה בפועל</h2>
     <p class="concept-note" style="margin-top:14px; max-width:920px;">מכיוון שמדובר בפרויקט קונספט, לא מוצגים כאן נתונים או תוצאות בדויות. להלן המדדים שהייתי עוקבת אחריהם החל מתחילת פעילות אמיתית, כדי לבחון ולשפר את התוכן לאורך זמן.</p>
@@ -584,7 +607,7 @@
 <!-- ============ עמוד 13 : תהליך העבודה שלי ============ -->
 <section class="deck-page" id="p13">
   <div class="deck-pad">
-    <div class="page-kicker-row"><span class="page-index">13 / 14</span><span class="brandmark">מעיין אליהו · תיק עבודות</span></div>
+    <div class="page-kicker-row"><span class="page-index" dir="ltr">13 / 14</span><span class="brandmark">מעיין אליהו · תיק עבודות</span></div>
     <div class="eyebrow">תהליך העבודה שלי</div>
     <h2 style="font-size:34px; margin-top:12px;">מהיכרות עם העסק ועד תוכן בשטח</h2>
 
@@ -615,9 +638,7 @@
       <div class="cover-divider"></div>
       <p style="font-size:15px; color:var(--c-ink); max-width:640px; margin:0 auto 10px; line-height:1.8;">זמינה למשרות, פרויקטים ושיתופי פעולה בתחום ניהול הסושיאל, יצירת התוכן ועריכת הווידאו.</p>
       <div class="end-contacts">
-        <div class="end-contact-row">🔗&nbsp; <b>LinkedIn:</b>&nbsp; linkedin.com/in/your-profile</div>
-        <div class="end-contact-row">✉️&nbsp; <b>אימייל:</b>&nbsp; your-email@example.com</div>
-        <div class="end-contact-row">📷&nbsp; <b>אינסטגרם:</b>&nbsp; @your.handle</div>
+        <div class="end-contact-row">✉️&nbsp; <b>אימייל:</b>&nbsp; <bdi dir="ltr">maayan180803@gmail.com</bdi></div>
       </div>
       <div style="margin-top:34px;"><span class="concept-badge">✦ פרויקט קונספט להצגת יכולות</span></div>
     </div>

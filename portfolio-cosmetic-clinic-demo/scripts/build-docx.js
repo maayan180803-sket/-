@@ -57,6 +57,28 @@ function Bullet(text) {
     children: [new TextRun({ text, font: FONT, color: INK, size: 22, rightToLeft: true })],
   });
 }
+function ltrRun(text, opts = {}) {
+  return new TextRun({ text, font: FONT, color: INK, size: 22, rightToLeft: false, ...opts });
+}
+function rtlRun(text, opts = {}) {
+  return new TextRun({ text, font: FONT, color: INK, size: 22, rightToLeft: true, ...opts });
+}
+function PMixed(parts) {
+  return new Paragraph({
+    ...rtlPara(),
+    spacing: { after: 120 },
+    children: parts.map((part) => (part.ltr ? ltrRun(part.text) : rtlRun(part.text))),
+  });
+}
+function H3Mixed(parts) {
+  return new Paragraph({
+    ...rtlPara(),
+    spacing: { before: 180, after: 80 },
+    children: parts.map((part) => new TextRun({
+      text: part.text, font: FONT, color: WINE, bold: true, size: 22, rightToLeft: !part.ltr,
+    })),
+  });
+}
 function PMulti(text) {
   return text.split('\n').map((line) => P(line.trim().length ? line : ' '));
 }
@@ -135,7 +157,11 @@ const doc = new Document({
       Bullet('עידוד פניות לייעוץ או לתיאום טיפול'),
 
       H2('קהל היעד'),
-      P('אזור מגורים: באר שבע ויישובי הסביבה. טווח גילאים: נשים בגילאי 25–55 בקירוב. תחומי עניין: טיפוח עור, בריאות העור, טרנדים קוסמטיים אחראיים. אורח חיים: עובדות ואימהות עסוקות, מחפשות פתרון קרוב לבית.'),
+      PMixed([
+        { text: 'אזור מגורים: באר שבע ויישובי הסביבה. טווח גילאים: נשים בגילאי ' },
+        { text: '25–55', ltr: true },
+        { text: ' בקירוב. תחומי עניין: טיפוח עור, בריאות העור, טרנדים קוסמטיים אחראיים. אורח חיים: עובדות ואימהות עסוקות, מחפשות פתרון קרוב לבית.' },
+      ]),
       H3('שאלות וחששות לפני פנייה'),
       Bullet('"האם זה מתאים לסוג העור שלי?" — חשש מהתאמה אישית לא מספקת.'),
       Bullet('"מה בעצם קורה בטיפול?" — חוסר בהירות לגבי תהליך הטיפול והייעוץ.'),
@@ -144,7 +170,7 @@ const doc = new Document({
 
       H2('אסטרטגיית תוכן — 7 עמודי תוכן קבועים'),
       Bullet('01 · היכרות עם הקליניקה ובעלת העסק — "מי אני ולמה פתחתי את הקליניקה", יום עבודה רגיל בעיני בעלת העסק'),
-      Bullet('02 · השירותים שלנו — הסבר נגיש — "מה זה בעצם טיפול ניקוי עמיק?", ההבדל בין טיפול לחות לטיפול הזנה'),
+      Bullet('02 · השירותים שלנו — הסבר נגיש — "מה זה בעצם טיפול ניקוי עמוק?", ההבדל בין טיפול לחות לטיפול הזנה'),
       Bullet('03 · ידע מקצועי לטיפוח יומיומי — 3 עקרונות לשגרת טיפוח יומית, למה הגנה מהשמש חשובה כל השנה'),
       Bullet('04 · שאלות נפוצות לפני טיפול — "האם הייעוץ מחייב טיפול בהמשך?", "איך יודעים איזה טיפול מתאים לי?"'),
       Bullet('05 · מאחורי הקלעים בקליניקה — סבב קצר בחלל הקליניקה, הכנת חדר הטיפולים לפני יום עבודה'),
@@ -208,7 +234,10 @@ const doc = new Document({
       // ===== חלק 4: רילס =====
       H1('חלק 4 — סרטון Reel: "ככה נראה תהליך הייעוץ בקליניקה"'),
       P('משך: 15 שניות | פורמט: אנכי 9:16 | פלטפורמות: Instagram Reels + TikTok'),
-      H3('Hook (0–2 שניות)'),
+      H3Mixed([
+        { text: 'Hook (0–2', ltr: true },
+        { text: ' שניות)' },
+      ]),
       P('"מה קורה בפגישת ייעוץ ראשונה? בואי נראה 👇"'),
       H3('תסריט קצר'),
       Bullet('1. הגעה וכניסה לקליניקה — תחושת קבלת פנים חמה'),
@@ -259,10 +288,8 @@ const doc = new Document({
       // ===== חלק 7: פרטי קשר =====
       H1('חלק 7 — פרטי קשר (לעריכה)'),
       P('שם: מעיין אליהו | תפקיד: מנהלת סושיאל · יוצרת תוכן · עורכת סרטונים'),
-      P('LinkedIn: linkedin.com/in/your-profile'),
-      P('אימייל: your-email@example.com'),
-      P('אינסטגרם: @your.handle'),
-      Small('כל הפרטים לעיל (שם הקליניקה, בעלת העסק, טלפון, כתובת, שם משתמש ופרטי קשר) הם פיקטיביים וניתנים להחלפה בקלות.'),
+      PMixed([{ text: 'אימייל: ' }, { text: 'maayan180803@gmail.com', ltr: true }]),
+      Small('פרטי הקליניקה (השם, בעלת העסק, טלפון, כתובת, שם המשתמש באינסטגרם) הם פיקטיביים וניתנים להחלפה בקלות.'),
     ],
   }],
 });

@@ -69,7 +69,12 @@ portfolio-cosmetic-clinic-demo/
 | `@neta.lavi.clinic` (שם משתמש אינסטגרם) | grid-mockup, carousel, stories |
 | `050-000-0000` (טלפון) | portfolio.html, reel-storyboard |
 | `רחוב הרצל 00, באר שבע` (כתובת) | design-system.css (משתנה בלבד, לא מוצג כרגע בטקסט חופשי) |
-| `your-email@example.com`, `linkedin.com/in/your-profile`, `@your.handle` | עמוד הסיום של תיק העבודות (עמוד 14) |
+| `maayan180803@gmail.com` (פרט הקשר היחיד שמוצג כרגע) | עמוד הסיום של תיק העבודות (עמוד 14) |
+
+בעמוד הסיום מוצג כרגע אימייל בלבד, לפי בקשה. אם תרצי להוסיף קישור ל-LinkedIn
+או שם משתמש באינסטגרם — פשוט הוסיפי `<div class="end-contact-row">` נוסף
+בתוך `<div class="end-contacts">` בעמוד 14 של `portfolio.html` (ראו עמודי
+קשר קיימים בקוד כדוגמה).
 
 ### תמונות
 בכל מקום שאמור להיות תמונה אמיתית (חלל הקליניקה, בעלת העסק וכו') יש
