@@ -1,41 +1,54 @@
-# מודול 3 – שפת מצלמה ותנועה
+# שיעור 3 – שפת המצלמה
 
-## 3.1 גודל שוט
-| מונח | שימוש |
-|---|---|
-| Extreme wide / establishing | מיקום, קנה מידה |
-| Wide / full shot | גוף שלם + סביבה |
-| Medium shot | דיאלוג, אינטראקציה |
-| Close-up | רגש, פרט |
-| Extreme close-up | טקסטורה, דרמה |
+## למה זה חשוב
+אותה סצנה יכולה להרגיש שקטה, מפחידה או מרשימה – רק לפי **איך מצלמים אותה**. בווידאו ב-AI אתם הצלם, והדרך להגיד למודל איך לצלם היא מילים. כאן לומדים את המילים.
 
-## 3.2 זווית
-Eye-level (ניטרלי) · Low-angle (עוצמה) · High-angle (פגיעות) · Dutch angle (אי-נוחות) · Top-down / overhead · Over-the-shoulder · POV.
-
-## 3.3 תנועות מצלמה – הספרייה הבסיסית
-| תנועה | אפקט | ניסוח לפרומפט |
+## 1. גודל השוט – כמה קרוב אנחנו
+| מונח באנגלית | פירוש | מה זה משדר |
 |---|---|---|
-| Static / locked-off | יציבות, ריאליזם | "locked-off tripod shot" |
-| Push-in / dolly-in | התקרבות, מתח | "slow dolly-in toward her face" |
-| Pull-out | חשיפה, בדידות | "slow pull-back revealing the empty room" |
-| Pan | סריקה אופקית | "smooth pan left following the car" |
-| Tilt | חשיפה אנכית | "tilt up from boots to skyline" |
-| Tracking | ליווי דמות | "tracking shot beside the runner" |
-| Orbit / arc | הדגשת נושא | "180-degree orbit around the dancer" |
-| Crane / drone | היקף | "rising crane shot over the harbor" |
-| Handheld | דחיפות, ריאליזם | "handheld, slight shake" |
-| Whip pan / snap zoom | אנרגיה, מעבר | "whip pan to the next shot" |
-| Rack focus | מעבר תשומת לב | "rack focus from glass to face" |
+| **Wide / establishing shot** | שוט רחב: רואים את כל המקום | "איפה אנחנו?", קנה מידה |
+| **Full shot** | הדמות כולה מכף רגל עד ראש | גוף ותנועה |
+| **Medium shot** | מהמותניים ומעלה | שיחה, אינטראקציה |
+| **Close-up** | פנים בלבד | רגש |
+| **Extreme close-up** | פרט קטן מאוד (עין, טקסטורה) | דרמה, פרט חשוב |
 
-## 3.4 כללים
-- **תנועת מצלמה אחת עיקרית** לשוט (+ אולי עדינה נוספת).
-- **תנועת נושא ≠ תנועת מצלמה** – ציינו את שתיהן בנפרד: "she walks left to right; camera tracks slowly".
-- **מהירות:** slow / smooth / gradual מייצבים; fast / aggressive מגדילים סיכוי לעיוותים.
-- **עדשה:** "24mm wide", "85mm portrait", "macro" משנים תחושה ועומק.
+## 2. זווית – מאיפה מצלמים
+- **Eye-level** – בגובה העיניים: טבעי וניטרלי.
+- **Low angle** – מלמטה כלפי מעלה: הדמות נראית חזקה וגדולה.
+- **High angle** – מלמעלה: הדמות נראית קטנה ופגיעה.
+- **Top-down / overhead** – מבט מלמעלה ישר (שימושי לאוכל).
+- **Over-the-shoulder** – מעבר לכתף של דמות אחרת (שיחות).
+- **POV** – "דרך העיניים" של הדמות.
 
-## תרגילים
-1. הפיקו את אותו נושא עם 10 תנועות מצלמה שונות. בנו טבלת "מה עבד / מה לא".
-2. תרגיל "רק מצלמה": סצנה סטטית, שנו רק זווית וגודל שוט – 6 וריאציות.
-3. שחזרו תנועת מצלמה מסצנה מוכרת בסרט שאתם אוהבים (בלי להעתיק תוכן).
+## 3. תנועות מצלמה
+| תנועה | מה קורה | דוגמה בפרומפט |
+|---|---|---|
+| **Static** | המצלמה נייחת | `static camera, locked on a tripod` |
+| **Dolly-in / push-in** | המצלמה מתקרבת לנושא | `slow dolly-in toward her face` |
+| **Pull-back** | המצלמה מתרחקת וחושפת | `slow pull-back revealing the empty room` |
+| **Pan** | המצלמה מסתובבת ימינה/שמאלה | `smooth pan left following the car` |
+| **Tilt** | מסתובבת למעלה/למטה | `tilt up from boots to the sky` |
+| **Tracking** | המצלמה נעה לצד הדמות | `tracking shot beside the runner` |
+| **Orbit** | המצלמה מקיפה את הנושא | `slow orbit around the dancer` |
+| **Crane / drone** | תנועה גבוהה ורחבה באוויר | `rising crane shot over the harbor` |
+| **Handheld** | מצלמה "ביד" עם רעד קל, תחושה אמיתית | `handheld, slight shake` |
+| **Whip pan** | סיבוב מהיר מאוד (מעבר דינמי) | `whip pan to the next shot` |
+| **Rack focus** | המיקוד עובר ממשהו קרוב לרחוק | `rack focus from the glass to her face` |
 
-**קריטריון הצלחה:** ספרייה של 10 קטעי פרומפט לתנועה, עם ציון אמינות לכל אחד.
+## 4. כללים פשוטים
+1. **תנועת מצלמה אחת עיקרית** בכל שוט.
+2. **הפרידו בין תנועת הדמות לתנועת המצלמה.** למשל: "היא הולכת משמאל לימין; המצלמה עוקבת לאט".
+3. **מילים כמו slow / smooth / gradual** נותנות תוצאה יציבה. **fast / aggressive** מגדילות סיכוי לעיוותים.
+4. **עדשה:** `wide-angle` (רחב, עמוק), `85mm portrait` (פורטרט, רקע מטושטש), `macro` (תקריב קיצוני לפרטים).
+
+## 5. דוגמה לפני ואחרי
+- לפני: `A man in a kitchen.`
+- אחרי: `Medium close-up of a man stirring a pot in a small kitchen, slow dolly-in, warm light, shallow depth of field.`
+  *(תקריב בינוני של גבר שמערבב סיר במטבח קטן, מצלמה מתקרבת לאט, אור חם, רקע מטושטש.)*
+
+## 6. תרגילים
+1. בחרו נושא אחד, והפיקו אותו עם 5 תנועות מצלמה שונות. בנו טבלה: מה עבד, מה לא.
+2. הפיקו אותה סצנה בשלושה גדלי שוט (רחב, בינוני, קלוז-אפ). איך השתנה הרגש?
+3. בחרו סצנה מסרט שאהבתם, ותארו **במילים שלכן** את תנועת המצלמה שבה (בלי להעתיק תוכן).
+
+**איך תדעו שהצלחתם:** יש לכם רשימה של 8–10 תנועות עם ניסוח שעובד לכל אחת.

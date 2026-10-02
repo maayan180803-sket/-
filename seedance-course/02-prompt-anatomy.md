@@ -1,49 +1,76 @@
-# מודול 2 – אנטומיה של פרומפט
+# שיעור 2 – איך לכתוב פרומפט טוב
 
-> כתבו את הפרומפטים באנגלית (המודל מגיב אליהם בצורה הכי עקבית); הדיאלוג עצמו יכול להיות בשפה אחרת.
+> הפרומפט נכתב **באנגלית**, כי המודל מגיב אליה בצורה הכי עקבית. בקורס כל דוגמה מלווה בתרגום.
 
-## 2.1 הנוסחה
-**נושא → תנועה → סביבה → מצלמה → אור/סגנון → סאונד**
+## 1. מה זה פרומפט ולמה זה כל כך חשוב
+פרומפט הוא **ההוראות למצלם**. תארו לעצמכם שאתם מסבירים לצלם מה לצלם: אם תגידו "תצלם אישה", יצא משהו אקראי. אם תגידו איזו אישה, מה היא עושה, איפה, באיזו תאורה ומאיזו זווית, תקבלו בדיוק מה שרציתם.
 
-| רכיב | שאלה | דוגמה חלשה | דוגמה חזקה |
-|---|---|---|---|
-| נושא | מי/מה על המסך, קונקרטית? | "a woman" | "a woman in her 30s, short black hair, olive trench coat" |
-| תנועה | מה עושה ואיך? | "walks" | "walks briskly, glancing over her shoulder, coat flapping" |
-| סביבה | איפה ומתי? | "in a city" | "on a wet neon-lit side street at night" |
-| מצלמה | איך מצולם? | – | "low-angle tracking shot, slow push-in" |
-| אור/סגנון | איך נראה? | "cinematic" | "teal-orange grade, shallow depth of field, 35mm film grain" |
-| סאונד | מה נשמע? | – | "rain, distant traffic, soft synth pad" |
+## 2. המתכון: 6 מרכיבים
+**נושא → פעולה → מקום → מצלמה → אור וסגנון → סאונד**
 
-## 2.2 עקרונות זהב
-1. **קונקרטי > מופשט.** "עצוב" → "עיניים לחות, מבט מושפל, נשימה איטית".
-2. **פועל אחד ברור לכל שוט.** שני מהלכים בשוט אחד = בלגן.
-3. **תנועה היא הלב.** תארו *איך* משהו זז (מהירות, כוח, כיוון), לא רק *מה*.
-4. **אורך מתאים:** פרומפט של 40–120 מילים לשוט טוב. ארוך מדי – סתירות; קצר מדי – ניחושים.
-5. **חיובי ולא שלילי.** במקום "no blur" כתבו "sharp focus, stable framing".
-6. **Chunking:** שוט ארוך – פרקו לקטעים של 2–3 שניות עם תיאור לכל קטע.
+### מרכיב 1: נושא (מי/מה על המסך)
+תארו **בפירוט** את הדמות או החפץ: גיל, לבוש, צבעים, תכונה בולטת.
+- חלש: `a woman`
+- חזק: `a woman in her 30s with short black hair, wearing an olive trench coat`
+  *(אישה בשנות ה-30 עם שיער שחור קצר ומעיל טרנץ' זית)*
 
-## 2.3 תבנית אישית
+### מרכיב 2: פעולה (מה עושים ואיך)
+פועל + אופן הפעולה. **פעולה אחת בכל שוט.**
+- חלש: `walks`
+- חזק: `walks briskly, glancing over her shoulder`
+  *(הולכת בצעדים מהירים ומציצה מעבר לכתף)*
+
+### מרכיב 3: מקום וזמן
+`on a wet side street at night` *(ברחוב צדדי רטוב בלילה)*
+
+### מרכיב 4: מצלמה
+גודל הצילום ותנועת המצלמה (שיעור 3 מסביר הכול):
+`medium shot, slow tracking camera` *(שוט בינוני, מצלמה עוקבת לאט)*
+
+### מרכיב 5: אור וסגנון
+`neon lights reflecting on the wet ground, cinematic, shallow depth of field`
+*(אורות ניאון שמשתקפים ברצפה הרטובה, קולנועי, עומק שדה רדוד – רקע מטושטש)*
+**שימו לב:** "cinematic" לבד מעורפל. תארו את האור בפועל.
+
+### מרכיב 6: סאונד
+`rain, distant traffic, soft electronic music` *(גשם, תנועה רחוקה, מוזיקה אלקטרונית שקטה)*
+
+## 3. הכול ביחד – דוגמה שלמה
 ```
-[Subject: who/what, 1 detail on look]
-[Action: verb + manner]
-[Setting: place, time, weather]
-[Camera: shot size + angle + movement]
-[Look: lighting, color, lens, mood]
-[Audio: ambience / music / "dialogue"]
-[Constraints: what must stay consistent]
+A woman in her 30s with short black hair and an olive trench coat walks
+briskly down a wet side street at night, glancing over her shoulder.
+Medium shot, slow tracking camera. Neon lights reflect on the wet ground,
+shallow depth of field, cinematic look.
+Sound: steady rain, distant traffic, soft electronic music.
 ```
 
-## 2.4 דוגמה מלאה
+## 4. חמשת הכללים החשובים
+1. **קונקרטי ולא מופשט.** במקום "היא עצובה": `her eyes are wet, she looks down and exhales slowly`.
+2. **פעולה אחת בשוט.** שני מהלכים באותו שוט = בלגן.
+3. **תארו תנועה.** לא רק מה, אלא איך: מהר/לאט, חזק/עדין.
+4. **לא קצר מדי ולא ארוך מדי.** כ-40 עד 120 מילים. קצר מדי – המודל מנחש; ארוך מדי – הוא מתבלבל מסתירות.
+5. **כתבו מה כן, לא מה לא.** במקום `no blur` כתבו `sharp focus, steady framing`.
+
+## 5. שגיאות נפוצות
+| שגיאה | למה זה מפריע | תיקון |
+|---|---|---|
+| "יפה ומרשים" | מילים ריקות | לתאר מה רואים |
+| פעולות רבות בשוט | המודל מקצר או משבש | פעולה אחת, או כמה שוטים |
+| סתירות ("יום" + "ליל כוכבים") | המודל מתפשר | לבחור אחד |
+| רשימת מילים בלי משפט | פחות עקבי | לכתוב משפטים קצרים |
+
+## 6. תרגילים
+1. קחו את `a woman walks in a city` ושדרגו בהדרגה: הוסיפו מרכיב אחד בכל פעם והפיקו. איפה השיפור הכי גדול?
+2. הפיקו שלוש גרסאות של אותו רעיון: קצרה (10 מילים), בינונית (60), ארוכה (150).
+3. כתבו **תבנית אישית** (למטה) ושמרו אותה – תשתמשו בה בכל הקורס.
+
 ```
-A middle-aged baker with flour-dusted forearms slides a tray of croissants
-out of a stone oven, steam rising. Small bakery at dawn, warm window light.
-Medium close-up, slow dolly-in, shallow depth of field, soft golden tones.
-Audio: crackling oven, quiet radio jazz, tray scraping on metal.
+[Subject: who/what + 1-2 look details]
+[Action: verb + how]
+[Setting: place + time]
+[Camera: shot size + movement]
+[Look: lighting + mood]
+[Sound: ambience / music / "speech"]
 ```
 
-## תרגילים
-1. קחו פרומפט חלש מ-2.1 ושדרגו אותו ל-6 הרכיבים; הפיקו לפני/אחרי.
-2. כתבו 3 גרסאות לאותו רעיון: מינימלית, מאוזנת, עמוסה. איזו עבדה הכי טוב?
-3. בנו את **תבנית הפרומפט האישית** שלכם ושמרו בקובץ.
-
-**קריטריון הצלחה:** תבנית שמפיקה תוצאה שמישה ב-2 ניסיונות מתוך 3.
+**איך תדעו שהצלחתם:** התבנית נותנת תוצאה שמישה בלפחות 2 מתוך 3 ניסיונות.
