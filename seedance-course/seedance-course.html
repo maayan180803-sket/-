@@ -1,0 +1,1164 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>קורס Seedance למתחילים</title>
+<style>
+:root{--bg:#fafaf7;--fg:#1d1d1f;--mut:#666;--card:#fff;--line:#e3e1da;--acc:#5b4bdb;--accbg:#efedff;--code:#f4f2ec}
+@media (prefers-color-scheme:dark){:root{--bg:#16161a;--fg:#ececf0;--mut:#9a9aa6;--card:#1f1f25;--line:#34343d;--acc:#9c8fff;--accbg:#2a2745;--code:#101014}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.75 system-ui,"Segoe UI",Arial,sans-serif}
+.layout{display:flex;min-height:100vh}
+nav{width:270px;flex-shrink:0;position:sticky;top:0;height:100vh;overflow:auto;padding:20px 16px;border-inline-end:1px solid var(--line);background:var(--card)}
+nav h2{font-size:18px;margin:0 0 4px}
+nav .bar{height:8px;background:var(--line);border-radius:6px;margin:8px 0 16px;overflow:hidden}
+nav .bar i{display:block;height:100%;width:0;background:var(--acc);transition:width .3s}
+nav a{display:block;padding:8px 10px;border-radius:8px;color:var(--fg);text-decoration:none;font-size:15px}
+nav a:hover{background:var(--accbg)}
+nav a.active{background:var(--accbg);color:var(--acc);font-weight:600}
+nav a.ok::after{content:" ✓";color:#2e9e5b}
+main{flex:1;max-width:860px;margin:0 auto;padding:28px 24px 80px}
+.lesson{display:none}
+.lesson.show{display:block}
+h1{font-size:30px;line-height:1.3;margin-top:0}
+h2{margin-top:2em;border-bottom:2px solid var(--line);padding-bottom:6px}
+h3{margin-top:1.6em;color:var(--acc)}
+table{border-collapse:collapse;width:100%;margin:16px 0;font-size:15px;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:right;vertical-align:top}
+th{background:var(--accbg)}
+blockquote{margin:16px 0;padding:10px 16px;border-inline-start:4px solid var(--acc);background:var(--accbg);border-radius:6px}
+blockquote p{margin:4px 0}
+code{background:var(--code);padding:1px 6px;border-radius:5px;font-size:.92em;direction:ltr;unicode-bidi:embed}
+.code{position:relative;margin:14px 0}
+.code pre{margin:0;background:var(--code);border:1px solid var(--line);border-radius:10px;padding:16px;overflow-x:auto;direction:ltr;text-align:left}
+.code pre code{background:none;padding:0;white-space:pre-wrap}
+.copy{position:absolute;top:8px;inset-inline-end:8px;border:1px solid var(--line);background:var(--card);color:var(--fg);border-radius:6px;padding:3px 10px;cursor:pointer;font-size:13px}
+li.chk{list-style:none;margin-inline-start:-20px}
+.done{margin-top:40px;padding:14px;border:1px dashed var(--acc);border-radius:10px;background:var(--accbg)}
+.pager{display:flex;justify-content:space-between;margin-top:24px;gap:12px}
+.pager button{padding:10px 18px;border-radius:8px;border:1px solid var(--acc);background:var(--card);color:var(--acc);cursor:pointer;font-size:15px}
+.pager button:disabled{opacity:.35;cursor:default}
+#menu{display:none}
+@media (max-width:820px){
+ nav{position:fixed;inset-block:0;inset-inline-start:0;transform:translateX(100%);transition:transform .25s;z-index:10;width:80%}
+ nav.open{transform:none}
+ #menu{display:block;position:sticky;top:0;z-index:5;width:100%;padding:12px;background:var(--card);border:0;border-bottom:1px solid var(--line);font-size:16px;color:var(--fg)}
+ main{padding:20px 16px 60px}
+}
+@media print{nav,#menu,.pager,.done,.copy{display:none}.lesson{display:block!important;page-break-after:always}}
+</style>
+</head>
+<body>
+<button id="menu">☰ תפריט השיעורים</button>
+<div class="layout">
+<nav id="nav"><h2>קורס Seedance</h2><div class="bar"><i id="bar"></i></div><div id="pct" style="font-size:13px;color:var(--mut)"></div>
+<a href="#README" data-k="README">דף הבית</a><a href="#00-start-here" data-k="00-start-here">שיעור 0 – התחלה כאן</a><a href="#01-foundations" data-k="01-foundations">שיעור 1 – איך זה עובד וההגדרות</a><a href="#02-prompt-anatomy" data-k="02-prompt-anatomy">שיעור 2 – איך לכתוב פרומפט טוב</a><a href="#03-camera-motion" data-k="03-camera-motion">שיעור 3 – שפת המצלמה</a><a href="#04-references" data-k="04-references">שיעור 4 – רפרנסים ועקביות</a><a href="#05-audio-dialogue" data-k="05-audio-dialogue">שיעור 5 – סאונד, דיבור ומוזיקה</a><a href="#06-multishot-storyboard" data-k="06-multishot-storyboard">שיעור 6 – כמה שוטים בסרטון אחד</a><a href="#07-pro-workflow" data-k="07-pro-workflow">שיעור 7 – שיטת עבודה מסודרת</a><a href="#08-capstone" data-k="08-capstone">שיעור 8 – פרויקט סיום</a><a href="#glossary" data-k="glossary">מילון מונחים</a><a href="#cheatsheet" data-k="cheatsheet">דף עזר מהיר</a><a href="#troubleshooting" data-k="troubleshooting">פתרון תקלות</a></nav>
+<main>
+<section id="README" class="lesson"><h1>קורס Seedance למתחילים – מאפס ועד סרטון מוכן</h1>
+<p>קורס שמניח שאתם <strong>לא יודעים כלום</strong> על וידאו ב-AI. לא צריך ניסיון בעריכה, בצילום או בטכנולוגיה. כל מושג מוסבר כשהוא מופיע לראשונה, ובסוף יש <a href="#glossary">מילון מונחים</a>.</p>
+<h2>מה זה Seedance (במשפט אחד)</h2>
+<p>תוכנה של חברת ByteDance (החברה שמאחורי TikTok) שבה <strong>כותבים תיאור במילים, והיא יוצרת סרטון קצר</strong> – עם תמונה, תנועה וגם צלילים.</p>
+<h2>מה תדעו לעשות בסוף</h2>
+<ul>
+<li>ליצור סרטונים קצרים מתיאור בטקסט או מתמונה.</li>
+<li>לכתוב תיאורים (פרומפטים) שנותנים תוצאה טובה, ולא רק "לנסות ולקוות".</li>
+<li>לשמור על אותה דמות בכמה סצנות.</li>
+<li>להוסיף דיבור, מוזיקה וסאונד.</li>
+<li>לחבר כמה קטעים לסרטון אחד שלם של חצי דקה עד דקה.</li>
+</ul>
+<h2>סדר הלימוד</h2>
+<table>
+<thead>
+<tr>
+<th>שלב</th>
+<th>קובץ</th>
+<th>מה לומדים</th>
+<th>זמן</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><a href="#00-start-here">התחלה כאן</a></td>
+<td>מה זה, איפה משתמשים, הסרטון הראשון שלכם</td>
+<td>45 דק'</td>
+</tr>
+<tr>
+<td>1</td>
+<td><a href="#01-foundations">איך זה עובד + ההגדרות</a></td>
+<td>סוגי יצירה והגדרות (אורך, יחס מסך…)</td>
+<td>שעה</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="#02-prompt-anatomy">לכתוב פרומפט</a></td>
+<td>המתכון לתיאור טוב, צעד אחר צעד</td>
+<td>1.5 שעות</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="#03-camera-motion">שפת המצלמה</a></td>
+<td>להגיד למודל איך "לצלם"</td>
+<td>שעה</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="#04-references">רפרנסים ועקביות</a></td>
+<td>להעלות תמונות כדי שהדמות תישאר זהה</td>
+<td>1.5 שעות</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="#05-audio-dialogue">סאונד ודיבור</a></td>
+<td>קול, מוזיקה, אפקטים</td>
+<td>שעה</td>
+</tr>
+<tr>
+<td>6</td>
+<td><a href="#06-multishot-storyboard">כמה שוטים בסרטון אחד</a></td>
+<td>תכנון סצנה</td>
+<td>1.5 שעות</td>
+</tr>
+<tr>
+<td>7</td>
+<td><a href="#07-pro-workflow">שיטת עבודה מסודרת</a></td>
+<td>עריכה, חיסכון, בדיקת איכות</td>
+<td>שעה</td>
+</tr>
+<tr>
+<td>8</td>
+<td><a href="#08-capstone">פרויקט סיום</a></td>
+<td>סרטון שלם משלכם</td>
+<td>3–4 שעות</td>
+</tr>
+</tbody>
+</table>
+<p>תוספות: <a href="#glossary">מילון מונחים</a> · <a href="#cheatsheet">דף עזר מהיר</a> · <a href="#troubleshooting">פתרון תקלות</a></p>
+<p><strong>קצב מומלץ:</strong> שיעור או שניים בשבוע, בערך 8 שבועות. אפשר גם מהר יותר.</p>
+<h2>איך לומדים נכון</h2>
+<ol>
+<li><strong>קראו</strong> את השיעור (בלי למהר).</li>
+<li><strong>עשו</strong> את התרגילים – בלי זה אי אפשר ללמוד.</li>
+<li><strong>תעדו</strong> ביומן ניסויים (תבנית למטה): מה כתבתי, מה יצא, מה אשנה.</li>
+<li><strong>שנו דבר אחד בכל פעם.</strong> אם שניתם חמישה דברים ביחד, לא תבינו מה גרם לשיפור (או לקלקול).</li>
+<li><strong>אל תתייאשו מתוצאה גרועה.</strong> גם מקצוענים מייצרים כמה גרסאות לכל קטע. זה חלק מהעבודה.</li>
+</ol>
+<h3>יומן ניסויים (תבנית)</h3>
+<table>
+<thead>
+<tr>
+<th>מה כתבתי</th>
+<th>מה שיניתי לעומת הפעם הקודמת</th>
+<th>מה יצא (1–5)</th>
+<th>מה אנסה בפעם הבאה</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>חשוב לדעת מראש</h2>
+<ul>
+<li><strong>התוכנה משתנה מהר.</strong> בזמן כתיבת הקורס יצאה גרסה 2.5 (יולי 2026) אחרי 2.0. המספרים בקורס (למשל אורך מקסימלי של סרטון) הם בקירוב ומשתנים בין גרסאות ואתרים. תמיד בדקו מה כתוב באתר שבו אתם עובדים.</li>
+<li><strong>המידע נאסף ממדריכים של גורמים שונים</strong>, לא מתיעוד רשמי של ByteDance (מקורות בסוף).</li>
+<li><strong>שימוש אחראי:</strong> אל תשתמשו בפנים או בקול של אדם אמיתי בלי הסכמתו. שימו לב לזכויות יוצרים בתמונות ובמוזיקה שאתם מעלים. כשמפרסמים, סמנו שהתוכן נוצר ב-AI אם הפלטפורמה או החוק דורשים.</li>
+</ul>
+<h2>מקורות</h2>
+<ul>
+<li><a href="https://fal.ai/learn/tools/seedance-2-0-prompting-guide">Seedance 2.0 Prompting Guide – fal.ai</a></li>
+<li><a href="https://www.kapwing.com/resources/how-to-prompt-seedance-2-5-a-guide-for-ai-video-creators/">How to Prompt Seedance 2.5 – Kapwing</a></li>
+<li><a href="https://www.rundiffusion.com/seedance-2-0-prompt-guide">Seedance 2.0 Prompt Guide – RunDiffusion</a></li>
+<li><a href="https://help.scenario.com/articles/7140699840-seedance-2-0-the-complete-guide">Seedance 2.0: The Complete Guide – Scenario</a></li>
+</ul><div class="done"><label><input type="checkbox" data-done="README"> סיימתי את השיעור הזה</label></div></section><section id="00-start-here" class="lesson"><h1>שיעור 0 – התחלה כאן</h1>
+<h2>1. מה זה בכלל "וידאו ב-AI"?</h2>
+<p>בעבר, כדי לקבל סרטון של אישה הולכת ברחוב גשום בלילה, צריך היה צוות צילום, שחקנית, מצלמה ומיקום. היום אפשר <strong>לכתוב</strong> את המשפט הזה למודל בינה מלאכותית (AI), והוא <strong>מייצר</strong> סרטון כזה מאפס.</p>
+<p>המודל "למד" מכמות עצומה של סרטונים איך דברים נראים וזזים, ולכן הוא יכול ליצור סצנות חדשות שמעולם לא צולמו. הוא לא מעתיק סרטון קיים, אבל גם לא תמיד מדויק, ולפעמים יש עיוותים (ידיים משובשות, חפצים שמשנים צורה). חלק גדול מהקורס מלמד איך להפחית את זה.</p>
+<h2>2. מה זה Seedance</h2>
+<p>Seedance הוא מודל וידאו של ByteDance. מה שמיוחד בו:</p>
+<ul>
+<li><strong>יוצר גם צליל:</strong> לא רק תמונה אלא גם דיבור, רעשי רקע ומוזיקה, באותו מעבר.</li>
+<li><strong>מקבל כמה סוגי קלט:</strong> טקסט, תמונות, קטעי וידאו וקבצי שמע – כדי לשלוט בתוצאה.</li>
+<li><strong>יכול ליצור כמה "שוטים" ברצף:</strong> (שוט = קטע צילום רצוף אחד), עם חיתוכים ביניהם.</li>
+<li>הגרסאות העדכניות מייצרות קטעים באורך של כמה שניות ועד כחצי דקה (תלוי גרסה).</li>
+</ul>
+<h2>3. מילים שחייבים להכיר כבר עכשיו</h2>
+<table>
+<thead>
+<tr>
+<th>מילה</th>
+<th>פירוש פשוט</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>פרומפט (Prompt)</strong></td>
+<td>הטקסט שאתם כותבים כדי להסביר למודל מה ליצור. כמו בריף לצלם.</td>
+</tr>
+<tr>
+<td><strong>שוט (Shot)</strong></td>
+<td>קטע צילום אחד רצוף בלי חיתוך.</td>
+</tr>
+<tr>
+<td><strong>יצירה (Generation)</strong></td>
+<td>הפעם שבה לוחצים "צור" והמודל מייצר סרטון.</td>
+</tr>
+<tr>
+<td><strong>קרדיטים (Credits)</strong></td>
+<td>"מטבעות" שמשלמים בהם על כל יצירה. כל סרטון עולה כמה קרדיטים.</td>
+</tr>
+<tr>
+<td><strong>רפרנס (Reference)</strong></td>
+<td>תמונה/וידאו/שמע שמעלים כדי להראות למודל "תעשה כמו זה".</td>
+</tr>
+<tr>
+<td><strong>איטרציה (Iteration)</strong></td>
+<td>יצירה, בדיקה, תיקון, יצירה מחדש. זה כל התהליך.</td>
+</tr>
+</tbody>
+</table>
+<p>(עוד מונחים ב<a href="#glossary">מילון</a>.)</p>
+<h2>4. איפה משתמשים ב-Seedance?</h2>
+<p>Seedance אינו אפליקציה אחת. הוא משולב באתרים ובשירותים שונים, ולכן המראה והמחירים משתנים. למשל אתרים כמו fal, Artlist, Hedra ו-Dreamina (של ByteDance) הציעו אותו בעבר. <strong>הדרך הנכונה לבחור:</strong></p>
+<ol>
+<li>חפשו באינטרנט "Seedance" ובדקו מי מציע אותו כרגע.</li>
+<li>בדקו שהאתר מכיר את הגרסה העדכנית ומציג בבירור <strong>מחיר</strong>, <strong>אורך מקסימלי</strong> ו<strong>תנאי שימוש</strong>.</li>
+<li>התחילו בגרסת ניסיון או בחבילת קרדיטים קטנה.</li>
+</ol>
+<blockquote>
+<p><strong>טיפ:</strong> אל תשלמו על מנוי שנתי לפני שניסיתם כמה יצירות והבנתם שהאתר מתאים לכם.</p>
+</blockquote>
+<h2>5. הסרטון הראשון שלכם – צעד אחר צעד</h2>
+<ol>
+<li>היכנסו לאתר שבחרתם, הירשמו, ופתחו את אזור יצירת הווידאו (Text to Video – "טקסט לווידאו").</li>
+<li>
+<p>הדביקו את הפרומפט הזה:
+   <code>A small orange cat sits on a sunny windowsill, looking at falling rain outside.
+   The cat slowly turns its head toward the camera. Soft, warm daylight.
+   Quiet rain sounds.</code>
+   <em>(תרגום: חתול כתום קטן יושב על אדן חלון שטוף שמש ומסתכל על הגשם בחוץ. החתול מסובב לאט את הראש אל המצלמה. אור יום רך וחם. קולות גשם שקטים.)</em></p>
+</li>
+<li>
+<p>בחרו אורך של <strong>5 שניות</strong> (אם אפשר) ויחס מסך <strong>16:9</strong> (מסך רחב כמו טלוויזיה).</p>
+</li>
+<li>לחצו <strong>Generate</strong> (צור), והמתינו – זה לוקח בדרך כלל כמה דקות.</li>
+<li>צפו בתוצאה. שאלו את עצמכם: מה יצא טוב? מה לא? מה היה שונה ממה שדמיינתי?</li>
+<li>רשמו ביומן הניסויים (תבנית ב-<a href="#README">README</a>).</li>
+</ol>
+<h3>למה בדיוק הפרומפט הזה?</h3>
+<ul>
+<li><strong>נושא ברור:</strong> חתול כתום קטן (לא סתם "חיה").</li>
+<li><strong>פעולה אחת פשוטה:</strong> מסובב את הראש.</li>
+<li><strong>מקום ואור:</strong> אדן חלון, אור רך.</li>
+<li><strong>צליל:</strong> גשם.
+כל זה ילמד אתכם בהרחבה בשיעור 2.</li>
+</ul>
+<h2>6. תרגילים</h2>
+<ol>
+<li>הפיקו את החתול כמו שהוא. שמרו את התוצאה.</li>
+<li>שנו <strong>רק</strong> את הצבע של החתול (שחור/לבן) והפיקו שוב. השוו.</li>
+<li>שנו <strong>רק</strong> את הפעולה (החתול מתמתח / מזנק מהחלון). השוו.</li>
+<li>כתבו ביומן 3 דברים שמצאתם מפתיעים.</li>
+</ol>
+<p><strong>איך תדעו שהצלחתם:</strong> יש לכם לפחות 3 סרטונים, ואתם יודעים להסביר מה גרם להבדלים ביניהם.</p>
+<h2>7. שאלות נפוצות של מתחילים</h2>
+<p><strong>"יצא משהו מוזר, עשיתי משהו לא נכון?"</strong> – כמעט בטוח שלא. מוזרויות הן נורמליות; פשוט ננסה שוב עם שינוי קטן.</p>
+<p><strong>"כמה ניסיונות צריך?"</strong> – בדרך כלל 3 עד 6 ליצירה טובה אחת.</p>
+<p><strong>"אפשר בעברית?"</strong> – את הפרומפט כותבים באנגלית כדי לקבל תוצאות עקביות. אם יש דיבור בתוך הסרטון, אפשר לנסות לבקש אותו בעברית ולבדוק אם זה עובד באתר שלכם (לא מובטח).</p><div class="done"><label><input type="checkbox" data-done="00-start-here"> סיימתי את השיעור הזה</label></div></section><section id="01-foundations" class="lesson"><h1>שיעור 1 – איך זה עובד וההגדרות</h1>
+<h2>מטרת השיעור</h2>
+<p>להבין מה המודל "מבין", אילו סוגי יצירה קיימים, ומה כל הגדרה במסך עושה.</p>
+<h2>1. עיקרון אחד שחייבים לזכור</h2>
+<p><strong>המודל לא קורא מחשבות.</strong> כל מה שלא כתבתם – הוא ימציא בעצמו. אם כתבתם "אישה בחדר", הוא יבחר גיל, לבוש, חדר, אור וזווית. לפעמים זה יהיה בסדר ולפעמים לא.</p>
+<p>המטרה שלכם: <strong>להחליט בעצמכם על הדברים החשובים</strong>, ולהשאיר למודל רק את מה שלא אכפת לכם ממנו.</p>
+<h2>2. ארבעה סוגי יצירה</h2>
+<table>
+<thead>
+<tr>
+<th>סוג</th>
+<th>מה עושים</th>
+<th>מתי כדאי</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>טקסט לווידאו</strong> (Text-to-Video)</td>
+<td>כותבים תיאור בלבד</td>
+<td>כשרוצים לבדוק רעיון מהר</td>
+</tr>
+<tr>
+<td><strong>תמונה לווידאו</strong> (Image-to-Video)</td>
+<td>מעלים תמונה, והיא "מתעוררת לחיים"</td>
+<td>כשרוצים שליטה בנראות: התמונה היא הפריים הראשון</td>
+</tr>
+<tr>
+<td><strong>עם רפרנסים</strong> (Reference-to-Video)</td>
+<td>מעלים כמה קבצים שמגדירים דמות, סגנון או תנועה</td>
+<td>כשרוצים עקביות</td>
+</tr>
+<tr>
+<td><strong>הארכה / עריכה</strong> (Extend / Video-to-Video)</td>
+<td>ממשיכים או משנים סרטון קיים</td>
+<td>כשצריך לאורך עוד שניות או לשינוי</td>
+</tr>
+</tbody>
+</table>
+<p>התחילו עם הראשון והשני. את השלישי נלמד בשיעור 4.</p>
+<h2>3. ההגדרות במסך – הסבר לכל אחת</h2>
+<h3>יחס מסך (Aspect Ratio)</h3>
+<p>צורת המסגרת, רוחב לעומת גובה.</p>
+<ul>
+<li><strong>9:16</strong> – מסך עומד, כמו בטלפון. מתאים ל-TikTok, Instagram Reels, YouTube Shorts.</li>
+<li><strong>16:9</strong> – מסך רחב. מתאים ל-YouTube רגיל, מצגות, טלוויזיה.</li>
+<li><strong>1:1</strong> – ריבוע. מתאים לפוסטים באינסטגרם/פייסבוק.</li>
+<li><strong>21:9</strong> – רחב מאוד, מראה קולנועי.
+<strong>כלל:</strong> בחרו לפי המקום שבו תפרסמו.</li>
+</ul>
+<h3>אורך (Duration)</h3>
+<p>כמה שניות הסרטון. ארוך יותר = יקר יותר ויותר סיכוי לטעויות. התחילו עם 4–6 שניות.</p>
+<h3>רזולוציה (Resolution)</h3>
+<p>רמת החדות (720p, 1080p, 4K). <strong>טיפ חיסכון:</strong> נסו קודם ברזולוציה נמוכה, ורק כשהשוט טוב – הפיקו שוב ברזולוציה גבוהה.</p>
+<h3>Seed ("זרע")</h3>
+<p>מספר שקובע את "נקודת ההתחלה האקראית" של היצירה. אם האתר מאפשר להשתמש באותו seed עם פרומפט דומה, תקבלו תוצאה קרובה. שימושי כדי לשנות פרט קטן בלי לקבל סרטון שונה לגמרי. לא תמיד זמין.</p>
+<h3>קרדיטים ועלות</h3>
+<p>כל יצירה עולה קרדיטים, ובדרך כלל יותר ככל שהסרטון ארוך או חד. <strong>תקצבו מראש 3–6 ניסיונות לכל קטע טוב.</strong></p>
+<h2>4. מה המודל עושה טוב ופחות טוב</h2>
+<table>
+<thead>
+<tr>
+<th>טוב</th>
+<th>פחות טוב</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>נוף, אוכל, מוצרים, אווירה</td>
+<td>ידיים ואצבעות בפעולות מורכבות</td>
+</tr>
+<tr>
+<td>תנועת מצלמה חלקה</td>
+<td>טקסט ארוך על המסך</td>
+</tr>
+<tr>
+<td>דמות אחת עם פעולה פשוטה</td>
+<td>הרבה אנשים שמתקשרים זה עם זה</td>
+</tr>
+<tr>
+<td>סאונד אווירה</td>
+<td>דיבור ארוך ושמות מותגים</td>
+</tr>
+<tr>
+<td>(אל דאגה, בשיעורים הבאים נלמד איך לעקוף את רוב אלה.)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>5. תרגילים</h2>
+<ol>
+<li>הפיקו את אותו פרומפט ביחס 16:9 ובשוב ביחס 9:16. מה משתנה בקומפוזיציה?</li>
+<li>הפיקו פעם ברזולוציה נמוכה ופעם בגבוהה. האם ההבדל שווה את המחיר?</li>
+<li>נסו Text-to-Video ואז Image-to-Video עם תמונה שאתם מכינים (או מוצאים לשימוש חופשי). איפה הייתה לכם יותר שליטה?</li>
+</ol>
+<p><strong>איך תדעו שהצלחתם:</strong> ביומן 10 ניסויים לפחות, וכתבתם 3 מסקנות אישיות.</p><div class="done"><label><input type="checkbox" data-done="01-foundations"> סיימתי את השיעור הזה</label></div></section><section id="02-prompt-anatomy" class="lesson"><h1>שיעור 2 – איך לכתוב פרומפט טוב</h1>
+<blockquote>
+<p>הפרומפט נכתב <strong>באנגלית</strong>, כי המודל מגיב אליה בצורה הכי עקבית. בקורס כל דוגמה מלווה בתרגום.</p>
+</blockquote>
+<h2>1. מה זה פרומפט ולמה זה כל כך חשוב</h2>
+<p>פרומפט הוא <strong>ההוראות למצלם</strong>. תארו לעצמכם שאתם מסבירים לצלם מה לצלם: אם תגידו "תצלם אישה", יצא משהו אקראי. אם תגידו איזו אישה, מה היא עושה, איפה, באיזו תאורה ומאיזו זווית, תקבלו בדיוק מה שרציתם.</p>
+<h2>2. המתכון: 6 מרכיבים</h2>
+<p><strong>נושא → פעולה → מקום → מצלמה → אור וסגנון → סאונד</strong></p>
+<h3>מרכיב 1: נושא (מי/מה על המסך)</h3>
+<p>תארו <strong>בפירוט</strong> את הדמות או החפץ: גיל, לבוש, צבעים, תכונה בולטת.</p>
+<ul>
+<li>חלש: <code>a woman</code></li>
+<li>חזק: <code>a woman in her 30s with short black hair, wearing an olive trench coat</code>
+  <em>(אישה בשנות ה-30 עם שיער שחור קצר ומעיל טרנץ' זית)</em></li>
+</ul>
+<h3>מרכיב 2: פעולה (מה עושים ואיך)</h3>
+<p>פועל + אופן הפעולה. <strong>פעולה אחת בכל שוט.</strong></p>
+<ul>
+<li>חלש: <code>walks</code></li>
+<li>חזק: <code>walks briskly, glancing over her shoulder</code>
+  <em>(הולכת בצעדים מהירים ומציצה מעבר לכתף)</em></li>
+</ul>
+<h3>מרכיב 3: מקום וזמן</h3>
+<p><code>on a wet side street at night</code> <em>(ברחוב צדדי רטוב בלילה)</em></p>
+<h3>מרכיב 4: מצלמה</h3>
+<p>גודל הצילום ותנועת המצלמה (שיעור 3 מסביר הכול):
+<code>medium shot, slow tracking camera</code> <em>(שוט בינוני, מצלמה עוקבת לאט)</em></p>
+<h3>מרכיב 5: אור וסגנון</h3>
+<p><code>neon lights reflecting on the wet ground, cinematic, shallow depth of field</code>
+<em>(אורות ניאון שמשתקפים ברצפה הרטובה, קולנועי, עומק שדה רדוד – רקע מטושטש)</em>
+<strong>שימו לב:</strong> "cinematic" לבד מעורפל. תארו את האור בפועל.</p>
+<h3>מרכיב 6: סאונד</h3>
+<p><code>rain, distant traffic, soft electronic music</code> <em>(גשם, תנועה רחוקה, מוזיקה אלקטרונית שקטה)</em></p>
+<h2>3. הכול ביחד – דוגמה שלמה</h2>
+<div class="code"><button class="copy">העתק</button><pre><code dir="ltr">A woman in her 30s with short black hair and an olive trench coat walks
+briskly down a wet side street at night, glancing over her shoulder.
+Medium shot, slow tracking camera. Neon lights reflect on the wet ground,
+shallow depth of field, cinematic look.
+Sound: steady rain, distant traffic, soft electronic music.
+</code></pre></div>
+<h2>4. חמשת הכללים החשובים</h2>
+<ol>
+<li><strong>קונקרטי ולא מופשט.</strong> במקום "היא עצובה": <code>her eyes are wet, she looks down and exhales slowly</code>.</li>
+<li><strong>פעולה אחת בשוט.</strong> שני מהלכים באותו שוט = בלגן.</li>
+<li><strong>תארו תנועה.</strong> לא רק מה, אלא איך: מהר/לאט, חזק/עדין.</li>
+<li><strong>לא קצר מדי ולא ארוך מדי.</strong> כ-40 עד 120 מילים. קצר מדי – המודל מנחש; ארוך מדי – הוא מתבלבל מסתירות.</li>
+<li><strong>כתבו מה כן, לא מה לא.</strong> במקום <code>no blur</code> כתבו <code>sharp focus, steady framing</code>.</li>
+</ol>
+<h2>5. שגיאות נפוצות</h2>
+<table>
+<thead>
+<tr>
+<th>שגיאה</th>
+<th>למה זה מפריע</th>
+<th>תיקון</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"יפה ומרשים"</td>
+<td>מילים ריקות</td>
+<td>לתאר מה רואים</td>
+</tr>
+<tr>
+<td>פעולות רבות בשוט</td>
+<td>המודל מקצר או משבש</td>
+<td>פעולה אחת, או כמה שוטים</td>
+</tr>
+<tr>
+<td>סתירות ("יום" + "ליל כוכבים")</td>
+<td>המודל מתפשר</td>
+<td>לבחור אחד</td>
+</tr>
+<tr>
+<td>רשימת מילים בלי משפט</td>
+<td>פחות עקבי</td>
+<td>לכתוב משפטים קצרים</td>
+</tr>
+</tbody>
+</table>
+<h2>6. תרגילים</h2>
+<ol>
+<li>קחו את <code>a woman walks in a city</code> ושדרגו בהדרגה: הוסיפו מרכיב אחד בכל פעם והפיקו. איפה השיפור הכי גדול?</li>
+<li>הפיקו שלוש גרסאות של אותו רעיון: קצרה (10 מילים), בינונית (60), ארוכה (150).</li>
+<li>כתבו <strong>תבנית אישית</strong> (למטה) ושמרו אותה – תשתמשו בה בכל הקורס.</li>
+</ol>
+<div class="code"><button class="copy">העתק</button><pre><code dir="ltr">[Subject: who/what + 1-2 look details]
+[Action: verb + how]
+[Setting: place + time]
+[Camera: shot size + movement]
+[Look: lighting + mood]
+[Sound: ambience / music / &quot;speech&quot;]
+</code></pre></div>
+<p><strong>איך תדעו שהצלחתם:</strong> התבנית נותנת תוצאה שמישה בלפחות 2 מתוך 3 ניסיונות.</p><div class="done"><label><input type="checkbox" data-done="02-prompt-anatomy"> סיימתי את השיעור הזה</label></div></section><section id="03-camera-motion" class="lesson"><h1>שיעור 3 – שפת המצלמה</h1>
+<h2>למה זה חשוב</h2>
+<p>אותה סצנה יכולה להרגיש שקטה, מפחידה או מרשימה – רק לפי <strong>איך מצלמים אותה</strong>. בווידאו ב-AI אתם הצלם, והדרך להגיד למודל איך לצלם היא מילים. כאן לומדים את המילים.</p>
+<h2>1. גודל השוט – כמה קרוב אנחנו</h2>
+<table>
+<thead>
+<tr>
+<th>מונח באנגלית</th>
+<th>פירוש</th>
+<th>מה זה משדר</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Wide / establishing shot</strong></td>
+<td>שוט רחב: רואים את כל המקום</td>
+<td>"איפה אנחנו?", קנה מידה</td>
+</tr>
+<tr>
+<td><strong>Full shot</strong></td>
+<td>הדמות כולה מכף רגל עד ראש</td>
+<td>גוף ותנועה</td>
+</tr>
+<tr>
+<td><strong>Medium shot</strong></td>
+<td>מהמותניים ומעלה</td>
+<td>שיחה, אינטראקציה</td>
+</tr>
+<tr>
+<td><strong>Close-up</strong></td>
+<td>פנים בלבד</td>
+<td>רגש</td>
+</tr>
+<tr>
+<td><strong>Extreme close-up</strong></td>
+<td>פרט קטן מאוד (עין, טקסטורה)</td>
+<td>דרמה, פרט חשוב</td>
+</tr>
+</tbody>
+</table>
+<h2>2. זווית – מאיפה מצלמים</h2>
+<ul>
+<li><strong>Eye-level</strong> – בגובה העיניים: טבעי וניטרלי.</li>
+<li><strong>Low angle</strong> – מלמטה כלפי מעלה: הדמות נראית חזקה וגדולה.</li>
+<li><strong>High angle</strong> – מלמעלה: הדמות נראית קטנה ופגיעה.</li>
+<li><strong>Top-down / overhead</strong> – מבט מלמעלה ישר (שימושי לאוכל).</li>
+<li><strong>Over-the-shoulder</strong> – מעבר לכתף של דמות אחרת (שיחות).</li>
+<li><strong>POV</strong> – "דרך העיניים" של הדמות.</li>
+</ul>
+<h2>3. תנועות מצלמה</h2>
+<table>
+<thead>
+<tr>
+<th>תנועה</th>
+<th>מה קורה</th>
+<th>דוגמה בפרומפט</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Static</strong></td>
+<td>המצלמה נייחת</td>
+<td><code>static camera, locked on a tripod</code></td>
+</tr>
+<tr>
+<td><strong>Dolly-in / push-in</strong></td>
+<td>המצלמה מתקרבת לנושא</td>
+<td><code>slow dolly-in toward her face</code></td>
+</tr>
+<tr>
+<td><strong>Pull-back</strong></td>
+<td>המצלמה מתרחקת וחושפת</td>
+<td><code>slow pull-back revealing the empty room</code></td>
+</tr>
+<tr>
+<td><strong>Pan</strong></td>
+<td>המצלמה מסתובבת ימינה/שמאלה</td>
+<td><code>smooth pan left following the car</code></td>
+</tr>
+<tr>
+<td><strong>Tilt</strong></td>
+<td>מסתובבת למעלה/למטה</td>
+<td><code>tilt up from boots to the sky</code></td>
+</tr>
+<tr>
+<td><strong>Tracking</strong></td>
+<td>המצלמה נעה לצד הדמות</td>
+<td><code>tracking shot beside the runner</code></td>
+</tr>
+<tr>
+<td><strong>Orbit</strong></td>
+<td>המצלמה מקיפה את הנושא</td>
+<td><code>slow orbit around the dancer</code></td>
+</tr>
+<tr>
+<td><strong>Crane / drone</strong></td>
+<td>תנועה גבוהה ורחבה באוויר</td>
+<td><code>rising crane shot over the harbor</code></td>
+</tr>
+<tr>
+<td><strong>Handheld</strong></td>
+<td>מצלמה "ביד" עם רעד קל, תחושה אמיתית</td>
+<td><code>handheld, slight shake</code></td>
+</tr>
+<tr>
+<td><strong>Whip pan</strong></td>
+<td>סיבוב מהיר מאוד (מעבר דינמי)</td>
+<td><code>whip pan to the next shot</code></td>
+</tr>
+<tr>
+<td><strong>Rack focus</strong></td>
+<td>המיקוד עובר ממשהו קרוב לרחוק</td>
+<td><code>rack focus from the glass to her face</code></td>
+</tr>
+</tbody>
+</table>
+<h2>4. כללים פשוטים</h2>
+<ol>
+<li><strong>תנועת מצלמה אחת עיקרית</strong> בכל שוט.</li>
+<li><strong>הפרידו בין תנועת הדמות לתנועת המצלמה.</strong> למשל: "היא הולכת משמאל לימין; המצלמה עוקבת לאט".</li>
+<li><strong>מילים כמו slow / smooth / gradual</strong> נותנות תוצאה יציבה. <strong>fast / aggressive</strong> מגדילות סיכוי לעיוותים.</li>
+<li><strong>עדשה:</strong> <code>wide-angle</code> (רחב, עמוק), <code>85mm portrait</code> (פורטרט, רקע מטושטש), <code>macro</code> (תקריב קיצוני לפרטים).</li>
+</ol>
+<h2>5. דוגמה לפני ואחרי</h2>
+<ul>
+<li>לפני: <code>A man in a kitchen.</code></li>
+<li>אחרי: <code>Medium close-up of a man stirring a pot in a small kitchen, slow dolly-in, warm light, shallow depth of field.</code>
+  <em>(תקריב בינוני של גבר שמערבב סיר במטבח קטן, מצלמה מתקרבת לאט, אור חם, רקע מטושטש.)</em></li>
+</ul>
+<h2>6. תרגילים</h2>
+<ol>
+<li>בחרו נושא אחד, והפיקו אותו עם 5 תנועות מצלמה שונות. בנו טבלה: מה עבד, מה לא.</li>
+<li>הפיקו אותה סצנה בשלושה גדלי שוט (רחב, בינוני, קלוז-אפ). איך השתנה הרגש?</li>
+<li>בחרו סצנה מסרט שאהבתם, ותארו <strong>במילים שלכן</strong> את תנועת המצלמה שבה (בלי להעתיק תוכן).</li>
+</ol>
+<p><strong>איך תדעו שהצלחתם:</strong> יש לכם רשימה של 8–10 תנועות עם ניסוח שעובד לכל אחת.</p><div class="done"><label><input type="checkbox" data-done="03-camera-motion"> סיימתי את השיעור הזה</label></div></section><section id="04-references" class="lesson"><h1>שיעור 4 – רפרנסים ועקביות</h1>
+<h2>הבעיה שהשיעור פותר</h2>
+<p>כשמייצרים שני קטעים בנפרד מטקסט בלבד, הדמות בכל קטע נראית אחרת (פנים שונות, בגדים שונים). כדי לשמור על <strong>אותה דמות</strong>, מעלים <strong>רפרנסים</strong>.</p>
+<h2>1. מה זה רפרנס</h2>
+<p>קובץ שאתם מעלים ואומרים: "תעשה כמו זה". סוגים:</p>
+<ul>
+<li><strong>תמונה</strong> – מגדירה איך נראית דמות, מקום או סגנון.</li>
+<li><strong>סרטון</strong> – מגדיר תנועה (למשל תנועת מצלמה).</li>
+<li><strong>שמע</strong> – מגדיר קצב או קול.</li>
+</ul>
+<p>בגרסה 2.0, בדרך כלל אפשר להעלות עד 9 תמונות, 3 סרטונים ו-3 קבצי שמע ביצירה אחת. בגרסה 2.5 המספרים גדולים יותר. בדקו באתר שלכם.</p>
+<h2>2. הכלל הכי חשוב בשיעור</h2>
+<p><strong>אי אפשר רק להעלות – חייבים להגיד למודל מה תפקיד הקובץ.</strong> המודל לא מנחש בצורה אמינה.</p>
+<div class="code"><button class="copy">העתק</button><pre><code dir="ltr">Use image 1 as the main character's face and outfit.
+Use image 2 as the location and lighting.
+Use video 1 for camera movement only.
+</code></pre></div>
+<p><em>(השתמש בתמונה 1 כפנים ובלבוש של הדמות הראשית. תמונה 2 – המקום והתאורה. סרטון 1 – תנועת המצלמה בלבד.)</em></p>
+<p>כל אתר מסמן קבצים אחרת (<code>@image1</code>, "Image 1" וכו'). חפשו באתר איך לעשות את זה.</p>
+<h2>3. איך בונים דמות עקבית – צעד אחר צעד</h2>
+<ol>
+<li><strong>צרו "דף דמות":</strong> 3–5 תמונות של אותה דמות – מלפנים, מהצד, גוף שלם, הבעה. (אפשר ליצור אותן בכלי תמונות AI, או להשתמש בתמונות שיש לכם זכות עליהן.)</li>
+<li><strong>כתבו "תיאור קבוע"</strong> – משפט אחד שמתאר אותה, למשל: <code>a woman in her 30s, short black hair, olive trench coat</code>.</li>
+<li><strong>בכל שוט:</strong> העלו את אותן תמונות, והדביקו את אותו משפט בפרומפט.</li>
+<li><strong>אחרי כל שוט</strong> השוו לתמונה המקורית. אם משהו השתנה, הוסיפו ל-פרומפט: <code>same face, same jacket as the reference</code>.</li>
+</ol>
+<h2>4. טיפים לתמונות טובות</h2>
+<ul>
+<li>רקע נקי, תאורה אחידה, פנים ברורים.</li>
+<li>איכות גבוהה (לא דחוסה או מטושטשת).</li>
+<li>בלי טקסט או לוגו בתמונה – הם נוטים להתעוות.</li>
+</ul>
+<h2>5. טעויות נפוצות</h2>
+<table>
+<thead>
+<tr>
+<th>טעות</th>
+<th>התוצאה</th>
+<th>פתרון</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>יותר מדי רפרנסים</td>
+<td>ערבוב מוזר</td>
+<td>להתחיל מ-1 עד 3</td>
+</tr>
+<tr>
+<td>הפרומפט סותר את התמונה ("שיער חום" בעוד שבתמונה בלונדיני)</td>
+<td>המודל מתבלבל</td>
+<td>תיאור זהה לתמונה</td>
+</tr>
+<tr>
+<td>לא הוגדר תפקיד</td>
+<td>המודל מתעלם או מערבב</td>
+<td>להגדיר לכל קובץ</td>
+</tr>
+<tr>
+<td>פנים של אדם אמיתי בלי אישור</td>
+<td>בעיה אתית/חוקית, וייתכן חסימה</td>
+<td>רק דמויות שיצרתם או בהסכמה</td>
+</tr>
+</tbody>
+</table>
+<h2>6. תרגילים</h2>
+<ol>
+<li>צרו דף דמות ל-דמות אחת (גם בעזרת כלי תמונות AI).</li>
+<li>הפיקו אותה ב-3 מקומות שונים (חדר, רחוב, רכב).</li>
+<li>עשו ניסוי: אותה יצירה עם ובלי הגדרת תפקיד לרפרנס. מה ההבדל?</li>
+</ol>
+<p><strong>איך תדעו שהצלחתם:</strong> מישהו שמראים לו את 3 הקטעים אומר "זו אותה דמות".</p><div class="done"><label><input type="checkbox" data-done="04-references"> סיימתי את השיעור הזה</label></div></section><section id="05-audio-dialogue" class="lesson"><h1>שיעור 5 – סאונד, דיבור ומוזיקה</h1>
+<h2>1. סאונד הוא חצי מהסרטון</h2>
+<p>ב-Seedance הצליל נוצר <strong>יחד עם התמונה</strong>. אתם מבקשים אותו בפרומפט.</p>
+<h2>2. ארבע שכבות סאונד</h2>
+<table>
+<thead>
+<tr>
+<th>שכבה</th>
+<th>מה זה</th>
+<th>דוגמה</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>דיבור</strong></td>
+<td>מה הדמות אומרת</td>
+<td><code>she says: "I made it."</code></td>
+</tr>
+<tr>
+<td><strong>אמביינס</strong></td>
+<td>רעשי הרקע של המקום</td>
+<td><code>busy cafe murmur</code>, <code>wind in the trees</code></td>
+</tr>
+<tr>
+<td><strong>אפקטים</strong></td>
+<td>צלילים של פעולות</td>
+<td><code>footsteps on gravel</code>, <code>glass clinks</code></td>
+</tr>
+<tr>
+<td><strong>מוזיקה</strong></td>
+<td>קטע מוזיקלי</td>
+<td><code>soft piano</code>, <code>upbeat lo-fi beat</code></td>
+</tr>
+</tbody>
+</table>
+<h2>3. איך כותבים דיבור</h2>
+<div class="code"><button class="copy">העתק</button><pre><code dir="ltr">A young woman looks into the camera and says calmly: &quot;I finally made it.&quot;
+Close-up, soft window light. Quiet room, no music.
+</code></pre></div>
+<p><em>(אישה צעירה מביטה למצלמה ואומרת ברוגע: "סוף סוף הצלחתי". תקריב, אור חלון רך. חדר שקט, בלי מוזיקה.)</em></p>
+<p><strong>כללים:</strong></p>
+<ul>
+<li><strong>שם את הדיבור במרכאות.</strong> כך המודל יודע מה לומר.</li>
+<li><strong>משפט קצר</strong> (עד כ-10–12 מילים) יוצא מסונכרן יותר עם תנועת השפתיים.</li>
+<li><strong>ציינו מי מדבר ואיך:</strong> <code>whispers</code>, <code>laughs while saying</code>.</li>
+<li><strong>דובר אחד לשוט.</strong> שיחה בין שניים – פרקו לשני שוטים.</li>
+<li><strong>שפות:</strong> יש תמיכה בכמה שפות. עברית – בדקו באתר שלכם עם משפט קצר לפני שמתחייבים לפרויקט.</li>
+</ul>
+<h2>4. סנכרון לקצב מוזיקה</h2>
+<p>אם מעלים שיר או קצב כרפרנס שמע, אפשר לבקש שהחיתוכים והתנועה יתאימו לביט: <code>cuts land on the beat</code>. אם צריך מוזיקה מדויקת, עדיף להוסיף אותה בעריכה אחרי (שיעור 7).</p>
+<h2>5. מתי לא להסתמך על האודיו של המודל</h2>
+<ul>
+<li>דיבור ארוך.</li>
+<li>שמות מותגים או נתונים מדויקים.</li>
+<li>קול קבוע של דמות מותג.
+במקרים האלה: צרו וידאו בלי דיבור, והוסיפו קריינות ומוזיקה בעריכה.</li>
+</ul>
+<h2>6. תרגילים</h2>
+<ol>
+<li>קליפ קצר עם משפט אחד של דיבור. האם השפתיים תואמות?</li>
+<li>אותו קליפ בשלוש גרסאות סאונד: שקט / אמביינס / מוזיקה. איפה הרגש הכי חזק?</li>
+<li>נסו משפט קצר בעברית. האם עבד? תעדו.</li>
+</ol>
+<p><strong>איך תדעו שהצלחתם:</strong> קליפ שבו הדיבור מסונכרן והסאונד מתאים לאווירה.</p><div class="done"><label><input type="checkbox" data-done="05-audio-dialogue"> סיימתי את השיעור הזה</label></div></section><section id="06-multishot-storyboard" class="lesson"><h1>שיעור 6 – כמה שוטים בסרטון אחד</h1>
+<h2>1. למה צריך יותר משוט אחד</h2>
+<p>סרטון שלם הוא <strong>רצף של שוטים</strong>, כמו בסרט. כל שוט מראה משהו אחר: מקום, דמות, פרט, תגובה. כך מספרים סיפור.</p>
+<h2>2. סטורי-בורד – תוכנית לפני שמייצרים</h2>
+<p>סטורי-בורד הוא תכנון של כל שוט לפני היצירה. אפשר לעשות אותו בטבלה פשוטה:</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>אורך</th>
+<th>גודל שוט</th>
+<th>מה קורה</th>
+<th>מצלמה</th>
+<th>סאונד</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>3 שנ'</td>
+<td>רחב</td>
+<td>שליח נכנס לדירה חשוכה</td>
+<td>נייחת</td>
+<td>שקט, צעדים</td>
+</tr>
+<tr>
+<td>2</td>
+<td>3 שנ'</td>
+<td>בינוני</td>
+<td>הוא פותח מכתב</td>
+<td>מתקרבת לאט</td>
+<td>רשרוש נייר</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2 שנ'</td>
+<td>תקריב</td>
+<td>העיניים שלו נפערות</td>
+<td>נייחת</td>
+<td>פעימות לב</td>
+</tr>
+</tbody>
+</table>
+<p><strong>כלל קצב:</strong> התחילו בשוט רחב (איפה אנחנו), עברו לבינוני (מה קורה), סיימו בתקריב (מה הרגש).</p>
+<h2>3. שתי דרכים ליצור כמה שוטים</h2>
+<p><strong>דרך א – פרומפט אחד עם חיתוכים:</strong></p>
+<div class="code"><button class="copy">העתק</button><pre><code dir="ltr">Shot 1 (0-3s): Wide shot, a courier enters a dim apartment.
+Cut to Shot 2 (3-6s): Medium shot, he opens a letter, camera pushes in slowly.
+Cut to Shot 3 (6-8s): Close-up on his eyes widening.
+Same man, same grey coat, same warm lamp light throughout.
+</code></pre></div>
+<p>המודל יוצר את הכול בבת אחת. מהיר וזול, אבל פחות שליטה.</p>
+<p><strong>דרך ב – כל שוט בנפרד</strong> ואז מחברים בעריכה (שיעור 7). יותר עבודה, אבל אפשר לתקן כל שוט לבד.</p>
+<h2>4. צ'קליסט המשכיות</h2>
+<p>לפני שמאשרים, בדקו שבכל השוטים:</p>
+<ul>
+<li class="chk"><input type="checkbox"> אותה דמות (פנים, שיער)</li>
+<li class="chk"><input type="checkbox"> אותו לבוש ואביזרים</li>
+<li class="chk"><input type="checkbox"> אותה תאורה וצבעוניות</li>
+<li class="chk"><input type="checkbox"> הדמות מביטה/הולכת באותו כיוון (אם היא הולכת ימינה בשוט 1, לא שמאלה בשוט 2)</li>
+<li class="chk"><input type="checkbox"> הסאונד ממשיך באותה אווירה</li>
+</ul>
+<h2>5. תרגילים</h2>
+<ol>
+<li>כתבו סטורי-בורד של 5 שוטים לסיפור של 15 שניות.</li>
+<li>הפיקו אותו בשתי הדרכים. איזו נתנה תוצאה עקבית יותר? איזו זולה יותר?</li>
+<li>עברו על הצ'קליסט, וסמנו כל מקום שבו ההמשכיות נשברה.</li>
+</ol>
+<p><strong>איך תדעו שהצלחתם:</strong> סצנה של 3–5 שוטים שנראית כאילו היא מאותו עולם.</p><div class="done"><label><input type="checkbox" data-done="06-multishot-storyboard"> סיימתי את השיעור הזה</label></div></section><section id="07-pro-workflow" class="lesson"><h1>שיעור 7 – שיטת עבודה מסודרת</h1>
+<h2>1. תהליך העבודה בשמונה צעדים</h2>
+<ol>
+<li><strong>רעיון ובריף</strong> – מה המטרה? מי הקהל? איפה יפורסם? כמה זמן?</li>
+<li><strong>סטורי-בורד</strong> (שיעור 6) ורשימת רפרנסים.</li>
+<li><strong>הכנת דמויות ומקומות</strong> (שיעור 4).</li>
+<li><strong>טיוטות זולות</strong> – רזולוציה נמוכה, אורך קצר, לבדוק קומפוזיציה ותנועה.</li>
+<li><strong>בחירה</strong> של השוטים הטובים.</li>
+<li><strong>הפקה סופית</strong> של השוטים שנבחרו ברזולוציה גבוהה.</li>
+<li><strong>עריכה</strong> – חיבור, מוזיקה, כתוביות.</li>
+<li><strong>יצוא ופרסום</strong>, כולל סימון "נוצר ב-AI" כנדרש.</li>
+</ol>
+<h2>2. עריכה למתחילים</h2>
+<p>את השוטים מחברים בתוכנת עריכה. אפשרויות פשוטות: <strong>CapCut</strong> (חינמית ופשוטה), <strong>DaVinci Resolve</strong> (חינמית ומקצועית), <strong>Premiere Pro</strong> (בתשלום). מה עושים בעריכה:</p>
+<ul>
+<li><strong>חיתוך:</strong> גוזרים תחילת וסוף של כל שוט.</li>
+<li><strong>חיבור:</strong> מסדרים בסדר הסטורי-בורד.</li>
+<li><strong>מוזיקה וקריינות:</strong> מוסיפים שכבת קול.</li>
+<li><strong>כתוביות:</strong> חשוב לצפייה בלי קול ברשתות.</li>
+</ul>
+<h2>3. איטרציה חכמה</h2>
+<ul>
+<li>שנו <strong>דבר אחד</strong> בכל ניסיון.</li>
+<li>שמרו כל פרומפט שעבד בקובץ "ספריית ניצחונות".</li>
+<li>3 ניסיונות בלי שיפור? אל תנסחו מחדש – שנו גישה (רפרנס אחר, שוט פשוט יותר, זווית אחרת).</li>
+<li>אם התקציב מאפשר, הפיקו 2–4 גרסאות במקביל ובחרו.</li>
+</ul>
+<h2>4. בדיקת איכות (QA)</h2>
+<p>בדקו כל שוט:</p>
+<ul>
+<li>ידיים ואצבעות</li>
+<li>פנים ועקביות הדמות</li>
+<li>טקסט על המסך</li>
+<li>פיזיקה (נפילה, נוזלים, תנועה)</li>
+<li>סנכרון שפתיים</li>
+<li>אביזרים שמשתנים או נעלמים</li>
+<li>עיוותים בקצוות המסך</li>
+</ul>
+<h2>5. חיסכון בעלות</h2>
+<table>
+<thead>
+<tr>
+<th>שלב</th>
+<th>איך חוסכים</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>טיוטה</td>
+<td>רזולוציה נמוכה, אורך קצר</td>
+</tr>
+<tr>
+<td>בחירה</td>
+<td>עד 2–4 גרסאות</td>
+</tr>
+<tr>
+<td>סופי</td>
+<td>רזולוציה גבוהה רק לשוטים שאושרו</td>
+</tr>
+<tr>
+<td>פרויקטים הבאים</td>
+<td>שימוש חוזר בדמויות ובפרומפטים</td>
+</tr>
+</tbody>
+</table>
+<h2>6. ארגון קבצים</h2>
+<div class="code"><button class="copy">העתק</button><pre><code dir="ltr">my-project/
+  brief.md          (הבריף)
+  storyboard.md     (הסטורי-בורד)
+  refs/             (תמונות ורפרנסים)
+  drafts/           (טיוטות)
+  finals/           (שוטים סופיים)
+  prompts.md        (כל פרומפט שעבד)
+</code></pre></div>
+<h2>7. זכויות ואחריות</h2>
+<ul>
+<li>קראו את תנאי השימוש של האתר, במיוחד לשימוש מסחרי.</li>
+<li>אל תעלו תמונות, מוזיקה או דמויות שאין לכם זכות להשתמש בהן.</li>
+<li>שמרו מקור לכל רפרנס.</li>
+</ul>
+<h2>תרגיל</h2>
+<p>כתבו עמוד אחד: "שיטת העבודה שלי". כלי עריכה, כמה קרדיטים אקצה לכל פרויקט, צ'קליסט QA.</p>
+<p><strong>איך תדעו שהצלחתם:</strong> אתם יכולים להפיק קליפ של 15 שניות ביום עבודה אחד.</p><div class="done"><label><input type="checkbox" data-done="07-pro-workflow"> סיימתי את השיעור הזה</label></div></section><section id="08-capstone" class="lesson"><h1>שיעור 8 – פרויקט סיום</h1>
+<h2>המשימה</h2>
+<p>ליצור סרטון של <strong>30–60 שניות</strong> מהרעיון ועד הקובץ הסופי.</p>
+<h2>בחרו אחד</h2>
+<ol>
+<li><strong>פרסומת למוצר</strong> (דמיוני או שלכם)</li>
+<li><strong>טריילר</strong> לסיפור קצר</li>
+<li><strong>קליפ מוזיקלי</strong> (רק למוזיקה שיש לכם זכות להשתמש בה)</li>
+<li><strong>סרטון הסברה</strong> עם דמות מנחה קבועה</li>
+</ol>
+<h2>שלבים</h2>
+<ol>
+<li><strong>בריף</strong> – עמוד אחד: למי, מה המסר, איפה יפורסם, איזה יחס מסך.</li>
+<li><strong>סטורי-בורד</strong> – 8 עד 15 שוטים (תבנית משיעור 6).</li>
+<li><strong>דף דמות ורפרנסים</strong> (שיעור 4).</li>
+<li><strong>טיוטות</strong>, בחירה, הפקה סופית (שיעור 7).</li>
+<li><strong>עריכה</strong>, סאונד וכתוביות.</li>
+<li><strong>יצוא</strong> וסימון "נוצר ב-AI".</li>
+<li><strong>רפלקציה</strong> – מה למדתי, מה הייתי משנה, כמה זה עלה.</li>
+</ol>
+<h2>מחוון ציונים (100 נקודות)</h2>
+<table>
+<thead>
+<tr>
+<th>קריטריון</th>
+<th>נקודות</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>סיפור ומסר ברורים</td>
+<td>20</td>
+</tr>
+<tr>
+<td>דמות וסגנון עקביים</td>
+<td>20</td>
+</tr>
+<tr>
+<td>שימוש נכון במצלמה ובתנועה</td>
+<td>15</td>
+</tr>
+<tr>
+<td>סאונד ודיבור</td>
+<td>15</td>
+</tr>
+<tr>
+<td>קצב ועריכה</td>
+<td>15</td>
+</tr>
+<tr>
+<td>ניקיון טכני (בדיקת איכות)</td>
+<td>10</td>
+</tr>
+<tr>
+<td>תיעוד ורפלקציה</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<p><strong>90 ומעלה</strong> – רמה מקצועית. <strong>75–89</strong> – חזק, חסר ליטוש. <strong>מתחת ל-75</strong> – חזרו לשיעור שבו אתם הכי חלשים.</p>
+<h2>אחרי הקורס</h2>
+<ul>
+<li>בנו תיק עבודות של 3–5 קליפים.</li>
+<li>עקבו אחרי עדכוני המודל ועדכנו את ספריית הפרומפטים.</li>
+<li>שתפו וקבלו משוב מיוצרים אחרים.</li>
+</ul><div class="done"><label><input type="checkbox" data-done="08-capstone"> סיימתי את השיעור הזה</label></div></section><section id="glossary" class="lesson"><h1>מילון מונחים</h1>
+<table>
+<thead>
+<tr>
+<th>מונח</th>
+<th>הסבר פשוט</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>AI (בינה מלאכותית)</strong></td>
+<td>תוכנה שלמדה מהרבה דוגמאות וכעת יכולה ליצור תוכן חדש</td>
+</tr>
+<tr>
+<td><strong>מודל</strong></td>
+<td>ה"מוח" של התוכנה (כאן: Seedance)</td>
+</tr>
+<tr>
+<td><strong>פרומפט</strong></td>
+<td>הטקסט שכותבים כדי להגיד למודל מה ליצור</td>
+</tr>
+<tr>
+<td><strong>שוט</strong></td>
+<td>קטע צילום רצוף אחד בלי חיתוך</td>
+</tr>
+<tr>
+<td><strong>סצנה</strong></td>
+<td>כמה שוטים באותו מקום וזמן</td>
+</tr>
+<tr>
+<td><strong>יצירה / Generation</strong></td>
+<td>הפעולה של "צור" ויצירת הסרטון</td>
+</tr>
+<tr>
+<td><strong>איטרציה</strong></td>
+<td>חזרה על יצירה עם תיקונים</td>
+</tr>
+<tr>
+<td><strong>קרדיטים</strong></td>
+<td>"מטבעות" לתשלום על יצירות</td>
+</tr>
+<tr>
+<td><strong>רפרנס</strong></td>
+<td>קובץ שמעלים כדוגמה (תמונה/וידאו/שמע)</td>
+</tr>
+<tr>
+<td><strong>סטורי-בורד</strong></td>
+<td>תכנון השוטים לפני היצירה</td>
+</tr>
+<tr>
+<td><strong>יחס מסך</strong></td>
+<td>הצורה של המסגרת (16:9, 9:16 וכו')</td>
+</tr>
+<tr>
+<td><strong>רזולוציה</strong></td>
+<td>רמת חדות</td>
+</tr>
+<tr>
+<td><strong>Seed</strong></td>
+<td>מספר שקובע את נקודת ההתחלה האקראית של יצירה</td>
+</tr>
+<tr>
+<td><strong>Close-up</strong></td>
+<td>תקריב (פנים או פרט)</td>
+</tr>
+<tr>
+<td><strong>Wide shot</strong></td>
+<td>שוט רחב</td>
+</tr>
+<tr>
+<td><strong>Dolly-in</strong></td>
+<td>המצלמה מתקרבת לנושא</td>
+</tr>
+<tr>
+<td><strong>Pan</strong></td>
+<td>המצלמה מסתובבת לצדדים</td>
+</tr>
+<tr>
+<td><strong>Tracking</strong></td>
+<td>המצלמה נעה לצד הדמות</td>
+</tr>
+<tr>
+<td><strong>Handheld</strong></td>
+<td>מצלמה ביד, מראה "אמיתי" עם רעד</td>
+</tr>
+<tr>
+<td><strong>עומק שדה רדוד</strong></td>
+<td>הנושא חד והרקע מטושטש</td>
+</tr>
+<tr>
+<td><strong>אמביינס</strong></td>
+<td>רעשי רקע טבעיים של מקום</td>
+</tr>
+<tr>
+<td><strong>סנכרון שפתיים</strong></td>
+<td>תנועת השפתיים תואמת לדיבור</td>
+</tr>
+<tr>
+<td><strong>QA</strong></td>
+<td>בדיקת איכות לפני פרסום</td>
+</tr>
+<tr>
+<td><strong>Character bible</strong></td>
+<td>תיאור קבוע של דמות שמעתיקים לכל פרומפט</td>
+</tr>
+</tbody>
+</table><div class="done"><label><input type="checkbox" data-done="glossary"> סיימתי את השיעור הזה</label></div></section><section id="cheatsheet" class="lesson"><h1>דף עזר מהיר</h1>
+<h2>המתכון</h2>
+<p><strong>נושא → פעולה → מקום → מצלמה → אור וסגנון → סאונד</strong></p>
+<h2>צ'קליסט לפני "צור"</h2>
+<ul>
+<li class="chk"><input type="checkbox"> הנושא מפורט (גיל, לבוש, צבע)</li>
+<li class="chk"><input type="checkbox"> פעולה אחת עם "איך"</li>
+<li class="chk"><input type="checkbox"> גודל שוט ותנועת מצלמה אחת</li>
+<li class="chk"><input type="checkbox"> אור מתואר בפועל (לא רק "קולנועי")</li>
+<li class="chk"><input type="checkbox"> סאונד מוגדר; דיבור במרכאות ובמשפט קצר</li>
+<li class="chk"><input type="checkbox"> לכל רפרנס הוגדר תפקיד</li>
+<li class="chk"><input type="checkbox"> ניסוח חיובי, בלי סתירות</li>
+<li class="chk"><input type="checkbox"> יחס מסך ואורך מתאימים למקום הפרסום</li>
+</ul>
+<h2>מילות מצלמה</h2>
+<p>static · dolly-in · pull-back · pan · tilt · tracking · orbit · crane · handheld · whip pan · rack focus</p>
+<h2>כללי זהב</h2>
+<p>שנו דבר אחד בכל פעם · התחילו בטיוטות זולות · שמרו מה שעבד · 3 כישלונות? שנו גישה.</p><div class="done"><label><input type="checkbox" data-done="cheatsheet"> סיימתי את השיעור הזה</label></div></section><section id="troubleshooting" class="lesson"><h1>פתרון תקלות</h1>
+<table>
+<thead>
+<tr>
+<th>הבעיה</th>
+<th>למה זה קורה</th>
+<th>מה עושים</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>הדמות נראית שונה בין שוטים</td>
+<td>אין רפרנס / תיאור קבוע</td>
+<td>להעלות אותם רפרנסים בכל שוט ולהדביק תיאור קבוע</td>
+</tr>
+<tr>
+<td>התנועה "צפה" או לא טבעית</td>
+<td>תיאור עמום או מהיר מדי</td>
+<td>פעלים קונקרטיים, <code>slow/smooth</code>, שוט קצר יותר</td>
+</tr>
+<tr>
+<td>ידיים או אצבעות משובשות</td>
+<td>פעולת ידיים מורכבת</td>
+<td>להרחיק מהמצלמה או לפשט את הפעולה</td>
+</tr>
+<tr>
+<td>טקסט על המסך מעוות</td>
+<td>טקסט ארוך או קטן</td>
+<td>מילה קצרה וגדולה, או להוסיף בעריכה</td>
+</tr>
+<tr>
+<td>השפתיים לא מסונכרנות</td>
+<td>משפט ארוך או כמה דוברים</td>
+<td>משפט קצר, דובר אחד, תקריב</td>
+</tr>
+<tr>
+<td>המודל התעלם מרפרנס</td>
+<td>לא הוגדר תפקיד / יותר מדי קבצים</td>
+<td>להגדיר תפקיד, לצמצם ל-1–3</td>
+</tr>
+<tr>
+<td>כל שוט בסגנון אחר</td>
+<td>הסגנון לא נעול</td>
+<td>אותו משפט אור/סגנון בכל פרומפט</td>
+</tr>
+<tr>
+<td>התוצאה לא כמו שדמיינתי</td>
+<td>פרומפט עמום</td>
+<td>לחזור לשישה מרכיבים ולהוסיף פרטים</td>
+</tr>
+<tr>
+<td>הבקשה נחסמה</td>
+<td>מדיניות תוכן (למשל פנים אמיתיות)</td>
+<td>להשתמש בדמות מקורית</td>
+</tr>
+<tr>
+<td>זה יקר מדי</td>
+<td>יותר מדי ניסיונות ברזולוציה גבוהה</td>
+<td>טיוטות נמוכות, מספר גרסאות מוגבל</td>
+</tr>
+</tbody>
+</table><div class="done"><label><input type="checkbox" data-done="troubleshooting"> סיימתי את השיעור הזה</label></div></section>
+<div class="pager"><button id="next">השיעור הבא ←</button><button id="prev">→ השיעור הקודם</button></div>
+</main>
+</div>
+<script>
+const keys=['README', '00-start-here', '01-foundations', '02-prompt-anatomy', '03-camera-motion', '04-references', '05-audio-dialogue', '06-multishot-storyboard', '07-pro-workflow', '08-capstone', 'glossary', 'cheatsheet', 'troubleshooting'];
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+let done={};
+try{done=JSON.parse(localStorage.getItem('seedance-done')||'{}')}catch(e){}
+function save(){try{localStorage.setItem('seedance-done',JSON.stringify(done))}catch(e){}}
+function show(k){
+  if(!keys.includes(k))k=keys[0];
+  $$('.lesson').forEach(s=>s.classList.toggle('show',s.id===k));
+  $$('nav a').forEach(a=>a.classList.toggle('active',a.dataset.k===k));
+  const i=keys.indexOf(k);
+  $('#prev').disabled=i===0;$('#next').disabled=i===keys.length-1;
+  $('#nav').classList.remove('open');window.scrollTo(0,0);
+}
+function refresh(){
+  const n=keys.filter(k=>done[k]).length;
+  $('#bar').style.width=(100*n/keys.length)+'%';
+  $('#pct').textContent=n+' מתוך '+keys.length+' הושלמו';
+  $$('nav a').forEach(a=>a.classList.toggle('ok',!!done[a.dataset.k]));
+  $$('[data-done]').forEach(c=>c.checked=!!done[c.dataset.done]);
+}
+$$('[data-done]').forEach(c=>c.onchange=()=>{done[c.dataset.done]=c.checked;save();refresh()});
+$$('.copy').forEach(b=>b.onclick=()=>{
+  const t=b.parentElement.querySelector('code').innerText;
+  (navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>{b.textContent='הועתק ✓'},()=>{b.textContent='סמנו והעתיקו ידנית'});
+  setTimeout(()=>b.textContent='העתק',1500);
+});
+function cur(){return location.hash.slice(1)||keys[0]}
+$('#next').onclick=()=>location.hash=keys[Math.min(keys.indexOf(cur())+1,keys.length-1)];
+$('#prev').onclick=()=>location.hash=keys[Math.max(keys.indexOf(cur())-1,0)];
+$('#menu').onclick=()=>$('#nav').classList.toggle('open');
+addEventListener('hashchange',()=>show(cur()));
+show(cur());refresh();
+</script>
+</body></html>
