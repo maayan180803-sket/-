@@ -86,11 +86,11 @@ section.block{padding:46px 0 6px}
 
 /* birth */
 .calc{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:14px;margin-top:18px}
-.calc div{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px}
+.calc>div{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px}
 .calc .k{color:var(--muted);font-size:13px}
 .calc .v{font-family:var(--display);font-size:34px;font-weight:900;line-height:1.15}
 .calc .f{direction:ltr;text-align:start;color:var(--muted);font-size:13px;font-variant-numeric:tabular-nums}
-.calc .hl{background:var(--gold-soft);border-color:color-mix(in srgb,var(--gold) 45%,transparent)}
+.calc>.hl{background:var(--gold-soft);border-color:color-mix(in srgb,var(--gold) 45%,transparent)}
 
 /* digit strip + cards */
 .strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(78px,1fr));gap:8px;margin:18px 0 26px}
@@ -213,7 +213,7 @@ footer{margin-top:60px;color:var(--muted);font-size:13px;text-align:center}
 
 <div class="wrap" dir="rtl" lang="he">
 <nav aria-label="ניווט">
-  <a href="#sec-core">במבט אחד</a><a href="#sec-name">שם</a><a href="#sec-birth">תאריך לידה</a><a href="#sec-triangle">משולש</a><a href="#sec-digits">כל ספרה</a><a href="#sec-matrix">מטריצה</a><a href="#sec-excess">עודפים וחוסרים</a><a href="#sec-combos">צירופים</a><a href="#sec-timing">עיתויים</a><a href="#sec-karma">קארמה ושפע</a><a href="#sec-summary">סיכום</a>
+  <a href="#sec-core">במבט אחד</a><a href="#sec-name">שם</a><a href="#sec-birth">תאריך לידה</a><a href="#sec-lesson">שיעור</a><a href="#sec-matrix">מטריצה</a><a href="#sec-triangle">משולש</a><a href="#sec-excess">עודפים וחוסרים</a><a href="#sec-timing">עיתויים</a><a href="#sec-combos">צירופים</a><a href="#sec-karma">קארמה ושפע</a><a href="#sec-summary">סיכום</a>
 </nav>
 
 <header class="hero">
@@ -275,18 +275,55 @@ footer{margin-top:60px;color:var(--muted);font-size:13px;text-align:center}
 
 <section class="block" id="sec-birth">
   <h2>תאריך הלידה</h2>
-  <p class="lead">לרוב יום הלידה מורגש יותר משביל הגורל: הוא תכונה קיימת, בעוד שביל הגורל הוא מה שעליה ללמוד.</p>
+  <p class="lead">יום הלידה חושף את התכונות המולדות והכישרונות הטבעיים, בעוד ששביל הגורל מראה את המסע הכולל של החיים. לרוב יום הלידה מורגש יותר, כי הוא תכונה קיימת, בעוד ששביל הגורל הוא מה שעליה ללמוד.</p>
   <div class="calc">
-    <div><div class="k">יום לידה</div><div class="v">11 / 2</div><div class="f">29 → 2+9 = 11 → 1+1 = 2</div></div>
+    <div><div class="k">יום לידה מצומצם · קריירה</div><div class="v">2</div><div class="f">29 → 11 → 2</div></div>
+    <div><div class="k">יום לידה מורחב · אישיות</div><div class="v">11 / 2</div><div class="f">29 → 2+9 = 11 → 1+1 = 2</div></div>
     <div><div class="k">חודש</div><div class="v">4</div><div class="f">04</div></div>
     <div><div class="k">שנה</div><div class="v">2</div><div class="f">1+9+8+2 = 20 → 2</div></div>
     <div class="hl"><div class="k">שביל גורל</div><div class="v">8</div><div class="f">2+9+0+4+1+9+8+2 = 35 → 8</div></div>
     <div class="hl"><div class="k">אור סודי (דיסוננס)</div><div class="v">1</div><div class="f">8 + 2 = 10 → 1</div></div>
   </div>
   <div class="meaning">
-    <div><b>יום לידה 2</b>רגישות, שיתוף וחיבור לאנשים. זו הטבעיות שלה.</div>
+    <div><b>יום לידה מצומצם 2 · קריירה</b>כישרון לעבודה עם אנשים: הקשבה, רגישות ושיתוף פעולה.</div>
+    <div><b>יום לידה מורחב 11/2 · אישיות</b>רגישות וחיבור לאנשים, עם פוטנציאל רוחני של מאסטר 11. זו הטבעיות שלה.</div>
     <div><b>שביל גורל 8</b>ניהול, כוח, כסף והצלחה חומרית: המשימה.</div>
     <div><b>אור סודי 1</b>הדרך לגשר על הפער בין 2 ל-8 היא לאמץ את תכונות ה-1: עצמאות, יוזמה והובלה.</div>
+  </div>
+</section>
+<section class="block" id="sec-lesson">
+  <h2>שיעור לפי שביל הגורל</h2>
+  <p class="lead">שביל גורל 8: מה היא באה ללמוד בחיים הללו.</p>
+  <div class="meaning" style="margin-top:0">
+    <div><b>השיעור</b>להחזיק כוח, סמכות וכסף בצורה בריאה: לנהל בלי לשלוט, להצליח בלי לוותר על הרגישות, ולהשתמש בכסף כמנוף.</div>
+    <div><b>החוזקות</b>מנהיגות, ניהול, ראייה עסקית, יכולת הצלחה חומרית.</div>
+    <div><b>האתגרים</b>שליטה, קשיחות, עבודה יתר ואובססיה לכסף.</div>
+    <div><b>הגשר</b>הפער בין יום הלידה 2 לגורל 8 נסגר דרך האור הסודי 1: עצמאות, יוזמה והובלה.</div>
+  </div>
+</section>
+
+<section class="block" id="sec-matrix">
+  <h2>המטריצה</h2>
+  <p class="lead">ספרות התאריך 29.04.1982 בלי אפסים: 2, 9, 4, 1, 9, 8, 2. השורות הן מישורי החשיבה (1-2-3), הרגש (4-5-6) והמעשה (7-8-9).</p>
+  <div class="mx">
+    <div>
+      <div class="grid3">
+        <div class="cell has"><span class="d">1</span><span class="c">×1</span></div><div class="cell has"><span class="d">2</span><span class="c">×2</span></div><div class="cell no"><span class="d">3</span><span class="c">חסר</span></div><div class="cell has"><span class="d">4</span><span class="c">×1</span></div><div class="cell no"><span class="d">5</span><span class="c">חסר</span></div><div class="cell no"><span class="d">6</span><span class="c">חסר</span></div><div class="cell no"><span class="d">7</span><span class="c">חסר</span></div><div class="cell has"><span class="d">8</span><span class="c">×1</span></div><div class="cell has"><span class="d">9</span><span class="c">×2</span></div>
+      </div>
+      <p class="mxnote">הספרה 6 חסרה במטריצה אבל נוכחת בשם (אהו"י).</p>
+    </div>
+    <div class="tablewrap"><table>
+      <thead><tr><th>מישור</th><th>מצב</th><th>משמעות</th></tr></thead>
+      <tbody>
+        <tr><td class="k">חשיבה 1-2-3</td><td class="st mid">חסר 3</td><td>חשיבה ורגש קיימים, חסר ביטוי יצירתי</td></tr>
+        <tr><td class="k">רגש 4-5-6</td><td class="st no">רק 4</td><td>מישור רגשי חלש במטריצה (6 קיים בשם)</td></tr>
+        <tr><td class="k">מעשה 7-8-9</td><td class="st mid">חסר 7</td><td>יכולת ביצוע וחכמה, חסר עומק רוחני</td></tr>
+        <tr><td class="k">יוזמה 1-4-7</td><td class="st mid">חסר 7</td><td>יוזמה ויציבות קיימות</td></tr>
+        <tr><td class="k">ארגון 2-5-8</td><td class="st mid">חסר 5</td><td>עולם הרגש: חסר מאזן, קושי אפשרי בהתמודדות עם כאב</td></tr>
+        <tr><td class="k">ביצוע 3-6-9</td><td class="st no">רק 9</td><td>חסר חיבור יצירתי ואחריות מעשית</td></tr>
+        <tr><td class="k">אלכסון 1-5-9</td><td class="st mid">חסר 5</td><td>משמעותיות ועצמאות: קיימים 1 ו-9</td></tr>
+        <tr><td class="k">אלכסון 3-5-7</td><td class="st no">ריק</td><td>אין חשיבה יצירתית מובנית</td></tr>
+      </tbody></table></div>
   </div>
 </section>
 
@@ -338,146 +375,7 @@ footer{margin-top:60px;color:var(--muted);font-size:13px;text-align:center}
   <div class="notice" style="margin-top:20px"><strong>הקריאה במשפט:</strong> משולש של אדם שנולד עדין (2), מציג עצמאות והובלה (1), מתנהל בחופש (5) ובא ללמוד כוח וניהול (8). חסרים בו 4 ו-7, והם נוכחים במקומות אחרים במפה: שם המשפחה והשנה הנוכחית.</div>
 </section>
 
-<section class="block" id="sec-digits">
-  <h2>פירוט כל ספרה</h2>
-  <p class="lead">לכל ספרה: איפה היא במפה, מה המשמעות שלה, ומה היא אומרת עבור אמה. הלחיצה על ספרה קופצת לכרטיס שלה.</p>
-  <div class="legend" style="margin-bottom:0"><span><i style="background:var(--accent-soft);border:1px solid var(--accent)"></i>נוכחת</span><span><i style="background:var(--surface);border:1px solid var(--gold)"></i>נוכחת חלקית</span><span><i style="background:var(--miss-soft);border:1px dashed var(--miss)"></i>חסרה</span></div>
-  <div class="strip"><a class="dchip part" href="#d0"><span class="dn">0</span><span class="ds">בתאריך</span></a><a class="dchip full" href="#d1"><span class="dn">1</span><span class="ds">נוכחת</span></a><a class="dchip full" href="#d2"><span class="dn">2</span><span class="ds">נוכחת</span></a><a class="dchip miss" href="#d3"><span class="dn">3</span><span class="ds">חסרה</span></a><a class="dchip full" href="#d4"><span class="dn">4</span><span class="ds">נוכחת</span></a><a class="dchip full" href="#d5"><span class="dn">5</span><span class="ds">בשם</span></a><a class="dchip full" href="#d6"><span class="dn">6</span><span class="ds">נוכחת</span></a><a class="dchip part" href="#d7"><span class="dn">7</span><span class="ds">שנה אישית</span></a><a class="dchip full" href="#d8"><span class="dn">8</span><span class="ds">נוכחת</span></a><a class="dchip part" href="#d9"><span class="dn">9</span><span class="ds">בתאריך</span></a></div>
-  <div class="dgrid">
-<article class="dcard" id="d0">
-  <header>
-    <div class="bignum part">0</div>
-    <div><h3>0 · שומרי הסף</h3><span class="tag part">נוכחת חלקית</span></div>
-  </header>
-  <div class="chips"><span>חודש הלידה 04</span><span>אתגר 0 בתקופה 2 (גילאי 28–37)</span></div>
-  <section><h4>משמעות</h4><ul><li>אינסוף, אפשרויות בלתי מוגבלות והתחלות חדשות.</li><li>אנשים עם השפעה של 0 הם בעלי צורה מיוחדת של יצירתיות ומסוגלים להישגים יוצאי דופן.</li><li>מזכיר לנו שאנחנו חלק ממשהו גדול יותר.</li><li>כאתגר: "הכל או כלום". תלוי במודעות האדם, מאפשר יכולת זימון מהירה ודורש תשומת לב למחשבות.</li><li>הספרה אינה נספרת במטריצה ובחישובי הצמצום.</li></ul></section>
-  <section class="her"><h4>עבור אמה</h4><p>אתגר 0 היה בעבר: תקופה שבה המחשבות עיצבו את המציאות במהירות, "הכל או כלום".</p></section>
-</article>
-<article class="dcard" id="d1">
-  <header>
-    <div class="bignum full">1</div>
-    <div><h3>1 · התחלה והובלה</h3><span class="tag full">נוכחת במפה</span></div>
-  </header>
-  <div class="chips"><span>שם פרטי "אמה" (10→1)</span><span>אות ראשונה (א=1)</span><span>אור סודי (10→1)</span><span>פסגה 1 בתקופה הנוכחית (37–46)</span><span>ספרה אחת במטריצה</span><span>שנה אוניברסלית 2026</span></div>
-  <section><h4>משמעות</h4><ul><li>התחלה והובלה, עצמאות ויוזמה.</li><li>עודף (1): מנהיגות וביטחון עצמי; עלול להתבטא באגו מוגזם.</li><li>צירופים: 1-2 (עצמאות מול שיתוף), 1-5-7 (חיבור פיזי-רוחני), 1-7 (פיזי מול רוחני), 1-5 (צירוף דומה).</li><li>תדר חיובי: יוזמה, אומץ, חלוציות, יכולת להתחיל מאפס.</li><li>תדר שלילי: עקשנות, חוסר סבלנות, קושי לבקש עזרה, נטייה לשליטה.</li></ul></section>
-  <section class="her"><h4>עבור אמה</h4><p>1 מופיע פעמיים במנין (שם פרטי ואות ראשונה) ובנוסף כאור הסודי. הוא הגשר בין העדינות שלה (2) למשימת הכוח (8): לאמץ יוזמה ועצמאות. בתקופה הנוכחית (פסגה 1) מתבקש לקחת הובלה.</p></section>
-</article>
-<article class="dcard" id="d2">
-  <header>
-    <div class="bignum full">2</div>
-    <div><h3>2 · שיתוף ורגש</h3><span class="tag full">נוכחת במפה</span></div>
-  </header>
-  <div class="chips"><span>יום הלידה (29→11→2)</span><span>שנת הלידה (1982→20→2)</span><span>שני 2 במטריצה</span><span>אתגר 2 (תקופות 1, 3 ו-4)</span></div>
-  <section><h4>משמעות</h4><ul><li>שיתוף. מספר רוחני. אנרגיה נשית חזקה.</li><li>חוסר (2): קושי בשיתוף פעולה ובמערכות יחסים, חוסר בפן הרגשי. אצלה הספרה נוכחת.</li><li>צירופים: 2-4-8 (עולם החומר והמעשה), 2-8 (עדינות מול עוצמה), 2-7 (צינור שפע), 2-5-8 (עולם הרגש).</li><li>תדר חיובי: דיפלומטיה, רגישות, אינטואיציה, יכולת הקשבה ושיתוף פעולה.</li><li>תדר שלילי: חוסר החלטיות, תלות, פגיעות לביקורת.</li></ul></section>
-  <section class="her"><h4>עבור אמה</h4><p>יום הלידה מורגש יותר משביל הגורל, ולכן ה-2 הוא התכונה "הטבעית" שלה: עדינות, חיבור לאנשים ורגשות. הוא במתח יצירתי עם שביל הגורל 8.</p></section>
-</article>
-<article class="dcard" id="d3">
-  <header>
-    <div class="bignum miss">3</div>
-    <div><h3>3 · יצירתיות</h3><span class="tag miss">חסרה במפה</span></div>
-  </header>
-  <div class="chips"><span>אינה נוכחת במנין העודפים והחוסרים</span><span>חסרה במטריצה</span></div>
-  <section><h4>משמעות</h4><ul><li>יצירתיות וכושר ביטוי תקשורתי.</li><li>עודף (3): פיזור אנרגיה וקושי להתמקד. אצלה אין עודף.</li><li>מספר מזל. צירופים: 3-4 (יצירתיות מול מבניות), 3-8 (יצירה מול שליטה), 3-5-7, 3-6-9.</li><li>מישור החשיבה (1-2-3) ומישור הביצוע (3-6-9): ב-3 חסר במטריצה.</li><li>חוסר 3 עשוי להצביע על קושי בביטוי עצמי, בשמחה ובספונטניות.</li></ul></section>
-  <section class="her"><h4>עבור אמה</h4><p>חוסר ב-3 מקשה "להוציא" יצירתיות וביטוי. מה שעוזר: ביטוי מכוון כמו כתיבה, דיבור או יצירה. נתיב השפע "יצירה" (538/358) חלקי בגללו.</p></section>
-</article>
-<article class="dcard" id="d4">
-  <header>
-    <div class="bignum full">4</div>
-    <div><h3>4 · יציבות ומבנה</h3><span class="tag full">נוכחת במפה</span></div>
-  </header>
-  <div class="chips"><span>שם משפחה "נחמן" (22→4)</span><span>חודש לידה 4</span><span>פסגה 2 (גילאי 28–37)</span><span>ספרה אחת במטריצה</span></div>
-  <section><h4>משמעות</h4><ul><li>יציבות ומבניות. אנרגיה גברית חזקה.</li><li>צירופים: 4-6 (פוטנציאל לזוגיות ארוכת טווח), 4-5 (סדר מול שינוי), 4-9 (פרידה או שחרור, רק בפסגות או אתגרים בצמידות), 3-4 (יצירתיות מול מבניות), 2-4-8 (עולם החומר).</li><li>נוכחות 4 שלוש פעמים ומעלה: יכולות מדיום.</li><li>תדר חיובי: סדר, עקביות, אמינות, כושר בנייה.</li><li>תדר שלילי: נוקשות, שמרנות, עבודה יתר.</li></ul></section>
-  <section class="her"><h4>עבור אמה</h4><p>ה-4 מגיע מהשורשים: שם המשפחה והמאסטר 22 שמאחוריו. הוא נוכח גם בחודש הלידה ובפסגה 2, כלומר שלוש פעמים לפחות, ועשוי לרמוז ליכולות רגישות או מדיומיות.</p></section>
-</article>
-<article class="dcard" id="d5">
-  <header>
-    <div class="bignum full">5</div>
-    <div><h3>5 · שינוי וחופש</h3><span class="tag full">נוכחת במפה</span></div>
-  </header>
-  <div class="chips"><span>שם מלא (32→5)</span><span>חסרה במטריצה</span></div>
-  <section><h4>משמעות</h4><ul><li>שינוי וחופש. אנרגיה נשית מתונה.</li><li>עודף (5): אוהב שינויים וחופש, הרפתקן, מתקשה להתחייב. אצלה אין עודף.</li><li>צירופים: 4-5 (סדר מול שינוי), 5-7 (חיצוניות מול פנימיות), 1-5-7, 3-5 (צינור שפע), 5-5-5 (שינויים).</li><li>תדר חיובי: גמישות, סקרנות, אומץ לשנות, חיים בהווה.</li><li>תדר שלילי: חוסר יציבות, פיזור, בריחה מאחריות.</li></ul></section>
-  <section class="her"><h4>עבור אמה</h4><p>השם המלא 5 מתאר את ההתנהלות: הסביבה חווה אותה כאדם חופשי ומשתנה. במטריצה 5 חסר, אז פנימית היא עשויה להיות פחות גמישה ממה שנראה, ומישור הרגש (4-5-6) חלש.</p></section>
-</article>
-<article class="dcard" id="d6">
-  <header>
-    <div class="bignum full">6</div>
-    <div><h3>6 · הרמוניה</h3><span class="tag full">נוכחת במפה</span></div>
-  </header>
-  <div class="chips"><span>אהו"י (6)</span><span>פסגות 1 ו-4</span><span>שנה אישית מורחבת 2026 (15→6)</span><span>רבעונים 2 ו-3</span></div>
-  <section><h4>משמעות</h4><ul><li><strong>תדר חיובי:</strong> מסירות ואהבה, רגישות ואמפתיה, נדיבות ונאמנות, חוש אסתטי מפותח.</li><li><strong>יכולות מקצועיות:</strong> יצירת הרמוניה בסביבה, טיפול ותמיכה באחרים, יכולת הקשבה גבוהה, חיבור למסורת ומשפחה.</li><li><strong>תדר שלילי:</strong> רגשנות יתר ודרמטיות, פרפקציוניזם מוגזם, דאגנות יתר, רגישות גבוהה לביקורת.</li><li><strong>קשיים במערכות יחסים:</strong> התערבות יתר בחיי אחרים, הימנעות מקונפליקטים, ריצוי אחרים, קושי בהצבת גבולות.</li><li>אנרגיה נשית חזקה. חוסר (6): קושי באחריות למשפחה. אצלה נוכח.</li><li>צירופים: 4-6 (זוגיות ארוכת טווח), 3-6-9, 2-6.</li></ul></section>
-  <section class="her"><h4>עבור אמה</h4><p>6 הוא האהו"י: הלב והנשמה שלה. אישיות אכפתית ומחפשת הרמוניה. השנה (6 מורחב) ושתי פסגות (6) מעוררים נושאי משפחה, בית ואחריות.</p></section>
-</article>
-<article class="dcard" id="d7">
-  <header>
-    <div class="bignum part">7</div>
-    <div><h3>7 · רוחניות</h3><span class="tag part">נוכחת חלקית</span></div>
-  </header>
-  <div class="chips"><span>שנה אישית 2026 (52→7)</span><span>חסרה במטריצה ובמנין</span></div>
-  <section><h4>משמעות</h4><ul><li>רוחניות. אנרגיה גברית מתונה. מספר רוחני.</li><li>צירופים: 1-7 (פיזי מול רוחני), 5-7 (חיצוניות מול פנימיות), 8-7 (חומר מול רוח), 2-7 (צינור שפע), 7-5 (קוד השיגעון: חכמים וחריפים), 1-5-7, 3-5-7.</li><li>מישור המעשה (7-8-9) ומישור היוזמה (1-4-7): ב-7 חסר במטריצה.</li><li>שומרי הסף: משולש המכיל רק 7 ו-9.</li><li>חוסר 7 עשוי להצביע על קושי בהתבוננות פנימית ובלימוד רוחני.</li></ul></section>
-  <section class="her"><h4>עבור אמה</h4><p>השנה היא שנת 7: הזדמנות להשלים את החסר דרך התבודדות, למידה והתבוננות פנימית. נתיב השפע "למידה" (279/729) חלקי בגלל 7 חסר.</p></section>
-</article>
-<article class="dcard" id="d8">
-  <header>
-    <div class="bignum full">8</div>
-    <div><h3>8 · הצלחה חומרית</h3><span class="tag full">נוכחת במפה</span></div>
-  </header>
-  <div class="chips"><span>שביל גורל (35→8)</span><span>עיצורי השם (26→8)</span><span>גיל מצומצם 2026 (4+4)</span><span>רבעון 4 של 2026</span><span>ספרה אחת במטריצה</span></div>
-  <section><h4>משמעות</h4><ul><li>הצלחה חומרית. אנרגיה גברית חזקה.</li><li>חוסר (8): בעיה בניהול כספים או קושי בתחום החומרי והעסקי. אצלה אין חוסר.</li><li>צירופים: 2-8 (עדינות מול עוצמה), 3-8 (יצירה מול שליטה), 8-7 (חומר מול רוח), 2-4-8 (עולם החומר), 4-8, 5-8, 1-8.</li><li>קוד הנסיך (3-8): אצילות, שפע ונוחות, ללמוד להשתמש בכסף כמנוף.</li><li>תדר חיובי: מנהיגות, ניהול, הצלחה כלכלית, סמכות, ראייה עסקית.</li><li>תדר שלילי: אובססיה לכסף ולשליטה, קשיחות, עבודה יתר.</li></ul></section>
-  <section class="her"><h4>עבור אמה</h4><p>8 הוא שביל הגורל, מה שהיא באה ללמוד: להחזיק כוח, כסף וניהול בצורה בריאה. הוא גם התדמית שלה כלפי חוץ (עיצורים 26→8), ולכן אנשים רואים בה כוח ויכולת גם כשבפנים היא רגישה (2 ו-6). האתגר הוא לשלב בין הכוח לרגישות.</p></section>
-</article>
-<article class="dcard" id="d9">
-  <header>
-    <div class="bignum part">9</div>
-    <div><h3>9 · חכמה עליונה</h3><span class="tag part">נוכחת חלקית</span></div>
-  </header>
-  <div class="chips"><span>שני 9 במטריצה</span><span>רבעון 1 של 2026</span><span>חסרה במנין העודפים והחוסרים</span></div>
-  <section><h4>משמעות</h4><ul><li>חכמה עליונה. אנרגיה גברית מתונה. מספר רוחני ומספר מזל.</li><li>חוסר (9): חוסר בהתבוננות רוחנית והבנה רחבה, קושי בסגירת מעגלים.</li><li>צירופים: 4-9 (מסגרת מול חופש, פרידה או שחרור), 7-9, 3-6-9, 1-5-9 (אלכסון חוצה עולמות), 9-9-9 (רוחניות).</li><li>שומרי הסף: משולש המכיל רק 7 ו-9.</li><li>תדר חיובי: חמלה, מבט רחב, סיום מעגלים, נתינה ללא תנאי.</li><li>תדר שלילי: קושי בשחרור, מרטירות, קושי להשלים תהליכים.</li></ul></section>
-  <section class="her"><h4>עבור אמה</h4><p>ה-9 נמצא בתאריך (פעמיים) אבל לא בשם: הכישרון קיים מלידה, אך לא נבנה בשם. אתגר מרכזי: סגירת מעגלים והתבוננות רחבה על החיים.</p></section>
-</article>
-<article class="dcard" id="d11">
-  <header>
-    <div class="bignum part">11</div>
-    <div><h3>11 · מאסטר</h3><span class="tag part">נוכחת חלקית</span></div>
-  </header>
-  <div class="chips"><span>יום הלידה (29→11→2)</span></div>
-  <section><h4>משמעות</h4><ul><li>מספר מאסטר, רוחני. יום לידה 11 מצטמצם ל-2.</li><li>מספרי מאסטר (11, 22) בתוצאה ללא שיעור מביאים יכולת ליצור הרמוניה בקלות רבה יותר, בהקשר זוגי.</li><li>השראה, אינטואיציה גבוהה, רגישות רוחנית, שליחות לחזון.</li></ul></section>
-  <section class="her"><h4>עבור אמה</h4><p>יום הלידה 29/11/2 נותן פוטנציאל רוחני ורגישות גבוהה. כשהמאסטר לא ממומש הוא מתבטא כאנרגיה של 2.</p></section>
-</article>
-<article class="dcard" id="d22">
-  <header>
-    <div class="bignum part">22</div>
-    <div><h3>22 · מאסטר בנאי</h3><span class="tag part">נוכחת חלקית</span></div>
-  </header>
-  <div class="chips"><span>שם המשפחה "נחמן" (22→4)</span></div>
-  <section><h4>משמעות</h4><ul><li>מספר מאסטר, רוחני.</li><li>מופיע גם כ-4 (מצומצם): יציבות ומבניות.</li><li>יכולת להפוך חזון גדול למציאות מעשית, בנייה בקנה מידה רחב, אחריות כבדה.</li></ul></section>
-  <section class="her"><h4>עבור אמה</h4><p>שם המשפחה נושא פוטנציאל גדול לבנייה. כשהוא לא מנוצל הוא מתבטא כ-4: עבודה קשה ויציבות.</p></section>
-</article></div>
-</section>
 
-<section class="block" id="sec-matrix">
-  <h2>המטריצה</h2>
-  <p class="lead">ספרות התאריך 29.04.1982 בלי אפסים: 2, 9, 4, 1, 9, 8, 2. השורות הן מישורי החשיבה (1-2-3), הרגש (4-5-6) והמעשה (7-8-9).</p>
-  <div class="mx">
-    <div>
-      <div class="grid3">
-        <div class="cell has"><span class="d">1</span><span class="c">×1</span></div><div class="cell has"><span class="d">2</span><span class="c">×2</span></div><div class="cell no"><span class="d">3</span><span class="c">חסר</span></div><div class="cell has"><span class="d">4</span><span class="c">×1</span></div><div class="cell no"><span class="d">5</span><span class="c">חסר</span></div><div class="cell no"><span class="d">6</span><span class="c">חסר</span></div><div class="cell no"><span class="d">7</span><span class="c">חסר</span></div><div class="cell has"><span class="d">8</span><span class="c">×1</span></div><div class="cell has"><span class="d">9</span><span class="c">×2</span></div>
-      </div>
-      <p class="mxnote">הספרה 6 חסרה במטריצה אבל נוכחת בשם (אהו"י).</p>
-    </div>
-    <div class="tablewrap"><table>
-      <thead><tr><th>מישור</th><th>מצב</th><th>משמעות</th></tr></thead>
-      <tbody>
-        <tr><td class="k">חשיבה 1-2-3</td><td class="st mid">חסר 3</td><td>חשיבה ורגש קיימים, חסר ביטוי יצירתי</td></tr>
-        <tr><td class="k">רגש 4-5-6</td><td class="st no">רק 4</td><td>מישור רגשי חלש במטריצה (6 קיים בשם)</td></tr>
-        <tr><td class="k">מעשה 7-8-9</td><td class="st mid">חסר 7</td><td>יכולת ביצוע וחכמה, חסר עומק רוחני</td></tr>
-        <tr><td class="k">יוזמה 1-4-7</td><td class="st mid">חסר 7</td><td>יוזמה ויציבות קיימות</td></tr>
-        <tr><td class="k">ארגון 2-5-8</td><td class="st mid">חסר 5</td><td>עולם הרגש: חסר מאזן, קושי אפשרי בהתמודדות עם כאב</td></tr>
-        <tr><td class="k">ביצוע 3-6-9</td><td class="st no">רק 9</td><td>חסר חיבור יצירתי ואחריות מעשית</td></tr>
-        <tr><td class="k">אלכסון 1-5-9</td><td class="st mid">חסר 5</td><td>משמעותיות ועצמאות: קיימים 1 ו-9</td></tr>
-        <tr><td class="k">אלכסון 3-5-7</td><td class="st no">ריק</td><td>אין חשיבה יצירתית מובנית</td></tr>
-      </tbody></table></div>
-  </div>
-</section>
 
 <section class="block" id="sec-excess">
   <h2>עודפים וחוסרים</h2>
@@ -488,24 +386,8 @@ footer{margin-top:60px;color:var(--muted);font-size:13px;text-align:center}
   </div>
 </section>
 
-<section class="block" id="sec-combos">
-  <h2>צירופים</h2>
-  <div class="combos">
-    <div class="combo"><span class="cn">2-4-8</span><p><strong>עולם החומר והמעשה.</strong> שלוש הספרות נוכחות: 2 ביום הלידה, 4 במשפחה, 8 בגורל ובעיצורים. יכולת לבנות דברים יציבים.</p></div>
-    <div class="combo"><span class="cn">2-8</span><p><strong>עדינות מול עוצמה.</strong> המתח המרכזי במפה.</p></div>
-    <div class="combo"><span class="cn">1-5</span><p>שם פרטי 1 ושם מלא 5: עצמאות מול שינוי.</p></div>
-    <div class="combo"><span class="cn">4-6</span><p>פסגה 1 (6) ופסגה 2 (4) צמודות: פוטנציאל לזוגיות ארוכת טווח.</p></div>
-    <div class="combo"><span class="cn">11 · 22</span><p><strong>מאסטרים:</strong> 11 ביום הלידה, 22 בשם המשפחה.</p></div>
-    <div class="combo"><span class="cn">3-6-9</span><p><strong>מספרי מזל:</strong> 6 באהו"י ו-9 בתאריך. 3 חסר.</p></div>
-  </div>
-  <h3 style="margin-top:28px">אנרגיה נשית וגברית</h3>
-  <p class="lead" style="margin-bottom:0">שקלול הדומיננטיות: שביל גורל 30%, שם מלא 25%, יום לידה 25%, אהו"י 20%.</p>
-  <div class="bar" role="img" aria-label="70 אחוז נשי, 30 אחוז גברי"><div class="f">70% נשי</div><div class="m">30% גברי</div></div>
-  <p class="note">גורל 8 (30%) גברי חזק · שם מלא 5 (25%) נשי מתון · יום לידה 2 (25%) נשי חזק · אהו"י 6 (20%) נשי חזק.</p>
-</section>
-
 <section class="block" id="sec-timing">
-  <h2>עיתויים 2026</h2>
+  <h2>עיתויים</h2>
   <h3 style="margin-top:20px">שנה אישית מורחבת</h3>
   <p class="lead" style="margin-bottom:0">שלוש אנרגיות יחד: גיל + גורל, גיל מצומצם, והשילוב ביניהן.</p>
   <div class="py">
@@ -514,15 +396,6 @@ footer{margin-top:60px;color:var(--muted);font-size:13px;text-align:center}
     <div class="pyc tot"><div class="n">6</div><b>משפחה ואחריות</b><div class="f">7 + 8 = 15 → 6</div></div>
   </div>
   <p class="note">השנה חוברים התבוננות רוחנית, הצלחה כלכלית ונושאי משפחה ובית.</p>
-
-  <h3 style="margin-top:28px">רבעונים</h3>
-  <p class="lead" style="margin-bottom:0">שנה אוניברסלית 1 · גורל 8 · שנה אישית 7.</p>
-  <div class="quarters">
-    <div class="q"><small>&nbsp;</small><div class="n">9</div><div>רבעון 1</div><div class="f">1 + 8</div></div>
-    <div class="q"><small>&nbsp;</small><div class="n">6</div><div>רבעון 2</div><div class="f">8 + 7 = 15</div></div>
-    <div class="q"><small>&nbsp;</small><div class="n">6</div><div>רבעון 3</div><div class="f">9 + 6 = 15</div></div>
-    <div class="q now"><small>אוקטובר, אם לפי לוח שנה</small><div class="n">8</div><div>רבעון 4</div><div class="f">1 + 7</div></div>
-  </div>
 
   <h3 style="margin-top:28px">פסגות ואתגרים</h3>
   <p class="note" style="margin-top:2px">חושב לפי הנוסחה הסטנדרטית (חודש 4, יום 2, שנה 2).</p>
@@ -540,11 +413,27 @@ footer{margin-top:60px;color:var(--muted);font-size:13px;text-align:center}
   </div>
 </section>
 
+<section class="block" id="sec-combos">
+  <h2>צירופים מיוחדים</h2>
+  <div class="combos">
+    <div class="combo"><span class="cn">2-4-8</span><p><strong>עולם החומר והמעשה.</strong> שלוש הספרות נוכחות: 2 ביום הלידה, 4 במשפחה, 8 בגורל ובעיצורים. יכולת לבנות דברים יציבים.</p></div>
+    <div class="combo"><span class="cn">2-8</span><p><strong>עדינות מול עוצמה.</strong> המתח המרכזי במפה.</p></div>
+    <div class="combo"><span class="cn">1-5</span><p>שם פרטי 1 ושם מלא 5: עצמאות מול שינוי.</p></div>
+    <div class="combo"><span class="cn">4-6</span><p>פסגה 1 (6) ופסגה 2 (4) צמודות: פוטנציאל לזוגיות ארוכת טווח.</p></div>
+    <div class="combo"><span class="cn">3-6-9</span><p><strong>מספרי מזל:</strong> 6 באהו"י ו-9 בתאריך. 3 חסר.</p></div>
+  </div>
+</section>
+
 <section class="block" id="sec-karma">
-  <h2>קארמה ושפע</h2>
+  <h2>חובות קארמתיים, מאסטרים וצינורות שפע</h2>
   <h3 style="margin-top:18px">חובות קארמתיים</h3>
   <div class="notice" style="background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 45%,transparent);margin-top:8px">מספרי השם: 10, 22, 6, 26, 32. אין חוב 13/4, 14/5, 16/7 או 19/1. זו <strong>מפה ללא חובות</strong>: נשמה שהגיעה "נקייה" מגלגולים קודמים.</div>
-  <h3 style="margin-top:24px">נתיבי שפע</h3>
+  <h3 style="margin-top:24px">מאסטרים</h3>
+  <div class="meaning" style="margin-top:10px">
+    <div><b>11 · יום הלידה</b>השראה, אינטואיציה גבוהה ורגישות רוחנית. כשלא ממומש הוא מתבטא כ-2.</div>
+    <div><b>22 · שם המשפחה</b>בנאי: יכולת להפוך חזון גדול למציאות מעשית. כשלא ממומש הוא מתבטא כ-4: יציבות ועבודה קשה.</div>
+  </div>
+  <h3 style="margin-top:24px">צינורות שפע</h3>
   <div class="tablewrap" style="margin-top:10px"><table>
     <thead><tr><th>נתיב</th><th>מצב</th><th>פירוט</th></tr></thead>
     <tbody>
@@ -560,9 +449,9 @@ footer{margin-top:60px;color:var(--muted);font-size:13px;text-align:center}
   <div class="sum">אמה היא נשמה פנימית אכפתית והרמונית (אהו"י 6), עם יום לידה רגיש (2/11) ומראה חיצוני של כוח וניהול (עיצורים 8). שביל הגורל 8 מצביע על המשימה: ללמוד להחזיק כוח, כסף וניהול בלי לאבד את הרגישות. האור הסודי (1), עצמאות ויוזמה, הוא הגשר. שם המשפחה נושא מאסטר 22.<br><br>האתגרים המרכזיים: סגירת מעגלים (חוסר 9), ביטוי יצירתי (חוסר 3), גבולות וריצוי (6) והתחייבות (שם מלא 5). השנה (7/8/6) משלבת התבוננות פנימית, הצלחה כלכלית ומשפחה.</div>
   <h3 style="margin-top:30px">פתוח לבדיקה והשלמה</h3>
   <ul class="open">
-    <li>עדיין לא חושבו: משולש נומרולוגי, ותק נשמה, פצע נשמתי, יעוד גדול וקטן, דרך לעושר, גילאים מיוחדים.</li>
+    <li>ממתינים לנוסחה: פצע נשמתי, יעוד גדול וקטן, ותק נשמה, דרך לעושר, גילאים מיוחדים.</li>
     <li>פסגות ואתגרים נחשבו לפי נוסחה סטנדרטית.</li>
-    <li>אפשר להוסיף מפה זוגית ושנה אישית לשנים נוספות.</li>
+    <li>התאמה זוגית: רלוונטית רק אם יהיה בן או בת זוג.</li>
   </ul>
 </section>
 <footer>מפה נומרולוגית · אמה נחמן · אוקטובר 2026</footer>
