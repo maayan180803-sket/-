@@ -141,6 +141,24 @@ td.k{font-weight:700;white-space:nowrap}
 .st{font-weight:700;font-size:13px;white-space:nowrap}
 .st.ok{color:var(--accent)} .st.no{color:var(--miss)} .st.mid{color:var(--gold)}
 
+
+/* triangle */
+.tri{display:grid;grid-template-columns:minmax(0,380px) 1fr;gap:28px;margin-top:18px;align-items:center}
+@media (max-width:760px){.tri{grid-template-columns:1fr}}
+.tri svg{width:100%;height:auto;max-width:380px;display:block;margin-inline:auto;direction:ltr}
+.tri .edge{fill:var(--surface);stroke:var(--muted);stroke-width:2}
+.tri .spoke{stroke:var(--line);stroke-width:1.5;stroke-dasharray:4 4}
+.tri .node{fill:var(--accent-soft);stroke:var(--accent);stroke-width:2}
+.tri .node.hot{fill:var(--gold-soft);stroke:var(--gold)}
+.tri .node.mid{fill:var(--surface-2);stroke:var(--cons)}
+.tri .nn{font-family:var(--display);font-weight:900;font-size:30px;text-anchor:middle;dominant-baseline:central;fill:var(--ink)}
+.tri .nl{font-family:var(--body);font-size:15px;font-weight:700;text-anchor:middle;fill:var(--muted)}
+.chk{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:12px;margin-top:20px}
+.chk div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.chk .cn{font-family:var(--display);font-weight:900;font-size:24px;direction:ltr;display:block}
+.chk .ok .cn{color:var(--accent)} .chk .part .cn{color:var(--gold)} .chk .no .cn{color:var(--miss)}
+.chk b.st{display:block;margin:2px 0 6px}
+
 /* excess/deficit */
 .ed{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:14px;margin-top:18px}
 .edbox{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px}
@@ -195,7 +213,7 @@ footer{margin-top:60px;color:var(--muted);font-size:13px;text-align:center}
 
 <div class="wrap" dir="rtl" lang="he">
 <nav aria-label="ניווט">
-  <a href="#sec-core">במבט אחד</a><a href="#sec-name">שם</a><a href="#sec-birth">תאריך לידה</a><a href="#sec-digits">כל ספרה</a><a href="#sec-matrix">מטריצה</a><a href="#sec-excess">עודפים וחוסרים</a><a href="#sec-combos">צירופים</a><a href="#sec-timing">עיתויים</a><a href="#sec-karma">קארמה ושפע</a><a href="#sec-summary">סיכום</a>
+  <a href="#sec-core">במבט אחד</a><a href="#sec-name">שם</a><a href="#sec-birth">תאריך לידה</a><a href="#sec-triangle">משולש</a><a href="#sec-digits">כל ספרה</a><a href="#sec-matrix">מטריצה</a><a href="#sec-excess">עודפים וחוסרים</a><a href="#sec-combos">צירופים</a><a href="#sec-timing">עיתויים</a><a href="#sec-karma">קארמה ושפע</a><a href="#sec-summary">סיכום</a>
 </nav>
 
 <header class="hero">
@@ -270,6 +288,54 @@ footer{margin-top:60px;color:var(--muted);font-size:13px;text-align:center}
     <div><b>שביל גורל 8</b>ניהול, כוח, כסף והצלחה חומרית: המשימה.</div>
     <div><b>אור סודי 1</b>הדרך לגשר על הפער בין 2 ל-8 היא לאמץ את תכונות ה-1: עצמאות, יוזמה והובלה.</div>
   </div>
+</section>
+
+<section class="block" id="sec-triangle">
+  <h2>המשולש הנומרולוגי</h2>
+  <p class="lead">כלי לאפיון מהיר ומדויק של האישיות. הוא מורכב מארבעה מספרים: שביל הגורל, יום הלידה, השם הפרטי והשם המלא. דרכו רואים את הקשרים בין המספרים, מזהים קודים מסוימים ומבינים את מבנה האישיות הייחודי.</p>
+  <div class="tri">
+    <svg viewBox="0 0 360 330" role="img" aria-label="משולש נומרולוגי: שביל גורל 8 בראש, יום לידה 2 משמאל, שם פרטי 1 מימין, שם מלא 5 במרכז">
+      <polygon class="edge" points="180,52 40,276 320,276"/>
+      <line class="spoke" x1="180" y1="52" x2="180" y2="200"/>
+      <line class="spoke" x1="40" y1="276" x2="180" y2="200"/>
+      <line class="spoke" x1="320" y1="276" x2="180" y2="200"/>
+      <text class="nl" x="180" y="18">שביל גורל</text>
+      <circle class="node hot" cx="180" cy="52" r="30"/><text class="nn" x="180" y="52">8</text>
+      <circle class="node" cx="40" cy="276" r="30"/><text class="nn" x="40" y="276">2</text>
+      <text class="nl" x="40" y="326">יום לידה</text>
+      <circle class="node" cx="320" cy="276" r="30"/><text class="nn" x="320" y="276">1</text>
+      <text class="nl" x="320" y="326">שם פרטי</text>
+      <circle class="node mid" cx="180" cy="200" r="30"/><text class="nn" x="180" y="200">5</text>
+      <text class="nl" x="180" y="248">שם מלא</text>
+    </svg>
+    <div>
+      <div class="meaning" style="margin-top:0">
+        <div><b>שביל גורל 8 · הפסגה</b>המשימה: כוח, ניהול וכסף.</div>
+        <div><b>יום לידה 2 · בסיס שמאל</b>הטבע שהיא נולדה אליו: רגישות ושיתוף. (המאסטר 11 עומד ברקע.)</div>
+        <div><b>שם פרטי 1 · בסיס ימין</b>הזהות שהיא מציגה: עצמאות והובלה.</div>
+        <div><b>שם מלא 5 · המרכז</b>ההתנהלות שמחברת הכול: חופש ושינוי.</div>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:30px">צירופים הרמוניים: מה המשולש משלים</h3>
+  <p class="lead" style="margin-bottom:0">שלושה צירופים הרמוניים של שלושה מספרים: 1-5-7, 3-6-9 ו-2-4-8. כמו אקורדים במוזיקה, הם יוצרים תמונה שלמה.</p>
+  <div class="chk">
+    <div class="part"><span class="cn">1-5-7</span><b class="st st mid">חלקי: 1 ו-5</b>חיבור בין העולם הפיזי לרוחני. 1 ו-5 במשולש (התחלה והובלה, שינוי וחופש). 7 לא במשולש, אבל 2026 היא שנת 7 אישית.</div>
+    <div class="part"><span class="cn">2-4-8</span><b class="st st mid">חלקי: 2 ו-8</b>עולם החומר והמעשה. 2 ו-8 במשולש. 4 לא במשולש, אבל נמצא בשם המשפחה, בחודש הלידה ובפסגה 2.</div>
+    <div class="no"><span class="cn">3-6-9</span><b class="st st no">לא במשולש</b>3, 6 ו-9 אינם במשולש. 6 נוכח באהו"י, ו-9 בתאריך.</div>
+    <div class="no"><span class="cn">7 · 9</span><b class="st st no">אינה משמרת סף</b>משולש "שומרי הסף" מכיל רק 7 ו-9. המשולש של אמה מכיל 8, 2, 1 ו-5, ולכן היא לא משמרת סף.</div>
+  </div>
+
+  <h3 style="margin-top:30px">הזוגות במשולש</h3>
+  <div class="combos">
+    <div class="combo"><span class="cn">2-8</span><p><strong>עדינות מול עוצמה.</strong> הציר המרכזי: בסיס רגיש שמחזיק משימה של כוח.</p></div>
+    <div class="combo"><span class="cn">1-2</span><p><strong>עצמאות מול שיתוף.</strong> השם הפרטי דוחף ליוזמה לבד, יום הלידה מושך לעבודה משותפת.</p></div>
+    <div class="combo"><span class="cn">1-8</span><p>הובלה והצלחה חומרית: שם פרטי ושביל גורל מכוונים לאותו כיוון.</p></div>
+    <div class="combo"><span class="cn">1-5</span><p>עצמאות וחופש: חיבור שמחזק רצון בתנועה ובשינוי.</p></div>
+    <div class="combo"><span class="cn">5-8</span><p>שינוי והצלחה: נכונות לשנות כדי להתקדם, ובו זמנית קושי אפשרי בהתחייבות לטווח ארוך.</p></div>
+  </div>
+  <div class="notice" style="margin-top:20px"><strong>הקריאה במשפט:</strong> משולש של אדם שנולד עדין (2), מציג עצמאות והובלה (1), מתנהל בחופש (5) ובא ללמוד כוח וניהול (8). חסרים בו 4 ו-7, והם נוכחים במקומות אחרים במפה: שם המשפחה והשנה הנוכחית.</div>
 </section>
 
 <section class="block" id="sec-digits">
