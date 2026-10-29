@@ -1,0 +1,516 @@
+<title>מפה נומרולוגית של אמה נחמן</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Heebo:wght@400;500;700&display=swap">
+<style>
+/* Concept: a numerologist's worksheet. Ink on lilac paper, one teal for what is present, one brass for what the reading hinges on. Numerals are the hero; letters get tiles showing their values. */
+:root{
+  --bg:#F3F2F8; --surface:#FFFFFF; --surface-2:#ECEAF4; --ink:#1E1B38; --muted:#5F5C7C; --line:#D8D5E8;
+  --accent:#0E7C73; --accent-soft:#D5EEEA; --on-accent:#FFFFFF;
+  --gold:#9A6A12; --gold-soft:#F4E7C8; --miss:#B4442F; --miss-soft:#F8E1DA;
+  --cons:#43388F; --cons-soft:#E4E0F7;
+  --display:'Frank Ruhl Libre','David Libre',Georgia,serif; --body:'Heebo','Segoe UI',Arial,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12111D; --surface:#1B1A2B; --surface-2:#252438; --ink:#ECEAF8; --muted:#A8A5C6; --line:#34324B;
+  --accent:#5FD3C4; --accent-soft:#17393A; --on-accent:#0B1F1D;
+  --gold:#E3B45C; --gold-soft:#3A2F17; --miss:#F09A86; --miss-soft:#3E2520;
+  --cons:#B3A7FF; --cons-soft:#2B2753; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#12111D; --surface:#1B1A2B; --surface-2:#252438; --ink:#ECEAF8; --muted:#A8A5C6; --line:#34324B;
+  --accent:#5FD3C4; --accent-soft:#17393A; --on-accent:#0B1F1D;
+  --gold:#E3B45C; --gold-soft:#3A2F17; --miss:#F09A86; --miss-soft:#3E2520;
+  --cons:#B3A7FF; --cons-soft:#2B2753; color-scheme:dark;}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:74px}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.65;
+  padding-block:0 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+.wrap{max-width:1040px;margin:0 auto}
+h1,h2,h3,.num{font-family:var(--display)}
+h2{font-size:clamp(26px,4vw,34px);margin:0 0 6px;font-weight:700;line-height:1.2;text-wrap:balance}
+h3{font-size:20px;margin:0;font-weight:700}
+h4{font-size:12px;letter-spacing:.08em;margin:0 0 6px;color:var(--muted);font-weight:700}
+p{margin:0 0 10px} ul{margin:0;padding-inline-start:20px} li{margin:3px 0}
+.lead{color:var(--muted);max-width:68ch;margin-bottom:22px}
+
+/* nav */
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line);
+  margin-inline:calc(-1*max(16px,env(safe-area-inset-left,0px)));padding:10px max(16px,env(safe-area-inset-left,0px));overflow-x:auto;white-space:nowrap}
+nav a{display:inline-block;margin-inline-end:6px;padding:5px 12px;border-radius:99px;color:var(--ink);text-decoration:none;font-size:14px;border:1px solid transparent}
+nav a:hover{border-color:var(--line);background:var(--surface)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* hero */
+.hero{padding:44px 0 10px}
+.eyebrow{color:var(--gold);font-weight:700;font-size:13px;letter-spacing:.12em}
+h1{font-size:clamp(44px,9vw,84px);line-height:1.02;margin:6px 0 10px;font-weight:900}
+.meta{display:flex;flex-wrap:wrap;gap:8px 22px;color:var(--muted)}
+.meta b{color:var(--ink);font-weight:500}
+.notice{margin:24px 0 8px;padding:12px 16px;border-radius:10px;background:var(--gold-soft);color:var(--ink);border:1px solid color-mix(in srgb,var(--gold) 40%,transparent);font-size:15px}
+
+section.block{padding:46px 0 6px}
+.core{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:14px;margin-top:22px}
+.medal{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 12px 14px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:2px}
+.medal .ring{width:84px;height:84px;border-radius:50%;border:2px solid var(--accent);display:grid;place-items:center;font-family:var(--display);font-weight:900;font-size:40px;color:var(--accent);margin-bottom:8px}
+.medal.hot .ring{border-color:var(--gold);color:var(--gold);background:var(--gold-soft)}
+.medal b{font-size:15px}.medal small{color:var(--muted);font-size:13px;line-height:1.4}
+.medal .f{font-size:12px;color:var(--muted);direction:ltr;font-variant-numeric:tabular-nums}
+
+/* names */
+.names{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px;margin-top:18px}
+.namebox{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px}
+.namebox h3{margin-bottom:12px;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.tiles{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.ltile{width:56px;height:68px;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border:1px solid var(--line)}
+.ltile .lch{font-family:var(--display);font-size:30px;font-weight:700;line-height:1}
+.ltile .lv{font-size:13px;font-weight:700;font-variant-numeric:tabular-nums}
+.ltile.v{background:var(--accent-soft);color:var(--accent);border-color:color-mix(in srgb,var(--accent) 45%,transparent)}
+.ltile.c{background:var(--cons-soft);color:var(--cons);border-color:color-mix(in srgb,var(--cons) 35%,transparent)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin-top:14px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-inline-end:6px;vertical-align:-1px}
+.sumrow{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-top:1px solid var(--line);font-size:15px}
+.sumrow b{font-family:var(--display);font-size:18px;direction:ltr}
+.fullname{margin-top:16px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:12px;text-align:center}
+.fullname div{padding:6px}
+.fullname .t{color:var(--muted);font-size:13px}
+.fullname .n{font-family:var(--display);font-size:34px;font-weight:900;line-height:1.1}
+.fullname small{display:block;color:var(--muted);direction:ltr;font-size:12px}
+
+.meaning{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:12px;margin-top:16px}
+.meaning div{background:var(--surface);border-inline-start:4px solid var(--accent);border-radius:8px;padding:12px 16px}
+.meaning b{display:block;margin-bottom:2px}
+
+/* birth */
+.calc{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:14px;margin-top:18px}
+.calc div{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px}
+.calc .k{color:var(--muted);font-size:13px}
+.calc .v{font-family:var(--display);font-size:34px;font-weight:900;line-height:1.15}
+.calc .f{direction:ltr;text-align:start;color:var(--muted);font-size:13px;font-variant-numeric:tabular-nums}
+.calc .hl{background:var(--gold-soft);border-color:color-mix(in srgb,var(--gold) 45%,transparent)}
+
+/* digit strip + cards */
+.strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(78px,1fr));gap:8px;margin:18px 0 26px}
+.dchip{display:flex;flex-direction:column;align-items:center;padding:10px 4px;border-radius:12px;text-decoration:none;color:var(--ink);border:1px solid var(--line);background:var(--surface)}
+.dchip .dn{font-family:var(--display);font-size:28px;font-weight:900;line-height:1.1}
+.dchip .ds{font-size:12px;color:var(--muted)}
+.dchip.full{background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 50%,transparent)}
+.dchip.full .dn{color:var(--accent)}
+.dchip.miss{background:var(--miss-soft);border-color:color-mix(in srgb,var(--miss) 50%,transparent)}
+.dchip.miss .dn{color:var(--miss)}
+.dchip.part .dn{color:var(--gold)}
+.dgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:16px}
+.dcard{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;min-width:0}
+.dcard header{display:flex;gap:16px;align-items:center;margin-bottom:12px}
+.bignum{min-width:72px;height:72px;padding:0 10px;border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-weight:900;font-size:34px;border:2px solid var(--gold);color:var(--gold)}
+.bignum.full{border-color:var(--accent);color:var(--accent)}
+.bignum.miss{border-color:var(--miss);color:var(--miss);border-style:dashed}
+.tag{font-size:12px;font-weight:700;padding:2px 10px;border-radius:99px;display:inline-block;margin-top:4px}
+.tag.full{background:var(--accent-soft);color:var(--accent)}
+.tag.miss{background:var(--miss-soft);color:var(--miss)}
+.tag.part{background:var(--gold-soft);color:var(--gold)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.chips span{font-size:13px;padding:3px 10px;border-radius:99px;background:var(--surface-2);color:var(--ink)}
+.dcard section{margin-top:12px;font-size:15px}
+.dcard .gen{padding:10px 12px;border:1px dashed var(--line);border-radius:10px;color:var(--muted)}
+.dcard .gen em{font-style:normal;color:var(--gold);margin-inline-start:6px}
+.dcard .her{padding:12px 14px;border-radius:10px;background:var(--gold-soft)}
+.dcard .her h4{color:var(--gold)} .dcard .her p{margin:0}
+
+/* matrix */
+.mx{display:grid;grid-template-columns:minmax(0,340px) 1fr;gap:26px;margin-top:18px;align-items:start}
+@media (max-width:760px){.mx{grid-template-columns:1fr}}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;direction:ltr;max-width:340px}
+.cell{aspect-ratio:1;border-radius:12px;border:1px solid var(--line);background:var(--surface);display:flex;flex-direction:column;align-items:center;justify-content:center}
+.cell .d{font-family:var(--display);font-size:34px;font-weight:900;line-height:1}
+.cell .c{font-size:12px;color:var(--muted);margin-top:4px}
+.cell.has{background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 50%,transparent)}
+.cell.has .d{color:var(--accent)}
+.cell.no{background:var(--miss-soft);border-style:dashed;border-color:color-mix(in srgb,var(--miss) 55%,transparent)}
+.cell.no .d{color:var(--miss)}
+.mxnote{font-size:13px;color:var(--muted);margin-top:10px}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:420px;font-size:15px}
+th,td{padding:10px 14px;text-align:start;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;letter-spacing:.06em;color:var(--muted);background:var(--surface-2)}
+tr:last-child td{border-bottom:0}
+td.k{font-weight:700;white-space:nowrap}
+.st{font-weight:700;font-size:13px;white-space:nowrap}
+.st.ok{color:var(--accent)} .st.no{color:var(--miss)} .st.mid{color:var(--gold)}
+
+/* excess/deficit */
+.ed{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:14px;margin-top:18px}
+.edbox{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px}
+.edbox .nums{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 12px}
+.edbox .nums span{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-weight:900;font-size:22px;background:var(--accent-soft);color:var(--accent)}
+.edbox.miss .nums span{background:var(--miss-soft);color:var(--miss)}
+.edbox .nums small{align-self:end;color:var(--muted);font-size:11px;margin-inline-start:-4px}
+
+/* combos */
+.combos{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:12px;margin-top:18px}
+.combo{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;gap:14px;align-items:center}
+.combo .cn{font-family:var(--display);font-weight:900;font-size:26px;color:var(--gold);direction:ltr;white-space:nowrap}
+.combo p{margin:0;font-size:15px}
+.bar{display:flex;height:34px;border-radius:99px;overflow:hidden;margin:14px 0 8px;direction:ltr;font-weight:700;font-size:14px;color:var(--on-accent)}
+.bar div{display:flex;align-items:center;justify-content:center}
+.bar .f{background:var(--accent);width:70%} .bar .m{background:var(--cons);color:var(--surface);width:30%}
+
+/* timing */
+.py{display:flex;flex-wrap:wrap;gap:12px;align-items:stretch;margin-top:18px}
+.pyc{flex:1 1 180px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.pyc .n{font-family:var(--display);font-size:46px;font-weight:900;color:var(--accent);line-height:1.1}
+.pyc .f{direction:ltr;color:var(--muted);font-size:13px}
+.pyc.tot{background:var(--gold-soft);border-color:color-mix(in srgb,var(--gold) 45%,transparent)}
+.pyc.tot .n{color:var(--gold)}
+.quarters{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:12px;margin-top:14px}
+.q{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
+.q .n{font-family:var(--display);font-size:38px;font-weight:900;line-height:1.1}
+.q .f{direction:ltr;font-size:13px;color:var(--muted)}
+.q.now{border:2px solid var(--gold);background:var(--gold-soft)}
+.q small{display:block;font-size:12px;color:var(--gold);font-weight:700}
+.pk{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:12px;margin-top:14px}
+.pkc{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.pkc.now{border:2px solid var(--gold);background:var(--gold-soft)}
+.pkc .age{font-size:13px;color:var(--muted)}
+.pkc .r{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-top:6px;font-size:14px}
+.pkc .r b{font-family:var(--display);font-size:28px;font-weight:900}
+.timeline{position:relative;margin:26px 0 8px;direction:ltr}
+.tl{display:flex;height:16px;border-radius:99px;overflow:hidden;gap:2px}
+.tl i{display:block;background:var(--surface-2)} .tl i.cur{background:var(--gold)}
+.tl .s1{width:50.9%}.tl .s2{width:16.4%}.tl .s3{width:16.4%}.tl .s4{width:16.3%}
+.pin{position:absolute;top:-22px;left:80%;transform:translateX(-50%);font-size:12px;font-weight:700;color:var(--gold);white-space:nowrap}
+.pin::after{content:"";display:block;width:2px;height:12px;background:var(--gold);margin:0 auto}
+.scale{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:4px;direction:ltr}
+
+.note{font-size:13px;color:var(--muted);margin-top:10px}
+.sum{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px;font-size:17px;max-width:75ch}
+.open li{margin:6px 0}
+footer{margin-top:60px;color:var(--muted);font-size:13px;text-align:center}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+<script>document.documentElement.setAttribute('dir','rtl');document.documentElement.setAttribute('lang','he');</script>
+
+<div class="wrap" dir="rtl" lang="he">
+<nav aria-label="ניווט">
+  <a href="#sec-core">במבט אחד</a><a href="#sec-name">שם</a><a href="#sec-birth">תאריך לידה</a><a href="#sec-digits">כל ספרה</a><a href="#sec-matrix">מטריצה</a><a href="#sec-excess">עודפים וחוסרים</a><a href="#sec-combos">צירופים</a><a href="#sec-timing">עיתויים</a><a href="#sec-karma">קארמה ושפע</a><a href="#sec-summary">סיכום</a>
+</nav>
+
+<header class="hero">
+  <div class="eyebrow">מפה נומרולוגית</div>
+  <h1>אמה נחמן</h1>
+  <div class="meta"><span>נולדה <b>29.04.1982</b></span><span>גיל <b>44</b></span><span>הופקה <b>אוקטובר 2026</b></span></div>
+  <div class="notice"><strong>טיוטה לעריכה.</strong> המפה חושבה לפי המתודולוגיה שבשקפים. חלקים שאין להם נוסחה בשקפים מסומנים "הרחבה כללית לבדיקה" או נשארו פתוחים בסוף העמוד.</div>
+</header>
+
+<section class="block" id="sec-core">
+  <h2>המספרים המרכזיים במבט אחד</h2>
+  <p class="lead">שביל הגורל והאור הסודי מסומנים בזהב: הם המפתח לקריאה של כל המפה.</p>
+  <div class="core">
+    <div class="medal hot"><div class="ring">8</div><b>שביל גורל</b><small>כוח, ניהול וכסף. מה שהיא באה ללמוד</small><span class="f">2+9+0+4+1+9+8+2 = 35</span></div>
+    <div class="medal"><div class="ring">2</div><b>יום לידה</b><small>רגישות ושיתוף. התכונה הטבעית</small><span class="f">29 → 11 → 2</span></div>
+    <div class="medal hot"><div class="ring">1</div><b>אור סודי</b><small>עצמאות ויוזמה. הגשר בין 2 ל-8</small><span class="f">8 + 2 = 10</span></div>
+    <div class="medal"><div class="ring">6</div><b>אהו"י</b><small>הפנימיות: הרמוניה ואהבה</small><span class="f">א1 + ה5</span></div>
+    <div class="medal"><div class="ring">8</div><b>עיצורים</b><small>התדמית: כוח וניהול</small><span class="f">26 → 8</span></div>
+    <div class="medal"><div class="ring">5</div><b>שם מלא</b><small>שינוי וחופש</small><span class="f">6 + 26 = 32</span></div>
+    <div class="medal"><div class="ring">1</div><b>שם פרטי</b><small>עצמאות והובלה</small><span class="f">10 → 1</span></div>
+    <div class="medal"><div class="ring">22</div><b>שם משפחה</b><small>מאסטר בנאי (מצומצם 4)</small><span class="f">22 → 4</span></div>
+  </div>
+</section>
+
+<section class="block" id="sec-name">
+  <h2>ניתוח השם</h2>
+  <p class="lead">ערך כל אות מצומצם לספרה אחת. אותיות אהו"י (א, ה, ו, י) מייצגות את הפנימיות, וכל השאר את העיצורים. השיטה נבדקה מול הדוגמה בשקפים ("לינור שלום") ונתנה אותן תוצאות.</p>
+  <div class="names">
+    <div class="namebox">
+      <h3><span>אמה</span><span class="num">10 → 1</span></h3>
+      <div class="tiles" style="direction:rtl"><div class="ltile v"><span class="lch">א</span><span class="lv">1</span></div><div class="ltile c"><span class="lch">מ</span><span class="lv">4</span></div><div class="ltile v"><span class="lch">ה</span><span class="lv">5</span></div></div>
+      <div class="sumrow"><span>אהו"י: א + ה</span><b>6</b></div>
+      <div class="sumrow"><span>עיצורים: מ</span><b>4</b></div>
+      <div class="sumrow"><span>סה"כ</span><b>10 → 1</b></div>
+    </div>
+    <div class="namebox">
+      <h3><span>נחמן</span><span class="num">22 → 4</span></h3>
+      <div class="tiles" style="direction:rtl"><div class="ltile c"><span class="lch">נ</span><span class="lv">5</span></div><div class="ltile c"><span class="lch">ח</span><span class="lv">8</span></div><div class="ltile c"><span class="lch">מ</span><span class="lv">4</span></div><div class="ltile c"><span class="lch">ן</span><span class="lv">5</span></div></div>
+      <div class="sumrow"><span>אהו"י</span><b>0</b></div>
+      <div class="sumrow"><span>עיצורים: 5+8+4+5</span><b>22</b></div>
+      <div class="sumrow"><span>סה"כ (מאסטר)</span><b>22 → 4</b></div>
+    </div>
+  </div>
+  <div class="legend"><span><i style="background:var(--accent-soft);border:1px solid var(--accent)"></i>אות אהו"י</span><span><i style="background:var(--cons-soft);border:1px solid var(--cons)"></i>עיצור</span><span>אותיות סופיות כמו הרגילות: ן=5, ם=4</span></div>
+  <div class="fullname">
+    <div><div class="t">אהו"י</div><div class="n">6</div><small>6 + 0</small></div>
+    <div><div class="t">עיצורים</div><div class="n">8</div><small>4 + 22 = 26</small></div>
+    <div><div class="t">שם מלא</div><div class="n">5</div><small>6 + 26 = 32</small></div>
+    <div><div class="t">אות ראשונה</div><div class="n">1</div><small>א</small></div>
+  </div>
+  <div class="meaning">
+    <div><b>אהו"י 6 · הפנימיות</b>הלב והנשמה. אישיות מסורה, אכפתית, מחפשת הרמוניה. הצד המאתגר: ריצוי, פרפקציוניזם וקושי בגבולות.</div>
+    <div><b>עיצורים 8 · התדמית</b>כלפי חוץ היא נתפסת חזקה, מנהלת ובעלת יכולת. זהה לשביל הגורל, כך שהסביבה מזהה מיד את השליחות שלה.</div>
+    <div><b>שם מלא 5 · ההתנהלות</b>חופש, שינויים וגמישות. מתאים לאדם שאוהב שינוי, אך עלול להתקשות בהתחייבות.</div>
+    <div><b>שם פרטי 1 · הזהות</b>יוזמה, עצמאות והובלה. גם האות הראשונה (א) היא 1.</div>
+    <div><b>שם משפחה 22/4 · השורשים</b>מאסטר 22 הוא יכולת בנייה גדולה. כשלא מנוצל הוא מתבטא כ-4: יציבות ועבודה קשה.</div>
+  </div>
+</section>
+
+<section class="block" id="sec-birth">
+  <h2>תאריך הלידה</h2>
+  <p class="lead">לרוב יום הלידה מורגש יותר משביל הגורל: הוא תכונה קיימת, בעוד שביל הגורל הוא מה שעליה ללמוד.</p>
+  <div class="calc">
+    <div><div class="k">יום לידה</div><div class="v">11 / 2</div><div class="f">29 → 2+9 = 11 → 1+1 = 2</div></div>
+    <div><div class="k">חודש</div><div class="v">4</div><div class="f">04</div></div>
+    <div><div class="k">שנה</div><div class="v">2</div><div class="f">1+9+8+2 = 20 → 2</div></div>
+    <div class="hl"><div class="k">שביל גורל</div><div class="v">8</div><div class="f">2+9+0+4+1+9+8+2 = 35 → 8</div></div>
+    <div class="hl"><div class="k">אור סודי (דיסוננס)</div><div class="v">1</div><div class="f">8 + 2 = 10 → 1</div></div>
+  </div>
+  <div class="meaning">
+    <div><b>יום לידה 2</b>רגישות, שיתוף וחיבור לאנשים. זו הטבעיות שלה.</div>
+    <div><b>שביל גורל 8</b>ניהול, כוח, כסף והצלחה חומרית: המשימה.</div>
+    <div><b>אור סודי 1</b>הדרך לגשר על הפער בין 2 ל-8 היא לאמץ את תכונות ה-1: עצמאות, יוזמה והובלה.</div>
+  </div>
+</section>
+
+<section class="block" id="sec-digits">
+  <h2>פירוט כל ספרה</h2>
+  <p class="lead">לכל ספרה: איפה היא במפה, מה אומרים עליה השקפים, הרחבה כללית שלא מהשקפים (לבדיקה), ומה המשמעות עבור אמה. הלחיצה על ספרה קופצת לכרטיס שלה.</p>
+  <div class="legend" style="margin-bottom:0"><span><i style="background:var(--accent-soft);border:1px solid var(--accent)"></i>נוכחת</span><span><i style="background:var(--surface);border:1px solid var(--gold)"></i>נוכחת חלקית</span><span><i style="background:var(--miss-soft);border:1px dashed var(--miss)"></i>חסרה</span></div>
+  <div class="strip"><a class="dchip part" href="#d0"><span class="dn">0</span><span class="ds">בתאריך</span></a><a class="dchip full" href="#d1"><span class="dn">1</span><span class="ds">נוכחת</span></a><a class="dchip full" href="#d2"><span class="dn">2</span><span class="ds">נוכחת</span></a><a class="dchip miss" href="#d3"><span class="dn">3</span><span class="ds">חסרה</span></a><a class="dchip full" href="#d4"><span class="dn">4</span><span class="ds">נוכחת</span></a><a class="dchip full" href="#d5"><span class="dn">5</span><span class="ds">בשם</span></a><a class="dchip full" href="#d6"><span class="dn">6</span><span class="ds">נוכחת</span></a><a class="dchip part" href="#d7"><span class="dn">7</span><span class="ds">שנה אישית</span></a><a class="dchip full" href="#d8"><span class="dn">8</span><span class="ds">נוכחת</span></a><a class="dchip part" href="#d9"><span class="dn">9</span><span class="ds">בתאריך</span></a></div>
+  <div class="dgrid">
+<article class="dcard" id="d0">
+  <header>
+    <div class="bignum part">0</div>
+    <div><h3>0 · שומרי הסף</h3><span class="tag part">נוכחת חלקית</span></div>
+  </header>
+  <div class="chips"><span>חודש הלידה 04</span><span>אתגר 0 בתקופה 2 (גילאי 28–37)</span></div>
+  <section><h4>מהשקפים</h4><ul><li>אינסוף, אפשרויות בלתי מוגבלות והתחלות חדשות.</li><li>אנשים עם השפעה של 0 הם בעלי צורה מיוחדת של יצירתיות ומסוגלים להישגים יוצאי דופן.</li><li>מזכיר לנו שאנחנו חלק ממשהו גדול יותר.</li><li>כאתגר: "הכל או כלום". תלוי במודעות האדם, מאפשר יכולת זימון מהירה ודורש תשומת לב למחשבות.</li></ul></section>
+  <section class="gen"><h4>הרחבה כללית <em>לבדיקה</em></h4><ul><li>הספרה אינה נספרת במטריצה ובחישובי הצמצום.</li></ul></section>
+  <section class="her"><h4>עבור אמה</h4><p>אתגר 0 היה בעבר: תקופה שבה המחשבות עיצבו את המציאות במהירות, "הכל או כלום".</p></section>
+</article>
+<article class="dcard" id="d1">
+  <header>
+    <div class="bignum full">1</div>
+    <div><h3>1 · התחלה והובלה</h3><span class="tag full">נוכחת במפה</span></div>
+  </header>
+  <div class="chips"><span>שם פרטי "אמה" (10→1)</span><span>אות ראשונה (א=1)</span><span>אור סודי (10→1)</span><span>פסגה 1 בתקופה הנוכחית (37–46)</span><span>ספרה אחת במטריצה</span><span>שנה אוניברסלית 2026</span></div>
+  <section><h4>מהשקפים</h4><ul><li>התחלה והובלה, עצמאות ויוזמה.</li><li>עודף (1): מנהיגות וביטחון עצמי; עלול להתבטא באגו מוגזם.</li><li>צירופים: 1-2 (עצמאות מול שיתוף), 1-5-7 (חיבור פיזי-רוחני), 1-7 (פיזי מול רוחני), 1-5 (צירוף דומה).</li></ul></section>
+  <section class="gen"><h4>הרחבה כללית <em>לבדיקה</em></h4><ul><li>תדר חיובי: יוזמה, אומץ, חלוציות, יכולת להתחיל מאפס.</li><li>תדר שלילי: עקשנות, חוסר סבלנות, קושי לבקש עזרה, נטייה לשליטה.</li></ul></section>
+  <section class="her"><h4>עבור אמה</h4><p>1 מופיע פעמיים במנין (שם פרטי ואות ראשונה) ובנוסף כאור הסודי. הוא הגשר בין העדינות שלה (2) למשימת הכוח (8): לאמץ יוזמה ועצמאות. בתקופה הנוכחית (פסגה 1) מתבקש לקחת הובלה.</p></section>
+</article>
+<article class="dcard" id="d2">
+  <header>
+    <div class="bignum full">2</div>
+    <div><h3>2 · שיתוף ורגש</h3><span class="tag full">נוכחת במפה</span></div>
+  </header>
+  <div class="chips"><span>יום הלידה (29→11→2)</span><span>שנת הלידה (1982→20→2)</span><span>שני 2 במטריצה</span><span>אתגר 2 (תקופות 1, 3 ו-4)</span></div>
+  <section><h4>מהשקפים</h4><ul><li>שיתוף. מספר רוחני. אנרגיה נשית חזקה.</li><li>חוסר (2): קושי בשיתוף פעולה ובמערכות יחסים, חוסר בפן הרגשי. אצלה הספרה נוכחת.</li><li>צירופים: 2-4-8 (עולם החומר והמעשה), 2-8 (עדינות מול עוצמה), 2-7 (צינור שפע), 2-5-8 (עולם הרגש).</li></ul></section>
+  <section class="gen"><h4>הרחבה כללית <em>לבדיקה</em></h4><ul><li>תדר חיובי: דיפלומטיה, רגישות, אינטואיציה, יכולת הקשבה ושיתוף פעולה.</li><li>תדר שלילי: חוסר החלטיות, תלות, פגיעות לביקורת.</li></ul></section>
+  <section class="her"><h4>עבור אמה</h4><p>יום הלידה מורגש יותר משביל הגורל, ולכן ה-2 הוא התכונה "הטבעית" שלה: עדינות, חיבור לאנשים ורגשות. הוא במתח יצירתי עם שביל הגורל 8.</p></section>
+</article>
+<article class="dcard" id="d3">
+  <header>
+    <div class="bignum miss">3</div>
+    <div><h3>3 · יצירתיות</h3><span class="tag miss">חסרה במפה</span></div>
+  </header>
+  <div class="chips"><span>אינה נוכחת במנין העודפים והחוסרים</span><span>חסרה במטריצה</span></div>
+  <section><h4>מהשקפים</h4><ul><li>יצירתיות וכושר ביטוי תקשורתי.</li><li>עודף (3): פיזור אנרגיה וקושי להתמקד. אצלה אין עודף.</li><li>מספר מזל. צירופים: 3-4 (יצירתיות מול מבניות), 3-8 (יצירה מול שליטה), 3-5-7, 3-6-9.</li><li>מישור החשיבה (1-2-3) ומישור הביצוע (3-6-9): ב-3 חסר במטריצה.</li></ul></section>
+  <section class="gen"><h4>הרחבה כללית <em>לבדיקה</em></h4><ul><li>חוסר 3 עשוי להצביע על קושי בביטוי עצמי, בשמחה ובספונטניות.</li></ul></section>
+  <section class="her"><h4>עבור אמה</h4><p>חוסר ב-3 מקשה "להוציא" יצירתיות וביטוי. מה שעוזר: ביטוי מכוון כמו כתיבה, דיבור או יצירה. נתיב השפע "יצירה" (538/358) חלקי בגללו.</p></section>
+</article>
+<article class="dcard" id="d4">
+  <header>
+    <div class="bignum full">4</div>
+    <div><h3>4 · יציבות ומבנה</h3><span class="tag full">נוכחת במפה</span></div>
+  </header>
+  <div class="chips"><span>שם משפחה "נחמן" (22→4)</span><span>חודש לידה 4</span><span>פסגה 2 (גילאי 28–37)</span><span>ספרה אחת במטריצה</span></div>
+  <section><h4>מהשקפים</h4><ul><li>יציבות ומבניות. אנרגיה גברית חזקה.</li><li>צירופים: 4-6 (פוטנציאל לזוגיות ארוכת טווח), 4-5 (סדר מול שינוי), 4-9 (פרידה או שחרור, רק בפסגות או אתגרים בצמידות), 3-4 (יצירתיות מול מבניות), 2-4-8 (עולם החומר).</li><li>נוכחות 4 שלוש פעמים ומעלה: יכולות מדיום.</li></ul></section>
+  <section class="gen"><h4>הרחבה כללית <em>לבדיקה</em></h4><ul><li>תדר חיובי: סדר, עקביות, אמינות, כושר בנייה.</li><li>תדר שלילי: נוקשות, שמרנות, עבודה יתר.</li></ul></section>
+  <section class="her"><h4>עבור אמה</h4><p>ה-4 מגיע מהשורשים: שם המשפחה והמאסטר 22 שמאחוריו. הוא נוכח גם בחודש הלידה ובפסגה 2, כלומר שלוש פעמים לפחות, ועשוי לרמוז ליכולות רגישות או מדיומיות.</p></section>
+</article>
+<article class="dcard" id="d5">
+  <header>
+    <div class="bignum full">5</div>
+    <div><h3>5 · שינוי וחופש</h3><span class="tag full">נוכחת במפה</span></div>
+  </header>
+  <div class="chips"><span>שם מלא (32→5)</span><span>חסרה במטריצה</span></div>
+  <section><h4>מהשקפים</h4><ul><li>שינוי וחופש. אנרגיה נשית מתונה.</li><li>עודף (5): אוהב שינויים וחופש, הרפתקן, מתקשה להתחייב. אצלה אין עודף.</li><li>צירופים: 4-5 (סדר מול שינוי), 5-7 (חיצוניות מול פנימיות), 1-5-7, 3-5 (צינור שפע), 5-5-5 (שינויים).</li></ul></section>
+  <section class="gen"><h4>הרחבה כללית <em>לבדיקה</em></h4><ul><li>תדר חיובי: גמישות, סקרנות, אומץ לשנות, חיים בהווה.</li><li>תדר שלילי: חוסר יציבות, פיזור, בריחה מאחריות.</li></ul></section>
+  <section class="her"><h4>עבור אמה</h4><p>השם המלא 5 מתאר את ההתנהלות: הסביבה חווה אותה כאדם חופשי ומשתנה. במטריצה 5 חסר, אז פנימית היא עשויה להיות פחות גמישה ממה שנראה, ומישור הרגש (4-5-6) חלש.</p></section>
+</article>
+<article class="dcard" id="d6">
+  <header>
+    <div class="bignum full">6</div>
+    <div><h3>6 · הרמוניה</h3><span class="tag full">נוכחת במפה</span></div>
+  </header>
+  <div class="chips"><span>אהו"י (6)</span><span>פסגות 1 ו-4</span><span>שנה אישית מורחבת 2026 (15→6)</span><span>רבעונים 2 ו-3</span></div>
+  <section><h4>מהשקפים</h4><ul><li><strong>תדר חיובי:</strong> מסירות ואהבה, רגישות ואמפתיה, נדיבות ונאמנות, חוש אסתטי מפותח.</li><li><strong>יכולות מקצועיות:</strong> יצירת הרמוניה בסביבה, טיפול ותמיכה באחרים, יכולת הקשבה גבוהה, חיבור למסורת ומשפחה.</li><li><strong>תדר שלילי:</strong> רגשנות יתר ודרמטיות, פרפקציוניזם מוגזם, דאגנות יתר, רגישות גבוהה לביקורת.</li><li><strong>קשיים במערכות יחסים:</strong> התערבות יתר בחיי אחרים, הימנעות מקונפליקטים, ריצוי אחרים, קושי בהצבת גבולות.</li><li>אנרגיה נשית חזקה. חוסר (6): קושי באחריות למשפחה. אצלה נוכח.</li><li>צירופים: 4-6 (זוגיות ארוכת טווח), 3-6-9, 2-6.</li></ul></section>
+  
+  <section class="her"><h4>עבור אמה</h4><p>6 הוא האהו"י: הלב והנשמה שלה. אישיות אכפתית ומחפשת הרמוניה. השנה (6 מורחב) ושתי פסגות (6) מעוררים נושאי משפחה, בית ואחריות.</p></section>
+</article>
+<article class="dcard" id="d7">
+  <header>
+    <div class="bignum part">7</div>
+    <div><h3>7 · רוחניות</h3><span class="tag part">נוכחת חלקית</span></div>
+  </header>
+  <div class="chips"><span>שנה אישית 2026 (52→7)</span><span>חסרה במטריצה ובמנין</span></div>
+  <section><h4>מהשקפים</h4><ul><li>רוחניות. אנרגיה גברית מתונה. מספר רוחני.</li><li>צירופים: 1-7 (פיזי מול רוחני), 5-7 (חיצוניות מול פנימיות), 8-7 (חומר מול רוח), 2-7 (צינור שפע), 7-5 (קוד השיגעון: חכמים וחריפים), 1-5-7, 3-5-7.</li><li>מישור המעשה (7-8-9) ומישור היוזמה (1-4-7): ב-7 חסר במטריצה.</li><li>שומרי הסף: משולש המכיל רק 7 ו-9.</li></ul></section>
+  <section class="gen"><h4>הרחבה כללית <em>לבדיקה</em></h4><ul><li>חוסר 7 עשוי להצביע על קושי בהתבוננות פנימית ובלימוד רוחני.</li></ul></section>
+  <section class="her"><h4>עבור אמה</h4><p>השנה היא שנת 7: הזדמנות להשלים את החסר דרך התבודדות, למידה והתבוננות פנימית. נתיב השפע "למידה" (279/729) חלקי בגלל 7 חסר.</p></section>
+</article>
+<article class="dcard" id="d8">
+  <header>
+    <div class="bignum full">8</div>
+    <div><h3>8 · הצלחה חומרית</h3><span class="tag full">נוכחת במפה</span></div>
+  </header>
+  <div class="chips"><span>שביל גורל (35→8)</span><span>עיצורי השם (26→8)</span><span>גיל מצומצם 2026 (4+4)</span><span>רבעון 4 של 2026</span><span>ספרה אחת במטריצה</span></div>
+  <section><h4>מהשקפים</h4><ul><li>הצלחה חומרית. אנרגיה גברית חזקה.</li><li>חוסר (8): בעיה בניהול כספים או קושי בתחום החומרי והעסקי. אצלה אין חוסר.</li><li>צירופים: 2-8 (עדינות מול עוצמה), 3-8 (יצירה מול שליטה), 8-7 (חומר מול רוח), 2-4-8 (עולם החומר), 4-8, 5-8, 1-8.</li><li>קוד הנסיך (3-8): אצילות, שפע ונוחות, ללמוד להשתמש בכסף כמנוף.</li></ul></section>
+  <section class="gen"><h4>הרחבה כללית <em>לבדיקה</em></h4><ul><li>תדר חיובי: מנהיגות, ניהול, הצלחה כלכלית, סמכות, ראייה עסקית.</li><li>תדר שלילי: אובססיה לכסף ולשליטה, קשיחות, עבודה יתר.</li></ul></section>
+  <section class="her"><h4>עבור אמה</h4><p>8 הוא שביל הגורל, מה שהיא באה ללמוד: להחזיק כוח, כסף וניהול בצורה בריאה. הוא גם התדמית שלה כלפי חוץ (עיצורים 26→8), ולכן אנשים רואים בה כוח ויכולת גם כשבפנים היא רגישה (2 ו-6). האתגר הוא לשלב בין הכוח לרגישות.</p></section>
+</article>
+<article class="dcard" id="d9">
+  <header>
+    <div class="bignum part">9</div>
+    <div><h3>9 · חכמה עליונה</h3><span class="tag part">נוכחת חלקית</span></div>
+  </header>
+  <div class="chips"><span>שני 9 במטריצה</span><span>רבעון 1 של 2026</span><span>חסרה במנין העודפים והחוסרים</span></div>
+  <section><h4>מהשקפים</h4><ul><li>חכמה עליונה. אנרגיה גברית מתונה. מספר רוחני ומספר מזל.</li><li>חוסר (9): חוסר בהתבוננות רוחנית והבנה רחבה, קושי בסגירת מעגלים.</li><li>צירופים: 4-9 (מסגרת מול חופש, פרידה או שחרור), 7-9, 3-6-9, 1-5-9 (אלכסון חוצה עולמות), 9-9-9 (רוחניות).</li><li>שומרי הסף: משולש המכיל רק 7 ו-9.</li></ul></section>
+  <section class="gen"><h4>הרחבה כללית <em>לבדיקה</em></h4><ul><li>תדר חיובי: חמלה, מבט רחב, סיום מעגלים, נתינה ללא תנאי.</li><li>תדר שלילי: קושי בשחרור, מרטירות, קושי להשלים תהליכים.</li></ul></section>
+  <section class="her"><h4>עבור אמה</h4><p>ה-9 נמצא בתאריך (פעמיים) אבל לא בשם: הכישרון קיים מלידה, אך לא נבנה בשם. אתגר מרכזי: סגירת מעגלים והתבוננות רחבה על החיים.</p></section>
+</article>
+<article class="dcard" id="d11">
+  <header>
+    <div class="bignum part">11</div>
+    <div><h3>11 · מאסטר</h3><span class="tag part">נוכחת חלקית</span></div>
+  </header>
+  <div class="chips"><span>יום הלידה (29→11→2)</span></div>
+  <section><h4>מהשקפים</h4><ul><li>מספר מאסטר, רוחני. בדוגמה בשקפים: יום לידה 11→2.</li><li>מספרי מאסטר (11, 22) בתוצאה ללא שיעור מביאים יכולת ליצור הרמוניה בקלות רבה יותר, בהקשר זוגי.</li></ul></section>
+  <section class="gen"><h4>הרחבה כללית <em>לבדיקה</em></h4><ul><li>השראה, אינטואיציה גבוהה, רגישות רוחנית, שליחות לחזון.</li></ul></section>
+  <section class="her"><h4>עבור אמה</h4><p>יום הלידה 29/11/2 נותן פוטנציאל רוחני ורגישות גבוהה. כשהמאסטר לא ממומש הוא מתבטא כאנרגיה של 2.</p></section>
+</article>
+<article class="dcard" id="d22">
+  <header>
+    <div class="bignum part">22</div>
+    <div><h3>22 · מאסטר בנאי</h3><span class="tag part">נוכחת חלקית</span></div>
+  </header>
+  <div class="chips"><span>שם המשפחה "נחמן" (22→4)</span></div>
+  <section><h4>מהשקפים</h4><ul><li>מספר מאסטר, רוחני.</li><li>מופיע גם כ-4 (מצומצם): יציבות ומבניות.</li></ul></section>
+  <section class="gen"><h4>הרחבה כללית <em>לבדיקה</em></h4><ul><li>יכולת להפוך חזון גדול למציאות מעשית, בנייה בקנה מידה רחב, אחריות כבדה.</li></ul></section>
+  <section class="her"><h4>עבור אמה</h4><p>שם המשפחה נושא פוטנציאל גדול לבנייה. כשהוא לא מנוצל הוא מתבטא כ-4: עבודה קשה ויציבות.</p></section>
+</article></div>
+</section>
+
+<section class="block" id="sec-matrix">
+  <h2>המטריצה</h2>
+  <p class="lead">ספרות התאריך 29.04.1982 בלי אפסים: 2, 9, 4, 1, 9, 8, 2. השורות הן מישורי החשיבה (1-2-3), הרגש (4-5-6) והמעשה (7-8-9).</p>
+  <div class="mx">
+    <div>
+      <div class="grid3">
+        <div class="cell has"><span class="d">1</span><span class="c">×1</span></div><div class="cell has"><span class="d">2</span><span class="c">×2</span></div><div class="cell no"><span class="d">3</span><span class="c">חסר</span></div><div class="cell has"><span class="d">4</span><span class="c">×1</span></div><div class="cell no"><span class="d">5</span><span class="c">חסר</span></div><div class="cell no"><span class="d">6</span><span class="c">חסר</span></div><div class="cell no"><span class="d">7</span><span class="c">חסר</span></div><div class="cell has"><span class="d">8</span><span class="c">×1</span></div><div class="cell has"><span class="d">9</span><span class="c">×2</span></div>
+      </div>
+      <p class="mxnote">הספרה 6 חסרה במטריצה אבל נוכחת בשם (אהו"י).</p>
+    </div>
+    <div class="tablewrap"><table>
+      <thead><tr><th>מישור</th><th>מצב</th><th>משמעות</th></tr></thead>
+      <tbody>
+        <tr><td class="k">חשיבה 1-2-3</td><td class="st mid">חסר 3</td><td>חשיבה ורגש קיימים, חסר ביטוי יצירתי</td></tr>
+        <tr><td class="k">רגש 4-5-6</td><td class="st no">רק 4</td><td>מישור רגשי חלש במטריצה (6 קיים בשם)</td></tr>
+        <tr><td class="k">מעשה 7-8-9</td><td class="st mid">חסר 7</td><td>יכולת ביצוע וחכמה, חסר עומק רוחני</td></tr>
+        <tr><td class="k">יוזמה 1-4-7</td><td class="st mid">חסר 7</td><td>יוזמה ויציבות קיימות</td></tr>
+        <tr><td class="k">ארגון 2-5-8</td><td class="st mid">חסר 5</td><td>עולם הרגש: חסר מאזן, קושי אפשרי בהתמודדות עם כאב</td></tr>
+        <tr><td class="k">ביצוע 3-6-9</td><td class="st no">רק 9</td><td>חסר חיבור יצירתי ואחריות מעשית</td></tr>
+        <tr><td class="k">אלכסון 1-5-9</td><td class="st mid">חסר 5</td><td>משמעותיות ועצמאות: קיימים 1 ו-9</td></tr>
+        <tr><td class="k">אלכסון 3-5-7</td><td class="st no">ריק</td><td>אין חשיבה יצירתית מובנית</td></tr>
+      </tbody></table></div>
+  </div>
+</section>
+
+<section class="block" id="sec-excess">
+  <h2>עודפים וחוסרים</h2>
+  <p class="lead">הספרות שנספרו: אהו"י 6, שם מלא 5, שם פרטי 1, משפחה 4, יום לידה 2, שביל גורל 8, אות ראשונה 1.</p>
+  <div class="ed">
+    <div class="edbox"><h3>נוכחות</h3><div class="nums"><span>1</span><small>×2</small><span>2</span><span>4</span><span>5</span><span>6</span><span>8</span></div><p>אין עודף: אף ספרה לא חוזרת 3 פעמים ומעלה. אין מספר שמוביל.</p></div>
+    <div class="edbox miss"><h3>חוסרים</h3><div class="nums"><span>3</span><span>7</span><span>9</span></div><p><strong>חוסר 9:</strong> חוסר בהתבוננות רוחנית והבנה רחבה, קושי בסגירת מעגלים.</p><p class="note" style="margin:0">3 ו-7: השקפים לא מפרטים משמעות לחוסר שלהם.</p></div>
+  </div>
+</section>
+
+<section class="block" id="sec-combos">
+  <h2>צירופים</h2>
+  <div class="combos">
+    <div class="combo"><span class="cn">2-4-8</span><p><strong>עולם החומר והמעשה.</strong> שלוש הספרות נוכחות: 2 ביום הלידה, 4 במשפחה, 8 בגורל ובעיצורים. יכולת לבנות דברים יציבים.</p></div>
+    <div class="combo"><span class="cn">2-8</span><p><strong>עדינות מול עוצמה.</strong> המתח המרכזי במפה.</p></div>
+    <div class="combo"><span class="cn">1-5</span><p>שם פרטי 1 ושם מלא 5: עצמאות מול שינוי.</p></div>
+    <div class="combo"><span class="cn">4-6</span><p>פסגה 1 (6) ופסגה 2 (4) צמודות: פוטנציאל לזוגיות ארוכת טווח.</p></div>
+    <div class="combo"><span class="cn">11 · 22</span><p><strong>מאסטרים:</strong> 11 ביום הלידה, 22 בשם המשפחה.</p></div>
+    <div class="combo"><span class="cn">3-6-9</span><p><strong>מספרי מזל:</strong> 6 באהו"י ו-9 בתאריך. 3 חסר.</p></div>
+  </div>
+  <h3 style="margin-top:28px">אנרגיה נשית וגברית</h3>
+  <p class="lead" style="margin-bottom:0">שקלול הדומיננטיות: שביל גורל 30%, שם מלא 25%, יום לידה 25%, אהו"י 20%.</p>
+  <div class="bar" role="img" aria-label="70 אחוז נשי, 30 אחוז גברי"><div class="f">70% נשי</div><div class="m">30% גברי</div></div>
+  <p class="note">גורל 8 (30%) גברי חזק · שם מלא 5 (25%) נשי מתון · יום לידה 2 (25%) נשי חזק · אהו"י 6 (20%) נשי חזק.</p>
+</section>
+
+<section class="block" id="sec-timing">
+  <h2>עיתויים 2026</h2>
+  <h3 style="margin-top:20px">שנה אישית מורחבת</h3>
+  <p class="lead" style="margin-bottom:0">שלוש אנרגיות יחד: גיל + גורל, גיל מצומצם, והשילוב ביניהן.</p>
+  <div class="py">
+    <div class="pyc"><div class="n">7</div><b>רוחניות</b><div class="f">44 + 8 = 52 → 7</div></div>
+    <div class="pyc"><div class="n">8</div><b>שפע והצלחה</b><div class="f">4 + 4 = 8</div></div>
+    <div class="pyc tot"><div class="n">6</div><b>משפחה ואחריות</b><div class="f">7 + 8 = 15 → 6</div></div>
+  </div>
+  <p class="note">השנה חוברים התבוננות רוחנית, הצלחה כלכלית ונושאי משפחה ובית.</p>
+
+  <h3 style="margin-top:28px">רבעונים</h3>
+  <p class="lead" style="margin-bottom:0">שנה אוניברסלית 1 · גורל 8 · שנה אישית 7.</p>
+  <div class="quarters">
+    <div class="q"><small>&nbsp;</small><div class="n">9</div><div>רבעון 1</div><div class="f">1 + 8</div></div>
+    <div class="q"><small>&nbsp;</small><div class="n">6</div><div>רבעון 2</div><div class="f">8 + 7 = 15</div></div>
+    <div class="q"><small>&nbsp;</small><div class="n">6</div><div>רבעון 3</div><div class="f">9 + 6 = 15</div></div>
+    <div class="q now"><small>אוקטובר, אם לפי לוח שנה</small><div class="n">8</div><div>רבעון 4</div><div class="f">1 + 7</div></div>
+  </div>
+
+  <h3 style="margin-top:28px">פסגות ואתגרים</h3>
+  <p class="note" style="margin-top:2px">הנוסחה אינה מופיעה בשקפים. חושב לפי הנוסחה הסטנדרטית (חודש 4, יום 2, שנה 2).</p>
+  <div class="timeline"><div class="pin">אמה, גיל 44</div><div class="tl"><i class="s1"></i><i class="s2"></i><i class="s3 cur"></i><i class="s4"></i></div><div class="scale"><span>0</span><span>28</span><span>37</span><span>46</span><span>55</span></div></div>
+  <div class="pk">
+    <div class="pkc"><div class="age">תקופה 1 · עד גיל 28</div><div class="r"><span>פסגה</span><b>6</b></div><div class="r"><span>אתגר</span><b>2</b></div></div>
+    <div class="pkc"><div class="age">תקופה 2 · 28–37</div><div class="r"><span>פסגה</span><b>4</b></div><div class="r"><span>אתגר</span><b>0</b></div></div>
+    <div class="pkc now"><div class="age">תקופה 3 · 37–46 · כעת</div><div class="r"><span>פסגה</span><b>1</b></div><div class="r"><span>אתגר</span><b>2</b></div></div>
+    <div class="pkc"><div class="age">תקופה 4 · מגיל 46 (2028)</div><div class="r"><span>פסגה</span><b>6</b></div><div class="r"><span>אתגר</span><b>2</b></div></div>
+  </div>
+  <div class="meaning">
+    <div><b>התקופה הנוכחית</b>פסגה 1 (יוזמה והובלה) עם אתגר 2 (שיתוף פעולה ורגישות).</div>
+    <div><b>אתגר 0 בתקופה 2</b>"הכל או כלום": תקופה שדרשה תשומת לב למחשבות. היא כבר מאחוריה.</div>
+    <div><b>4-6 בפסגות 1 ו-2</b>צירוף צמוד שמעיד על פוטנציאל לזוגיות ארוכת טווח.</div>
+  </div>
+</section>
+
+<section class="block" id="sec-karma">
+  <h2>קארמה ושפע</h2>
+  <h3 style="margin-top:18px">חובות קארמתיים</h3>
+  <div class="notice" style="background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 45%,transparent);margin-top:8px">מספרי השם: 10, 22, 6, 26, 32. אין חוב 13/4, 14/5, 16/7 או 19/1. לפי השקפים זו <strong>מפה ללא חובות</strong>: נשמה שהגיעה "נקייה" מגלגולים קודמים.</div>
+  <h3 style="margin-top:24px">נתיבי שפע</h3>
+  <div class="tablewrap" style="margin-top:10px"><table>
+    <thead><tr><th>נתיב</th><th>מצב</th><th>פירוט</th></tr></thead>
+    <tbody>
+      <tr><td class="k">משפחה 461 / 641</td><td class="st ok">חזק</td><td>6 (אהו"י), 4 (משפחה) ו-1 (שם פרטי ואור סודי) נוכחים</td></tr>
+      <tr><td class="k">יצירה 538 / 358</td><td class="st mid">חלקי</td><td>5 ו-8 נוכחים, 3 חסר</td></tr>
+      <tr><td class="k">למידה 279 / 729</td><td class="st mid">חלקי</td><td>2 ו-9 נוכחים, 7 חסר</td></tr>
+    </tbody></table></div>
+  <p class="note">השקפים לא מגדירים איך בדיוק מזהים נתיב, אז זו הערכה זהירה.</p>
+</section>
+
+<section class="block" id="sec-summary">
+  <h2>סיכום</h2>
+  <div class="sum">אמה היא נשמה פנימית אכפתית והרמונית (אהו"י 6), עם יום לידה רגיש (2/11) ומראה חיצוני של כוח וניהול (עיצורים 8). שביל הגורל 8 מצביע על המשימה: ללמוד להחזיק כוח, כסף וניהול בלי לאבד את הרגישות. האור הסודי (1), עצמאות ויוזמה, הוא הגשר. שם המשפחה נושא מאסטר 22.<br><br>האתגרים המרכזיים: סגירת מעגלים (חוסר 9), ביטוי יצירתי (חוסר 3), גבולות וריצוי (6) והתחייבות (שם מלא 5). השנה (7/8/6) משלבת התבוננות פנימית, הצלחה כלכלית ומשפחה.</div>
+  <h3 style="margin-top:30px">פתוח לבדיקה והשלמה</h3>
+  <ul class="open">
+    <li>לא חושבו כי השקפים לא מכילים נוסחה: משולש נומרולוגי, ותק נשמה, פצע נשמתי, יעוד גדול וקטן, דרך לעושר, גילאים מיוחדים.</li>
+    <li>פסגות ואתגרים נחשבו לפי נוסחה סטנדרטית.</li>
+    <li>הרחבות המסומנות "הרחבה כללית לבדיקה" אינן מהשקפים.</li>
+    <li>אפשר להוסיף מפה זוגית ושנה אישית לשנים נוספות.</li>
+  </ul>
+</section>
+<footer>מפה נומרולוגית · אמה נחמן · אוקטובר 2026</footer>
+</div>
